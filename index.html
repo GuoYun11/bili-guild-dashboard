@@ -528,7 +528,7 @@ function renderTable(){
 
   if (state.keyword){
     const kw = state.keyword.toLowerCase();
-    list = list.filter(r => [r.nickname, r.uid, String(r.room_id), r.operator].some(v => (v || '').toLowerCase().includes(kw)));
+    list = list.filter(r => [r.nickname, r.uid, r.room_id, r.operator].some(v => String(v || '').toLowerCase().includes(kw)));
   }
   list.sort((a, b) => {
     if (state.sortKey === 'revenue_value') {
