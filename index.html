@@ -238,26 +238,30 @@ function showRoomExportTip(rooms){
     if(panel) panel.parentNode.insertBefore(el, panel);
   }
   el.style.display='block';
-  el.innerHTML = '<b>房间列表已变更（当前浏览器生效）</b><br>静态部署模式下，自动抓取脚本读取的是本地 <code>data/rooms.json</code>。如需同步到定时抓取，请<button class="btn" id="exportRoomsBtn" style="margin-left:6px;padding:4px 10px;font-size:12px;">导出 rooms.json</button>并替换本地文件。';
-  const btn = $('exportRoomsBtn');
-  if(btn) btn.addEventListener('click', ()=> exportRoomsJSON(rooms));
+  el.innerHTML = '<b>配置已变更（当前浏览器生效）</b><br>静态部署模式下，自动抓取脚本读取的是本地 <code>data/</code> 目录下的配置文件。如需同步到定时抓取与公网服务器，请<button class="btn" id="exportRoomsBtn" style="margin:2px 4px;padding:4px 10px;font-size:12px;">导出 rooms.json</button><button class="btn" id="exportNotesBtn" style="margin:2px 4px;padding:4px 10px;font-size:12px;">导出 notes.json</button>并替换本地文件，下次抓取自动生效。';
+  const rb = $('exportRoomsBtn');
+  if(rb) rb.addEventListener('click', ()=> exportJSON('rooms.json', { rooms }));
+  const nb = $('exportNotesBtn');
+  if(nb) nb.addEventListener('click', ()=> exportJSON('notes.json', mergedNotes()));
 }
-function exportRoomsJSON(rooms){
-  const blob = new Blob([JSON.stringify({ rooms }, null, 2)], { type: 'application/json' });
+function exportJSON(filename, data){
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
-  a.href = url; a.download = 'rooms.json'; document.body.appendChild(a); a.click();
+  a.href = url; a.download = filename; document.body.appendChild(a); a.click();
   document.body.removeChild(a); URL.revokeObjectURL(url);
-  toast('rooms.json 已下载，请放到本地 data/ 目录替换原文件');
+  toast(filename + ' 已下载，请放到本地 data/ 目录替换原文件');
 }
 async function persistNote(roomId, note){
   const key = String(roomId);
   if (state.serverMode){
     const ok = await apiPostJSON('/api/notes', { room_id: roomId, note });
     if (ok){ state.notes[key] = note || ''; toast('备注已保存'); }
-    else { state.serverMode = false; state.localNotes = Object.assign({}, state.localNotes, { [key]: note }); saveLS(LS_NOTES, state.localNotes); toast('已本地保存（未连接服务器）'); }
+    else { state.serverMode = false; state.localNotes = Object.assign({}, state.localNotes, { [key]: note }); saveLS(LS_NOTES, state.localNotes); toast('已本地保存'); showRoomExportTip(effectiveRooms()); }
   } else {
-    state.localNotes = Object.assign({}, state.localNotes, { [key]: note }); saveLS(LS_NOTES, state.localNotes); toast('已本地保存（仅当前浏览器）');
+    state.localNotes = Object.assign({}, state.localNotes, { [key]: note }); saveLS(LS_NOTES, state.localNotes);
+    toast('已本地保存（仅当前浏览器）');
+    showRoomExportTip(effectiveRooms());
   }
 }
 
@@ -553,11 +557,14 @@ function renderTable(){
         <td><button class="del-btn" data-room="${r.room_id}" title="删除房间">🗑</button></td>
       </tr>`;
     }
+    const p = (state._profiles || {})[String(r.room_id)] || {};
+    const uid = r.uid || p.uid || '--';
+    const operator = r.operator || p.operator || '--';
     return `<tr data-room="${r.room_id}">
       <td>${r.room_id}</td>
-      <td>${r.nickname || '--'}</td>
-      <td>${r.uid || '--'}</td>
-      <td><span class="tag">${r.operator || '--'}</span></td>
+      <td>${r.nickname || p.nickname || '--'}</td>
+      <td>${uid}</td>
+      <td><span class="tag">${operator}</span></td>
       <td class="rev">${fmt(r.revenue_value)}</td>
       <td class="note-cell"><input class="note-input" data-room="${r.room_id}" value="${escapeAttr(note)}" placeholder="备注…"></td>
       <td><button class="del-btn" data-room="${r.room_id}" title="删除房间">🗑</button></td>
@@ -687,13 +694,15 @@ function loadAll(){
   const staticData = jfetch('./data/latest.json').catch(()=>null);
   const apiHist = jfetch('/api/history').catch(()=>null);
   const staticHist = jfetch('./data/history.json').catch(()=>null);
+  const profilesFetch = jfetch('./data/profiles.json').catch(()=>({}));
 
-  Promise.all([apiData, staticData, apiHist, staticHist]).then(async ([ad,sd,ah,sh])=>{
+  Promise.all([apiData, staticData, apiHist, staticHist, profilesFetch]).then(async ([ad,sd,ah,sh,profiles])=>{
     const data = ad || sd;
     const history = ah || sh || {};
     if(!data || (!data.rooms && !data.periods)){ throw new Error('无有效数据'); }
     state.data = data;
     state._history = history;
+    state._profiles = profiles || {};
     // 建立房间元数据查询表（用于历史聚合补充 运营/UID）
     state._lookup = {};
     (data.rooms || []).forEach(r => state._lookup[r.room_id] = { operator:r.operator, operator_top:r.operator_top, uid:r.uid, nickname:r.nickname });
