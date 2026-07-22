@@ -425,7 +425,17 @@ function aggregateRooms(dailySnaps){
       rooms[rid].revenue_value += (r.revenue_value||0);
       if(r.nickname) rooms[rid].nickname = r.nickname;
       const meta = state._lookup[rid];
-      if(meta){ rooms[rid].operator = meta.operator; rooms[rid].operator_top = meta.operator_top; rooms[rid].uid = meta.uid; }
+      if(meta){
+        if(meta.operator) rooms[rid].operator = meta.operator;
+        if(meta.operator_top) rooms[rid].operator_top = meta.operator_top;
+        if(meta.uid) rooms[rid].uid = meta.uid;
+        if(meta.nickname && !rooms[rid].nickname) rooms[rid].nickname = meta.nickname;
+      }
+      // 再从 profiles 补充缺失字段
+      const p = (state._profiles || {})[String(rid)] || {};
+      if(!rooms[rid].nickname && p.nickname) rooms[rid].nickname = p.nickname;
+      if(!rooms[rid].uid && p.uid) rooms[rid].uid = p.uid;
+      if(!rooms[rid].operator && p.operator) rooms[rid].operator = p.operator;
     });
   });
   return Object.values(rooms);
