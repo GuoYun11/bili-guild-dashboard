@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B站工会主播数据看板</title>
+<script src="./public/echarts.min.js"></script>
+<style>
+  :root{
+    --bg:#f4f6f9; --card:#ffffff; --ink:#1f2d3d; --muted:#7a8aa0;
+    --teal:#14b8a6; --teal-d:#0d9488; --line:#e6ebf2; --warn:#e0792b; --danger:#e23d3d;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+       background:var(--bg);color:var(--ink);font-size:14px;}
+  .wrap{max-width:1280px;margin:0 auto;padding:20px 22px 48px;}
+
+  /* ====== 置顶区域：标题 + 时间选择器 + KPI 卡片（滚动时固定在顶部）====== */
+  .sticky-top{
+    position: sticky; top: 0; z-index: 100;
+    background: var(--bg);
+    padding-bottom: 16px;
+    margin-bottom: 4px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    border-radius: 12px;
+    padding: 16px 18px 18px;
+  }
+
+  header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:14px;}
+  header h1{font-size:20px;margin:0;font-weight:700;}
+  header h1 .dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--teal);margin-right:8px;vertical-align:middle;}
+  .meta{color:var(--muted);font-size:12.5px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+  .btn{border:1px solid var(--line);background:#fff;color:var(--ink);padding:7px 14px;border-radius:8px;cursor:pointer;font-size:13px;}
+  .btn:hover{border-color:var(--teal);color:var(--teal-d);}
+  .btn:disabled{cursor:not-allowed;opacity:.55;background:#f3f4f6;color:#9aa0a6;border-color:var(--line);}
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:0;}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;}
+  .kpi .label{color:var(--muted);font-size:12.5px;margin-bottom:8px;}
+  .kpi .val{font-size:24px;font-weight:700;line-height:1.1;}
+  .kpi .sub{color:var(--muted);font-size:12px;margin-top:6px;}
+  .grid{display:grid;grid-template-columns:1.4fr 1fr;gap:16px;margin-bottom:16px;}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;}
+  .panel h2{font-size:15px;margin:0 0 12px;font-weight:600;}
+  .panel h2 .hint{color:var(--muted);font-weight:400;font-size:12px;margin-left:8px;}
+  .chart{width:100%;height:360px;}
+  .toolbar{display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap;}
+  .toolbar input{border:1px solid var(--line);border-radius:8px;padding:8px 12px;font-size:13px;min-width:240px;outline:none;}
+  .toolbar input:focus{border-color:var(--teal);}
+  table{width:100%;border-collapse:collapse;font-size:13px;}
+  th,td{padding:9px 10px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap;}
+  th{color:var(--muted);font-weight:600;cursor:pointer;user-select:none;position:relative;}
+  th:hover{color:var(--teal-d);}
+  th .arr{font-size:10px;margin-left:4px;color:var(--teal);}
+  tbody tr:hover{background:#f8fafc;}
+  td.rev{font-weight:600;color:var(--teal-d);}
+  .tag{display:inline-block;background:#eafaf7;color:var(--teal-d);border-radius:6px;padding:2px 8px;font-size:12px;}
+  .warn-box{background:#fff6ec;border:1px solid #f3d9bf;color:#a85f1c;border-radius:10px;padding:10px 14px;font-size:13px;margin-bottom:16px;}
+
+  /* 时间周期选择器 */
+  .period-bar{display:flex;align-items:center;gap:8px;margin-bottom:14px;flex-wrap:wrap;}
+  .period-btn{border:1px solid var(--line);background:#fff;color:var(--ink);padding:7px 18px;border-radius:20px;cursor:pointer;font-size:13px;font-weight:500;transition:all .15s;}
+  .period-btn:hover{border-color:var(--teal);color:var(--teal-d);}
+  .period-btn.active{background:var(--teal);color:#fff;border-color:var(--teal);}
+  .period-range{display:flex;align-items:center;gap:6px;margin-left:4px;}
+  .period-range input[type="date"]{border:1px solid var(--line);border-radius:8px;padding:6px 10px;font-size:12px;outline:none;max-width:150px;}
+  .period-range input[type="date"]:focus{border-color:var(--teal);}
+  .period-range span{color:var(--muted);font-size:12px;}
+  .period-go{border:1px solid var(--teal);background:transparent;color:var(--teal-d);padding:6px 14px;border-radius:8px;cursor:pointer;font-size:12px;font-weight:600;}
+  .period-go:hover{background:var(--teal);color:#fff;}
+  .view-label{margin-left:10px;color:var(--muted);font-size:12.5px;}
+  .view-label b{color:var(--teal-d);font-weight:600;}
+
+  /* 明细表：新增房间按钮 / 备注输入 / 删除按钮 */
+  .toolbar .add-btn{margin-left:auto;border:1px solid var(--teal);background:var(--teal);color:#fff;padding:8px 16px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;}
+  .toolbar .add-btn:hover{background:var(--teal-d);border-color:var(--teal-d);}
+  td.note-cell{padding:4px 8px;}
+  .note-input{border:1px solid var(--line);border-radius:6px;padding:5px 8px;font-size:12.5px;width:140px;outline:none;font-family:inherit;}
+  .note-input:focus{border-color:var(--teal);}
+  .del-btn{border:none;background:transparent;cursor:pointer;font-size:15px;padding:4px 8px;border-radius:6px;line-height:1;}
+  .del-btn:hover{background:#fde8e8;}
+  .pending-tag{display:inline-block;background:#fff4e0;color:#a85f1c;border-radius:6px;padding:2px 8px;font-size:12px;}
+  .toast{position:fixed;left:50%;bottom:32px;transform:translateX(-50%);background:#1f2d3d;color:#fff;padding:10px 18px;border-radius:10px;font-size:13px;opacity:0;pointer-events:none;transition:opacity .25s;z-index:99;}
+  .toast.show{opacity:1;}
+
+  .foot{color:var(--muted);font-size:12px;margin-top:20px;line-height:1.7;}
+  @media(max-width:920px){.kpis{grid-template-columns:repeat(2,1fr);}.grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ====== 置顶区域开始 ====== -->
+  <div class="sticky-top" id="stickyTop">
+  <header>
+    <h1><span class="dot"></span>B站工会主播数据看板</h1>
+    <div class="meta">
+      <span id="updated">最晚更新: --</span>
+      <span id="freshness"></span>
+      <button class="btn" id="refreshBtn">刷新</button>
+    </div>
+  </header>
+
+  <div id="qualityWarn" class="warn-box" style="display:none;"></div>
+
+  <!-- 时间周期选择器 -->
+  <div class="period-bar" id="periodBar">
+    <button class="period-btn active" data-period="today">今日</button>
+    <button class="period-btn" data-period="yesterday">昨日</button>
+    <button class="period-btn" data-period="week">本周</button>
+    <button class="period-btn" data-period="month">本月</button>
+    <div class="period-range">
+      <input type="date" id="startDate" title="开始日期">
+      <span>~</span>
+      <input type="date" id="endDate" title="结束日期">
+      <button class="period-go" id="customRangeBtn">查询</button>
+    </div>
+    <span class="view-label" id="viewLabel"></span>
+  </div>
+
+  <div class="kpis">
+    <div class="kpi"><div class="label">监控房间数</div><div class="val" id="kpiCount">--</div><div class="sub" id="kpiCountSub"></div></div>
+    <div class="kpi"><div class="label">总流水合计</div><div class="val" id="kpiTotal">--</div><div class="sub" id="kpiTotalSub">全部监控房间累加</div></div>
+    <div class="kpi"><div class="label">平均流水 / 房间</div><div class="val" id="kpiAvg">--</div><div class="sub">区间日均口径参考</div></div>
+    <div class="kpi"><div class="label">最高流水房间</div><div class="val" id="kpiTop">--</div><div class="sub" id="kpiTopSub"></div></div>
+  </div>
+  </div>
+  <!-- ====== 置顶区域结束 ====== -->
+
+  <div class="grid">
+    <div class="panel">
+      <h2>各房间总流水 <span class="hint">按金额降序 · 单位：元</span></h2>
+      <div id="barChart" class="chart"></div>
+    </div>
+    <div class="panel">
+      <h2>流水占比（按一级运营经纪人） <span class="hint">分组求和</span></h2>
+      <div id="pieChart" class="chart"></div>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-bottom:16px;">
+    <h2>总流水趋势 <span class="hint">当前周期各日合计 + Top5 房间走势</span></h2>
+    <div id="lineChart" class="chart"></div>
+  </div>
+
+  <div class="panel">
+    <h2>明细数据 <span class="hint">点击表头排序 · 支持搜索 · 可增删房间与备注</span></h2>
+    <div class="toolbar">
+      <input id="searchInput" placeholder="搜索 昵称 / UID / 房间号 / 运营经纪人 …">
+      <button class="add-btn" id="addRoomBtn">＋ 新增房间</button>
+    </div>
+    <div style="overflow-x:auto;">
+      <table id="dataTable">
+        <thead>
+          <tr>
+            <th data-key="room_id">房间号<span class="arr"></span></th>
+            <th data-key="nickname">主播昵称<span class="arr"></span></th>
+            <th data-key="uid">UID<span class="arr"></span></th>
+            <th data-key="operator">运营经纪人<span class="arr"></span></th>
+            <th data-key="revenue_value">总流水<span class="arr"></span></th>
+            <th data-key="note">备注</th>
+            <th data-key="op">操作</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="foot">
+    数据来源：B站直播工会后台「主播数据」页面，由本地自动化每 30 分钟抓取一次并覆盖写入本看板。<br>
+    时间周期说明：<b>今日</b>为实时抓取数据；<b>昨日 / 本周 / 本月</b> 及<b>自定义区间</b>由历史快照（每日各取最新一次）按区间累加汇总得出，区间内的每个房间流水 = 该区间各日合计。<br>
+    明细表支持新增/删除房间与自定义备注（备注与房间增删通过本地服务器持久化；部署在 CloudStudio 时为只读镜像，编辑仅保存在当前浏览器）。
+  </div>
+</div>
+
+<script>
+const fmt = (n) => (n==null||isNaN(n)) ? '--' : '¥' + Number(n).toLocaleString('zh-CN',{maximumFractionDigits:0});
+let state = { data:null, sortKey:'revenue_value', sortDir:-1, keyword:'', activePeriod:'today', allPeriods:{},
+  rooms:[], notes:{}, serverMode:false, localRooms:null, localNotes:null,
+  _history:null, _dailyLatest:null, _lookup:{}, customRange:null };
+let barChart, pieChart, lineChart;
+
+// ========== 安全 DOM 操作：防止 null 导致 textContent 报错 ==========
+function $(id){ return document.getElementById(id); }
+function $text(id, val){ const el=$(id); if(el) el.textContent=val; }
+function $html(id, val){ const el=$(id); if(el) el.innerHTML=val; }
+
+// ---------- 持久化辅助（兼容本地 server 与 CloudStudio 静态部署）----------
+const LS_ROOMS = 'bili_rooms_v1', LS_NOTES = 'bili_notes_v1';
+
+function loadLS(key, fallback){ try { return JSON.parse(localStorage.getItem(key)) ?? fallback; } catch(e){ return fallback; } }
+function saveLS(key, val){ try { localStorage.setItem(key, JSON.stringify(val)); } catch(e){} }
+
+async function apiGetJSON(apiUrl, staticUrl, fallback){
+  try { const r = await fetch(apiUrl, {cache:'no-store'}); if (r.ok){ const t = await r.text(); return { data: JSON.parse(t), fromApi: true }; } } catch(e){}
+  if (staticUrl){ try { const r = await fetch(staticUrl, {cache:'no-store'}); if (r.ok){ const t = await r.text(); return { data: JSON.parse(t), fromApi: false }; } } catch(e){} }
+  return { data: fallback, fromApi: false };
+}
+async function apiPostJSON(url, payload){
+  try {
+    const r = await fetch(url, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) });
+    const t = await r.text();
+    JSON.parse(t); return true;
+  } catch(e){ return false; }
+}
+function toast(msg){
+  let el = document.querySelector('.toast');
+  if (!el){ el = document.createElement('div'); el.className='toast'; document.body.appendChild(el); }
+  el.textContent = msg; el.classList.add('show');
+  clearTimeout(el._t); el._t = setTimeout(()=>el.classList.remove('show'), 2200);
+}
+
+function effectiveRooms(){
+  if (state.serverMode) return state.rooms;
+  if (state.localRooms && state.localRooms.length) return state.localRooms;
+  return state.rooms;
+}
+function mergedNotes(){ return Object.assign({}, state.notes, state.localNotes || {}); }
+
+async function persistRooms(rooms){
+  if (state.serverMode){
+    const ok = await apiPostJSON('/api/rooms', { rooms });
+    if (ok){ state.rooms = rooms; toast('房间列表已保存（下次抓取生效）'); }
+    else { state.serverMode = false; saveLS(LS_ROOMS, rooms); toast('已本地保存（未连接服务器，仅当前浏览器）'); }
+  } else {
+    saveLS(LS_ROOMS, rooms); state.localRooms = rooms; toast('已本地保存（仅当前浏览器生效）');
+  }
+}
+async function persistNote(roomId, note){
+  const key = String(roomId);
+  if (state.serverMode){
+    const ok = await apiPostJSON('/api/notes', { room_id: roomId, note });
+    if (ok){ state.notes[key] = note || ''; toast('备注已保存'); }
+    else { state.serverMode = false; state.localNotes = Object.assign({}, state.localNotes, { [key]: note }); saveLS(LS_NOTES, state.localNotes); toast('已本地保存（未连接服务器）'); }
+  } else {
+    state.localNotes = Object.assign({}, state.localNotes, { [key]: note }); saveLS(LS_NOTES, state.localNotes); toast('已本地保存（仅当前浏览器）');
+  }
+}
+
+function addRoom(){
+  const input = prompt('请输入要新增的房间号（直播间 ID）：');
+  if (input == null) return;
+  const id = Number(String(input).trim());
+  if (!id || id <= 0){ alert('房间号无效，请输入数字 ID'); return; }
+  const cur = effectiveRooms();
+  if (cur.includes(id)){ alert('该房间已在列表中'); return; }
+  persistRooms([...cur, id]);
+  setTimeout(()=>{ if (state.data) renderActivePeriod(state._history || {}); }, 100);
+}
+async function removeRoom(roomId){
+  if (!confirm('确认删除房间 ' + roomId + ' ？\n（删除后将不再抓取，备注也会丢失）')) return;
+  const cur = effectiveRooms().filter(x => x !== roomId);
+  await persistRooms(cur);
+  setTimeout(()=>{ if (state.data) renderActivePeriod(state._history || {}); }, 100);
+}
+
+// ---------- 时间解析 & 历史聚合（用于 昨日/本周/本月/自定义区间）----------
+function parseTime(s){
+  if(!s) return null;
+  let m = String(s).match(/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})/);
+  if(m){ return new Date(Date.UTC(+m[1],+m[2]-1,+m[3],+m[4],+m[5],+m[6])); }
+  m = String(s).match(/^(\d{4})\/(\d{1,2})\/(\d{1,2})[ T](\d{1,2}):(\d{1,2}):(\d{1,2})/);
+  if(m){ return new Date(+m[1], +m[2]-1, +m[3], +m[4], +m[5], +m[6]); }
+  const d = new Date(s);
+  return isNaN(d.getTime()) ? null : d;
+}
+const pad2 = (n) => String(n).padStart(2,'0');
+function dayKeyOf(d){ return d.getFullYear()+'-'+pad2(d.getMonth()+1)+'-'+pad2(d.getDate()); }
+
+// 由 history + 当前 latest 构建"每日最新快照"列表（同一天只取最后一次抓取，避免重复累加）
+function buildDailyLatest(history, latestData){
+  const map = {};
+  const snaps = (history && history.snapshots) || [];
+  snaps.forEach(s=>{
+    const t = parseTime(s.generated_at || s.scraped_at);
+    if(!t) return;
+    const dk = dayKeyOf(t);
+    const cur = map[dk];
+    if(!cur || t > parseTime(cur.generated_at || cur.scraped_at)) map[dk] = { scraped_at:s.scraped_at, generated_at:s.generated_at, total_revenue:s.total_revenue||0, rooms:(s.rooms||[]).map(r=>({room_id:r.room_id, nickname:r.nickname, revenue_value:r.revenue_value||0})), _day:dk, _t:t };
+  });
+  // 今日以 latest.json（实时抓取）为准
+  if(latestData && latestData.rooms && latestData.rooms.length){
+    const t = parseTime(latestData.generated_at || latestData.scraped_at) || new Date();
+    const dk = dayKeyOf(t);
+    map[dk] = { scraped_at:latestData.scraped_at, generated_at:latestData.generated_at, total_revenue:(latestData.summary?latestData.summary.total_revenue:0), rooms:latestData.rooms.map(r=>({room_id:r.room_id, nickname:r.nickname, revenue_value:r.revenue_value||0})), _day:dk, _t:t };
+  }
+  return Object.values(map).sort((a,b)=> a._t - b._t);
+}
+function getDailyLatest(){
+  if(!state._dailyLatest) state._dailyLatest = buildDailyLatest(state._history, state.data);
+  return state._dailyLatest;
+}
+function aggregateRooms(dailySnaps){
+  const rooms = {};
+  dailySnaps.forEach(s=>{
+    (s.rooms||[]).forEach(r=>{
+      const rid = r.room_id;
+      if(!rooms[rid]) rooms[rid] = { room_id:rid, nickname:r.nickname||'', revenue_value:0 };
+      rooms[rid].revenue_value += (r.revenue_value||0);
+      if(r.nickname) rooms[rid].nickname = r.nickname;
+      const meta = state._lookup[rid];
+      if(meta){ rooms[rid].operator = meta.operator; rooms[rid].operator_top = meta.operator_top; rooms[rid].uid = meta.uid; }
+    });
+  });
+  return Object.values(rooms);
+}
+function decorate(r, scrapedAt){
+  return Object.assign({}, r, { revenue:(r.revenue_value||0)+'元', scraped_at: scrapedAt||'' });
+}
+function buildPeriodObject(label, rooms, snapRef){
+  if(!rooms.length) return { label, error:'NO_DATA', count:0, success:0, summary:null, rooms:[] };
+  const total = rooms.reduce((a,r)=>a+(r.revenue_value||0),0);
+  const sorted = [...rooms].sort((a,b)=>(b.revenue_value||0)-(a.revenue_value||0));
+  const sa = snapRef ? (snapRef.scraped_at||'') : '';
+  return {
+    label,
+    scraped_at: sa,
+    generated_at: state.data ? state.data.generated_at : '',
+    count: sorted.length, success: sorted.length,
+    summary: {
+      total_revenue: total,
+      avg_revenue: sorted.length ? Math.round(total/sorted.length) : 0,
+      max_revenue: decorate(sorted[0], sa),
+      min_revenue: decorate(sorted[sorted.length-1], sa),
+    },
+    rooms: sorted.map(r => decorate(r, sa)),
+  };
+}
+function windowDaily(key){
+  const daily = getDailyLatest();
+  if(!daily.length) return [];
+  const now = new Date();
+  if(key==='today'){ const tk=dayKeyOf(now); return daily.filter(x=>x._day===tk); }
+  if(key==='yesterday'){ const y=new Date(now); y.setDate(now.getDate()-1); return daily.filter(x=>x._day===dayKeyOf(y)); }
+  if(key==='week'){ const c=new Date(now); c.setDate(now.getDate()-6); return daily.filter(x=>x._t>=c); }
+  if(key==='month'){ const c=new Date(now); c.setDate(now.getDate()-29); return daily.filter(x=>x._t>=c); }
+  return daily;
+}
+function derivePeriod(key){
+  const sel = windowDaily(key);
+  const labelMap = {today:'今日',yesterday:'昨日',week:'本周',month:'本月'};
+  if(!sel.length) return { label:labelMap[key], error:'NO_DATA', count:0, success:0, summary:null, rooms:[] };
+  return buildPeriodObject(labelMap[key], aggregateRooms(sel), sel[sel.length-1]);
+}
+function computeCustomRange(startStr, endStr){
+  const daily = getDailyLatest();
+  if(!daily.length) return { label:'自定义区间', error:'NO_DATA', count:0, success:0, summary:null, rooms:[] };
+  const s = new Date(startStr+'T00:00:00');
+  const e = new Date(endStr+'T23:59:59');
+  const sel = daily.filter(x=> x._t >= s && x._t <= e);
+  const label = '自定义区间('+startStr+'~'+endStr+')';
+  if(!sel.length) return { label, error:'NO_DATA', count:0, success:0, summary:null, rooms:[] };
+  return buildPeriodObject(label, aggregateRooms(sel), sel[sel.length-1]);
+}
+
+// ---------- 图表与渲染 ----------
+function initCharts(){
+  barChart = echarts.init($('barChart'));
+  pieChart = echarts.init($('pieChart'));
+  lineChart = echarts.init($('lineChart'));
+  window.addEventListener('resize', () => { barChart.resize(); pieChart.resize(); lineChart.resize(); });
+}
+
+function latestUpdateTime(d){
+  const times = (d.rooms || []).map(r => r.scraped_at).filter(Boolean);
+  if (!times.length) return (d.scraped_at || '--');
+  return times.reduce((a, b) => (a > b ? a : b));
+}
+
+// 取当前视图数据：优先用实时多周期(periods)，否则由历史聚合推导
+function getActiveData(){
+  if(!state.data) return null;
+  if(state.customRange){
+    const agg = computeCustomRange(state.customRange.start, state.customRange.end);
+    return Object.assign({}, state.data, agg);
+  }
+  const key = state.activePeriod;
+  if(state.data.periods && state.data.periods[key] && !state.data.periods[key].error){
+    const p = state.data.periods[key];
+    return Object.assign({}, state.data, {
+      scraped_at: p.scraped_at || state.data.scraped_at,
+      generated_at: state.data.generated_at,
+      count: p.count, success: p.success, summary: p.summary, rooms: p.rooms,
+    });
+  }
+  const derived = derivePeriod(key);
+  if(derived) return Object.assign({}, state.data, derived);
+  return state.data;
+}
+
+function getActiveTrendSnaps(){
+  const daily = getDailyLatest();
+  if(!daily.length) return [];
+  if(state.customRange){
+    const s = new Date(state.customRange.start+'T00:00:00'), e = new Date(state.customRange.end+'T23:59:59');
+    return daily.filter(x=> x._t >= s && x._t <= e);
+  }
+  return windowDaily(state.activePeriod);
+}
+
+function renderKPI(d){
+  const s = d.summary || {};
+  $text('kpiCount', d.success + ' / ' + d.count);
+  $text('kpiCountSub', '成功抓取 / 监控总数');
+  $text('kpiTotal', fmt(s.total_revenue));
+  $text('kpiAvg', fmt(s.avg_revenue));
+  if (s.max_revenue){ $text('kpiTop', s.max_revenue.nickname || ('房间'+s.max_revenue.room_id)); $text('kpiTopSub', fmt(s.max_revenue.revenue_value) + ' · 房间'+s.max_revenue.room_id); }
+  else { $text('kpiTop', '--'); $text('kpiTopSub', ''); }
+  $text('updated', '最晚更新: ' + latestUpdateTime(d));
+  tickFreshness();
+  const warnEl = $('qualityWarn');
+  if (warnEl) {
+    if (d.success < d.count){ warnEl.style.display='block'; warnEl.textContent = '⚠️ 本批次 '+ (d.count-d.success) +' 个房间抓取失败（数据缺失），明细表与汇总仅基于成功部分。'; }
+    else warnEl.style.display='none';
+  }
+}
+
+function tickFreshness(){
+  const d = state.data ? getActiveData() : null;
+  const el = $('freshness');
+  if(!d){ if(el) el.textContent=''; return; }
+  const base = parseTime(d.generated_at || d.scraped_at);
+  if(!base){ if(el) el.textContent=''; return; }
+  const mins = Math.max(0, Math.round((Date.now() - base.getTime())/60000));
+  if(el) el.textContent = '(约 '+mins+' 分钟前)';
+}
+
+function renderBar(rooms){
+  const sorted = [...rooms].sort((a,b)=>(a.revenue_value||0)-(b.revenue_value||0));
+  barChart.setOption({
+    grid:{left:8,right:24,top:16,bottom:8,containLabel:true},
+    tooltip:{trigger:'axis',axisPointer:{type:'shadow'},valueFormatter:v=>fmt(v)},
+    xAxis:{type:'value',axisLabel:{formatter:v=>v>=10000?(v/10000)+'万':v}},
+    yAxis:{type:'category',data:sorted.map(r=>r.nickname||('房间'+r.room_id)),axisLabel:{width:90,overflow:'truncate'}},
+    series:[{type:'bar',data:sorted.map(r=>r.revenue_value||0),itemStyle:{color:'#14b8a6',borderRadius:[0,4,4,0]},
+      label:{show:true,position:'right',formatter:p=>fmt(p.value),color:'#1f2d3d',fontSize:11}}]
+  });
+}
+
+function renderPie(rooms){
+  const map = {};
+  rooms.forEach(r=>{ const k=r.operator_top||'未分组'; map[k]=(map[k]||0)+(r.revenue_value||0); });
+  const data = Object.entries(map).map(([name,value])=>({name,value:Math.round(value*100)/100})).sort((a,b)=>b.value-a.value);
+  pieChart.setOption({
+    tooltip:{trigger:'item',formatter:p=>p.name+'<br/>'+fmt(p.value)+' ('+p.percent+'%)'},
+    legend:{type:'scroll',orient:'vertical',right:6,top:10,bottom:10,textStyle:{fontSize:12}},
+    series:[{type:'pie',radius:['38%','66%'],center:['36%','52%'],avoidLabelOverlap:true,
+      itemStyle:{borderColor:'#fff',borderWidth:2},
+      label:{formatter:'{b}\n{d}%',fontSize:11},
+      data}]
+  });
+}
+
+function renderLine(trendSnaps, rooms){
+  const snaps = trendSnaps || [];
+  if (!snaps.length){ lineChart.setOption({title:{text:'暂无趋势数据',left:'center',top:'center',textStyle:{color:'#7a8aa0',fontSize:13}}}); return; }
+  const top5 = [...rooms].sort((a,b)=>(b.revenue_value||0)-(a.revenue_value||0)).slice(0,5).map(r=>r.room_id);
+  const nickMap = {}; rooms.forEach(r=>nickMap[r.room_id]=r.nickname||('房间'+r.room_id));
+  const x = snaps.map(s=>s.scraped_at || s._day || '');
+  const totalSeries = {name:'合计',type:'line',smooth:true,data:snaps.map(s=>s.total_revenue),lineStyle:{width:3,color:'#0d9488'},itemStyle:{color:'#0d9488'},z:5};
+  const palette = ['#ef6c4b','#5b8def','#9b59b6','#f1c40f','#16a085'];
+  const roomSeries = top5.map((rid,i)=>{
+    const data = snaps.map(s=>{ const f=(s.rooms||[]).find(r=>r.room_id===rid); return f?f.revenue_value:null; });
+    return {name:nickMap[rid]||('房间'+rid),type:'line',smooth:true,data,itemStyle:{color:palette[i%palette.length]},lineStyle:{width:1.5,color:palette[i%palette.length]}};
+  });
+  lineChart.setOption({
+    tooltip:{trigger:'axis',valueFormatter:v=>v==null?'-':fmt(v)},
+    legend:{type:'scroll',top:0,textStyle:{fontSize:11}},
+    grid:{left:8,right:16,top:38,bottom:8,containLabel:true},
+    xAxis:{type:'category',data:x,axisLabel:{fontSize:10,hideOverlap:true}},
+    yAxis:{type:'value',axisLabel:{formatter:v=>v>=10000?(v/10000)+'万':v}},
+    series:[totalSeries,...roomSeries]
+  });
+}
+
+function escapeAttr(s){ return String(s || '').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function renderTable(){
+  const d = getActiveData();
+  const periodRooms = (d && d.rooms) || [];
+  const periodIds = new Set(periodRooms.map(r => r.room_id));
+  const notes = mergedNotes();
+  let list = periodRooms.map(r => ({ ...r, pending: false }));
+  effectiveRooms().forEach(rid => { if (!periodIds.has(rid)) list.push({ room_id: rid, pending: true }); });
+
+  if (state.keyword){
+    const kw = state.keyword.toLowerCase();
+    list = list.filter(r => [r.nickname, r.uid, String(r.room_id), r.operator].some(v => (v || '').toLowerCase().includes(kw)));
+  }
+  list.sort((a, b) => {
+    if (state.sortKey === 'revenue_value') {
+      const va = a.pending ? -Infinity : (a.revenue_value || 0);
+      const vb = b.pending ? -Infinity : (b.revenue_value || 0);
+      return (va - vb) * state.sortDir;
+    }
+    const va = a[state.sortKey], vb = b[state.sortKey];
+    if (typeof va === 'number' && typeof vb === 'number') return (va - vb) * state.sortDir;
+    return String(va || '').localeCompare(String(b || ''), 'zh') * state.sortDir;
+  });
+
+  const tbody = document.querySelector('#dataTable tbody');
+  if (!tbody) return;
+  tbody.innerHTML = list.map(r => {
+    const note = notes[String(r.room_id)] || '';
+    if (r.pending){
+      return `<tr data-room="${r.room_id}">
+        <td>${r.room_id}</td>
+        <td colspan="4" style="color:var(--muted);"><span class="pending-tag">待抓取</span> 已加入监控，下次抓取后显示数据</td>
+        <td class="note-cell"><input class="note-input" data-room="${r.room_id}" value="${escapeAttr(note)}" placeholder="备注…"></td>
+        <td><button class="del-btn" data-room="${r.room_id}" title="删除房间">🗑</button></td>
+      </tr>`;
+    }
+    return `<tr data-room="${r.room_id}">
+      <td>${r.room_id}</td>
+      <td>${r.nickname || '--'}</td>
+      <td>${r.uid || '--'}</td>
+      <td><span class="tag">${r.operator || '--'}</span></td>
+      <td class="rev">${fmt(r.revenue_value)}</td>
+      <td class="note-cell"><input class="note-input" data-room="${r.room_id}" value="${escapeAttr(note)}" placeholder="备注…"></td>
+      <td><button class="del-btn" data-room="${r.room_id}" title="删除房间">🗑</button></td>
+    </tr>`;
+  }).join('');
+
+  tbody.querySelectorAll('.note-input').forEach(inp => {
+    inp.addEventListener('change', () => persistNote(Number(inp.dataset.room), inp.value.trim()));
+    inp.addEventListener('keydown', e => { if (e.key === 'Enter') inp.blur(); });
+  });
+  tbody.querySelectorAll('.del-btn').forEach(btn => {
+    btn.addEventListener('click', () => removeRoom(Number(btn.dataset.room)));
+  });
+  document.querySelectorAll('#dataTable th').forEach(th => {
+    const k = th.dataset.key; const arr = th.querySelector('.arr');
+    if(arr) arr.textContent = (k === state.sortKey) ? (state.sortDir < 0 ? '▼' : '▲') : '';
+  });
+}
+
+function renderViewLabel(){
+  const realPeriods = state.data && state.data.periods && state.data.periods[state.activePeriod] && !state.data.periods[state.activePeriod].error;
+  const src = realPeriods ? '实时抓取' : '历史数据汇总';
+  const nameMap = {today:'今日',yesterday:'昨日',week:'本周',month:'本月'};
+  const name = state.customRange ? ('自定义区间 '+state.customRange.start+'~'+state.customRange.end) : (nameMap[state.activePeriod]||state.activePeriod);
+  $html('viewLabel', '<b>'+name+'</b> · '+src);
+}
+
+function renderActivePeriod(history){
+  const d = getActiveData();
+  if (!d) {
+    $text('kpiTotal', '--');
+    $text('kpiAvg', '--');
+    $text('kpiTop', '--');
+    $text('updated', '当前周期暂无数据');
+    return;
+  }
+  renderViewLabel();
+  renderKPI(d);
+  renderBar(d.rooms);
+  renderPie(d.rooms);
+  renderLine(getActiveTrendSnaps(), d.rooms);
+  renderTable();
+}
+
+function switchPeriod(periodKey){
+  state.activePeriod = periodKey;
+  state.customRange = null;
+  document.querySelectorAll('.period-btn').forEach(btn=>{
+    btn.classList.toggle('active', btn.dataset.period === periodKey);
+  });
+  renderActivePeriod(state._history || {});
+}
+
+function updatePeriodButtons(){
+  document.querySelectorAll('.period-btn').forEach(btn => {
+    const key = btn.dataset.period;
+    const p = (state.data && state.data.periods) ? state.data.periods[key] : null;
+    if (p && p.error) {
+      btn.style.opacity = '0.4';
+      btn.title = p.label + '数据不可用: ' + p.error;
+    } else {
+      btn.style.opacity = '1';
+      btn.title = (p && p.summary) ? (p.label + ' · 总流水' + fmt(p.summary.total_revenue)) : (btn.textContent + ' · 由历史数据汇总');
+    }
+  });
+}
+
+async function loadRoomsAndNotes(){
+  const active = getActiveData();
+  const fallbackRooms = (active && active.rooms) ? active.rooms.map(r => r.room_id) : [];
+  const rRes = await apiGetJSON('/api/rooms', './data/rooms.json', { rooms: fallbackRooms });
+  state.rooms = Array.isArray(rRes.data.rooms) ? rRes.data.rooms : fallbackRooms;
+  state.serverMode = rRes.fromApi;
+  const nRes = await apiGetJSON('/api/notes', './data/notes.json', {});
+  state.notes = (nRes.data && typeof nRes.data === 'object') ? nRes.data : {};
+  state.localNotes = loadLS(LS_NOTES, null);
+  state.localRooms = loadLS(LS_ROOMS, null);
+}
+
+function loadAll(){
+  function jfetch(url){
+    return fetch(url,{cache:'no-store'}).then(r=>{
+      if(!r.ok) throw new Error('HTTP '+r.status);
+      return r.text().then(t=>{ try{return JSON.parse(t);}catch(e){throw new Error('not-json');} });
+    });
+  }
+
+  const apiData = jfetch('/api/data').catch(()=>null);
+  const staticData = jfetch('./data/latest.json').catch(()=>null);
+  const apiHist = jfetch('/api/history').catch(()=>null);
+  const staticHist = jfetch('./data/history.json').catch(()=>null);
+
+  Promise.all([apiData, staticData, apiHist, staticHist]).then(async ([ad,sd,ah,sh])=>{
+    const data = ad || sd;
+    const history = ah || sh || {};
+    if(!data || (!data.rooms && !data.periods)){ throw new Error('无有效数据'); }
+    state.data = data;
+    state._history = history;
+    // 建立房间元数据查询表（用于历史聚合补充 运营/UID）
+    state._lookup = {};
+    (data.rooms || []).forEach(r => state._lookup[r.room_id] = { operator:r.operator, operator_top:r.operator_top, uid:r.uid, nickname:r.nickname });
+    state._dailyLatest = null; // 数据更新后强制重建
+    if (data.periods) {
+      state.allPeriods = data.periods;
+      updatePeriodButtons();
+    } else {
+      updatePeriodButtons();
+    }
+    initChartsOnce();
+    await loadRoomsAndNotes();
+    renderActivePeriod(history);
+  }).catch(err=>{ $text('updated', '加载失败: '+err.message); });
+}
+
+let chartsReady=false;
+function initChartsOnce(){ if(!chartsReady){ initCharts(); chartsReady=true; } }
+
+// 刷新按钮冷却（1 分钟 CD）：点击后禁用并显示倒计时，防止频繁刷新
+const REFRESH_CD_MS = 60 * 1000;
+let refreshTimer = null;
+function startRefreshCooldown(){
+  const btn = $('refreshBtn');
+  if(!btn) return;
+  btn.disabled = true;
+  let remain = Math.ceil(REFRESH_CD_MS / 1000);
+  btn.textContent = '刷新 (' + remain + 's)';
+  if(refreshTimer) clearInterval(refreshTimer);
+  refreshTimer = setInterval(() => {
+    remain -= 1;
+    if(remain <= 0){
+      clearInterval(refreshTimer); refreshTimer = null;
+      btn.disabled = false;
+      btn.textContent = '刷新';
+    } else {
+      btn.textContent = '刷新 (' + remain + 's)';
+    }
+  }, 1000);
+}
+$('refreshBtn').addEventListener('click', () => {
+  if(refreshTimer) return; // 冷却中，忽略点击
+  state._dailyLatest = null;
+  loadAll();
+  startRefreshCooldown();
+});
+$('searchInput').addEventListener('input', e=>{ state.keyword=e.target.value; renderTable(); });
+$('addRoomBtn').addEventListener('click', addRoom);
+
+document.querySelectorAll('.period-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{ switchPeriod(btn.dataset.period); });
+});
+
+$('customRangeBtn').addEventListener('click', ()=>{
+  const sd = $('startDate').value;
+  const ed = $('endDate').value;
+  if (!sd || !ed) { alert('请选择开始和结束日期'); return; }
+  if (new Date(ed) < new Date(sd)) { alert('结束日期不能早于开始日期'); return; }
+  state.customRange = { start: sd, end: ed };
+  document.querySelectorAll('.period-btn').forEach(b=>b.classList.remove('active'));
+  renderActivePeriod(state._history || {});
+  toast('已按自定义区间 ['+sd+' ~ '+ed+'] 汇总（区间各日合计）');
+});
+
+document.querySelectorAll('#dataTable th').forEach(th=>{
+  th.addEventListener('click', ()=>{
+    const k=th.dataset.key;
+    if(state.sortKey===k) state.sortDir*=-1;
+    else {state.sortKey=k;state.sortDir=-1;}
+    renderTable();
+  });
+});
+
+loadAll();
+// 数据每 30 分钟自动刷新（与抓取节奏一致）；相对"X分钟前"每 30 秒刷新一次
+setInterval(loadAll, 30 * 60 * 1000);
+setInterval(tickFreshness, 30 * 1000);
+</script>
+</body>
+</html>
