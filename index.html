@@ -79,6 +79,24 @@
   .del-btn{border:none;background:transparent;cursor:pointer;font-size:15px;padding:4px 8px;border-radius:6px;line-height:1;}
   .del-btn:hover{background:#fde8e8;}
   .pending-tag{display:inline-block;background:#fff4e0;color:#a85f1c;border-radius:6px;padding:2px 8px;font-size:12px;}
+  /* 设置弹窗 */
+  .modal-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.35);z-index:999;align-items:center;justify-content:center;}
+  .modal-overlay.show{display:flex;}
+  .modal-box{background:var(--card);border-radius:14px;padding:24px 28px;max-width:440px;width:90%;box-shadow:0 8px 32px rgba(0,0,0,0.12);}
+  .modal-box h3{margin:0 0 16px;font-size:17px;}
+  .modal-box label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px;}
+  .modal-box input[type=text],.modal-box input[type=password]{width:100%;border:1px solid var(--line);border-radius:8px;padding:9px 12px;font-size:13px;outline:none;margin-bottom:14px;}
+  .modal-box input:focus{border-color:var(--teal);}
+  .modal-box .hint{font-size:12px;color:var(--muted);margin-bottom:16px;line-height:1.6;}
+  .modal-box .btn-row{display:flex;gap:10px;margin-top:6px;}
+  .modal-box .btn-row .btn{flex:1;padding:9px 0;border-radius:8px;font-size:13px;cursor:pointer;border:none;font-weight:600;}
+  .modal-box .btn-primary{background:var(--teal);color:#fff;}
+  .modal-box .btn-primary:hover{background:var(--teal-d);}
+  .modal-box .btn-cancel{background:var(--bg);color:var(--ink);border:1px solid var(--line);}
+  .settings-icon{cursor:pointer;font-size:18px;opacity:0.5;transition:opacity .15s;border:none;background:none;padding:2px 4px;vertical-align:middle;}
+  .settings-icon:hover{opacity:1;}
+  .settings-icon.has-token{opacity:1;color:var(--teal);}
+
   .toast{position:fixed;left:50%;bottom:32px;transform:translateX(-50%);background:#1f2d3d;color:#fff;padding:10px 18px;border-radius:10px;font-size:13px;opacity:0;pointer-events:none;transition:opacity .25s;z-index:99;}
   .toast.show{opacity:1;}
 
@@ -97,6 +115,7 @@
       <span id="updated">最晚更新: --</span>
       <span id="freshness"></span>
       <button class="btn" id="refreshBtn">刷新</button>
+      <button class="settings-icon" id="settingsBtn" title="同步设置">⚙</button>
     </div>
   </header>
 
@@ -170,7 +189,24 @@
   <div class="foot">
     数据来源：B站直播工会后台「主播数据」页面，由本地自动化每小时抓取一次并覆盖写入本看板。<br>
     时间周期说明：<b>今日</b>为实时抓取数据；<b>昨日 / 本周 / 本月</b> 及<b>自定义区间</b>由历史快照（每日各取最新一次）按区间累加汇总得出，区间内的每个房间流水 = 该区间各日合计。<br>
-    明细表支持新增/删除房间与自定义备注（备注与房间增删通过本地服务器持久化；公网部署版为只读镜像，编辑仅保存在当前浏览器，如需同步到自动抓取请导出 rooms.json 替换本地文件）。
+    明细表支持新增/删除房间与自定义备注——<b>配置 GitHub Token 后可自动同步到仓库与自动抓取</b>，点击右上角 ⚙ 设置。
+  </div>
+</div>
+
+<!-- 设置弹窗 -->
+<div class="modal-overlay" id="settingsModal">
+  <div class="modal-box">
+    <h3>同步设置</h3>
+    <label for="ghTokenInput">GitHub Personal Access Token</label>
+    <input type="password" id="ghTokenInput" placeholder="github_pat_...">
+    <div class="hint">
+      设置 Token 后，修改备注/房间将<b>自动提交到仓库</b>，公网立即生效，本地定时抓取也会自动拉取最新配置。<br>
+      → <a href="https://github.com/settings/tokens?type=beta" target="_blank" rel="noopener" style="color:var(--teal);">创建 Fine-grained Token</a>，权限选 <b>Contents: Read & Write</b>，仓库选 <b>GuoYun11/bili-guild-dashboard</b>。
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-cancel" id="settingsCancel">取消</button>
+      <button class="btn btn-primary" id="settingsSave">保存</button>
+    </div>
   </div>
 </div>
 
@@ -178,7 +214,7 @@
 const fmt = (n) => (n==null||isNaN(n)) ? '--' : '¥' + Number(n).toLocaleString('zh-CN',{maximumFractionDigits:0});
 let state = { data:null, sortKey:'revenue_value', sortDir:-1, keyword:'', activePeriod:'today', allPeriods:{},
   rooms:[], notes:{}, serverMode:false, localRooms:null, localNotes:null,
-  _history:null, _dailyLatest:null, _lookup:{}, customRange:null };
+  _history:null, _dailyLatest:null, _lookup:{}, customRange:null, _profiles:{}, ghToken:'' };
 let barChart, pieChart, lineChart;
 
 // ========== 安全 DOM 操作：防止 null 导致 textContent 报错 ==========
@@ -208,7 +244,38 @@ function toast(msg){
   let el = document.querySelector('.toast');
   if (!el){ el = document.createElement('div'); el.className='toast'; document.body.appendChild(el); }
   el.textContent = msg; el.classList.add('show');
-  clearTimeout(el._t); el._t = setTimeout(()=>el.classList.remove('show'), 2200);
+  clearTimeout(el._t); el._t = setTimeout(()=>el.classList.remove('show'), 2500);
+}
+
+// ---------- GitHub API 自动同步 ----------
+const GH_OWNER='GuoYun11', GH_REPO='bili-guild-dashboard', GH_BRANCH='gh-pages';
+const LS_TOKEN = 'bili_gh_token_v1';
+
+function utf8Base64(str){
+  const bytes = new TextEncoder().encode(str);
+  let bin = '';
+  for(let i=0;i<bytes.length;i++) bin += String.fromCharCode(bytes[i]);
+  return btoa(bin);
+}
+
+async function ghCommit(repoPath, content, message){
+  const token = state.ghToken;
+  if(!token) return false;
+  const url = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${repoPath}`;
+  const headers = { Authorization: `Bearer ${token}`, Accept: 'application/vnd.github+json' };
+  // 先获取当前文件 SHA（如不存在则为 404）
+  let sha = null;
+  try {
+    const r = await fetch(url+'?ref='+GH_BRANCH, { headers });
+    if(r.ok){ const d = await r.json(); sha = d.sha; }
+  } catch(e){}
+  // 提交
+  const body = { message, content: utf8Base64(content), branch: GH_BRANCH };
+  if(sha) body.sha = sha;
+  try {
+    const r = await fetch(url, { method:'PUT', headers: Object.assign({}, headers, {'Content-Type':'application/json'}), body: JSON.stringify(body) });
+    return r.ok;
+  } catch(e){ return false; }
 }
 
 function effectiveRooms(){
@@ -223,9 +290,19 @@ async function persistRooms(rooms){
     const ok = await apiPostJSON('/api/rooms', { rooms });
     if (ok){ state.rooms = rooms; toast('房间列表已保存（下次抓取生效）'); }
     else { state.serverMode = false; saveLS(LS_ROOMS, rooms); toast('已本地保存（未连接服务器，仅当前浏览器）'); }
+  } else if (state.ghToken){
+    const content = JSON.stringify({ rooms }, null, 2);
+    const ok = await ghCommit('data/rooms.json', content, 'sync: update rooms from dashboard');
+    if (ok){
+      saveLS(LS_ROOMS, rooms); state.localRooms = rooms;
+      toast('已自动同步到服务器（仓库已更新，下次抓取自动生效）');
+    } else {
+      saveLS(LS_ROOMS, rooms); state.localRooms = rooms;
+      toast('GitHub 提交失败，已本地保存'); showRoomExportTip(rooms);
+    }
   } else {
     saveLS(LS_ROOMS, rooms); state.localRooms = rooms;
-    toast('已本地保存（仅当前浏览器生效）');
+    toast('已本地保存（设置 GitHub Token 可自动同步）');
     showRoomExportTip(rooms);
   }
 }
@@ -238,7 +315,10 @@ function showRoomExportTip(rooms){
     if(panel) panel.parentNode.insertBefore(el, panel);
   }
   el.style.display='block';
-  el.innerHTML = '<b>配置已变更（当前浏览器生效）</b><br>静态部署模式下，自动抓取脚本读取的是本地 <code>data/</code> 目录下的配置文件。如需同步到定时抓取与公网服务器，请<button class="btn" id="exportRoomsBtn" style="margin:2px 4px;padding:4px 10px;font-size:12px;">导出 rooms.json</button><button class="btn" id="exportNotesBtn" style="margin:2px 4px;padding:4px 10px;font-size:12px;">导出 notes.json</button>并替换本地文件，下次抓取自动生效。';
+  const hasToken = !!state.ghToken;
+  el.innerHTML = hasToken
+    ? '<b>自动同步失败</b><br>请手动<button class="btn" id="exportRoomsBtn" style="margin:2px 4px;padding:4px 10px;font-size:12px;">导出 rooms.json</button><button class="btn" id="exportNotesBtn" style="margin:2px 4px;padding:4px 10px;font-size:12px;">导出 notes.json</button>替换本地文件。'
+    : '<b>配置未同步</b><br>点击右上角 ⚙ 设置 GitHub Token 后即可自动同步，或手动<button class="btn" id="exportRoomsBtn" style="margin:2px 4px;padding:4px 10px;font-size:12px;">导出 rooms.json</button><button class="btn" id="exportNotesBtn" style="margin:2px 4px;padding:4px 10px;font-size:12px;">导出 notes.json</button>。';
   const rb = $('exportRoomsBtn');
   if(rb) rb.addEventListener('click', ()=> exportJSON('rooms.json', { rooms }));
   const nb = $('exportNotesBtn');
@@ -257,10 +337,21 @@ async function persistNote(roomId, note){
   if (state.serverMode){
     const ok = await apiPostJSON('/api/notes', { room_id: roomId, note });
     if (ok){ state.notes[key] = note || ''; toast('备注已保存'); }
-    else { state.serverMode = false; state.localNotes = Object.assign({}, state.localNotes, { [key]: note }); saveLS(LS_NOTES, state.localNotes); toast('已本地保存'); showRoomExportTip(effectiveRooms()); }
+    else { state.serverMode = false; state.localNotes = Object.assign({}, state.localNotes, { [key]: note }); saveLS(LS_NOTES, state.localNotes); toast('已本地保存'); }
+  } else if (state.ghToken){
+    const allNotes = Object.assign({}, state.notes, state.localNotes || {}, { [key]: note || '' });
+    const content = JSON.stringify(allNotes, null, 2);
+    const ok = await ghCommit('data/notes.json', content, 'sync: update notes from dashboard');
+    if (ok){
+      state.notes[key] = note || ''; saveLS(LS_NOTES, allNotes);
+      toast('备注已自动同步到服务器');
+    } else {
+      state.localNotes = Object.assign({}, state.localNotes || {}, { [key]: note }); saveLS(LS_NOTES, state.localNotes);
+      toast('GitHub 提交失败，已本地保存'); showRoomExportTip(effectiveRooms());
+    }
   } else {
-    state.localNotes = Object.assign({}, state.localNotes, { [key]: note }); saveLS(LS_NOTES, state.localNotes);
-    toast('已本地保存（仅当前浏览器）');
+    state.localNotes = Object.assign({}, state.localNotes || {}, { [key]: note }); saveLS(LS_NOTES, state.localNotes);
+    toast('已本地保存（设置 GitHub Token 可自动同步）');
     showRoomExportTip(effectiveRooms());
   }
 }
@@ -754,6 +845,36 @@ $('searchInput').addEventListener('input', doSearch);
 $('searchInput').addEventListener('keydown', e=>{ if(e.key==='Enter') doSearch(); });
 $('searchBtn').addEventListener('click', doSearch);
 $('addRoomBtn').addEventListener('click', addRoom);
+
+// ---------- 设置弹窗 (GitHub Token) ----------
+const LS_GH_TOKEN = 'bili_gh_token';
+state.ghToken = localStorage.getItem(LS_GH_TOKEN) || '';
+if(state.ghToken){
+  const icon = $('settingsBtn');
+  if(icon) icon.classList.add('has-token');
+}
+$('settingsBtn').addEventListener('click', ()=>{
+  $('ghTokenInput').value = state.ghToken;
+  $('settingsModal').classList.add('show');
+});
+$('settingsCancel').addEventListener('click', ()=>{ $('settingsModal').classList.remove('show'); });
+$('settingsModal').addEventListener('click', e=>{ if(e.target === $('settingsModal')) $('settingsModal').classList.remove('show'); });
+$('settingsSave').addEventListener('click', ()=>{
+  const token = $('ghTokenInput').value.trim();
+  state.ghToken = token;
+  if(token){ localStorage.setItem(LS_GH_TOKEN, token); }
+  else { localStorage.removeItem(LS_GH_TOKEN); }
+  const icon = $('settingsBtn');
+  if(icon){
+    if(token) icon.classList.add('has-token');
+    else icon.classList.remove('has-token');
+  }
+  $('settingsModal').classList.remove('show');
+  toast(token ? 'Token 已保存，备注与房间变更将自动同步到仓库' : 'Token 已清除，恢复手动导出手动模式');
+  // 隐藏之前可能弹出的导出提示
+  const tipEl = $('roomExportTip');
+  if(tipEl) tipEl.style.display='none';
+});
 
 document.querySelectorAll('.period-btn').forEach(btn=>{
   btn.addEventListener('click', ()=>{ switchPeriod(btn.dataset.period); });
