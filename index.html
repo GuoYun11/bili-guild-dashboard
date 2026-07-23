@@ -1217,7 +1217,12 @@ async function loadShares(){
       const rev = it.querySelector('[data-act="revoke"]');
       if(rev) rev.addEventListener('click', () => revokeShare(tk));
     });
-  } catch(e){ $('shareList').innerHTML = '<div class="hint">加载失败。</div>'; }
+  } catch(e){
+    let msg = '加载失败：';
+    if(e && e.name === 'TypeError') msg += '无法连接后端。分享管理功能需要在运行 <code>node server/server.js</code> 后访问 <code>http://localhost:8787</code>。静态部署站点仅支持只读查看，无法创建分享。';
+    else msg += '请检查网络或后端是否运行。';
+    $('shareList').innerHTML = '<div class="hint" style="color:#ff7875;">' + msg + '</div>';
+  }
 }
 async function createShare(){
   state.adminSecret = $('adminSecretInput').value.trim();
@@ -1238,7 +1243,10 @@ async function createShare(){
     $('shareLinkBox').style.display = '';
     toast('分享链接已创建' + (d.expiresAt ? '（' + new Date(d.expiresAt).toLocaleString('zh-CN') + ' 过期）' : '（永久）'));
     loadShares();
-  } catch(e){ toast('创建失败'); }
+  } catch(e){
+    if(e && e.name === 'TypeError') toast('创建失败：后端未运行。请使用 http://localhost:8787');
+    else toast('创建失败：' + (e && e.message ? e.message : '请检查后端与管理密钥'));
+  }
 }
 async function revokeShare(token){
   if(!confirm('确认撤销该分享链接？撤销后对方将无法再查看。')) return;
