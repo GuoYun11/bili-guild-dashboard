@@ -1,4 +1,0 @@
-# 后端运行态（含密钥，勿提交）
-server/admin.secret
-server/shares.json
-server/node_modules/
