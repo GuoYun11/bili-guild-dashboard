@@ -405,6 +405,21 @@ function buildDailyLatest(history, latestData){
     const dk = dayKeyOf(t);
     map[dk] = { scraped_at:latestData.scraped_at, generated_at:latestData.generated_at, total_revenue:(latestData.summary?latestData.summary.total_revenue:0), rooms:latestData.rooms.map(r=>({room_id:r.room_id, nickname:r.nickname, revenue_value:r.revenue_value||0})), _day:dk, _t:t };
   }
+  // 昨日以 latest.json 的 periods['yesterday']（API 终值）为准，避免历史快照为点采样导致误差
+  if(latestData && latestData.periods && latestData.periods['yesterday'] && !latestData.periods['yesterday'].error){
+    const yp = latestData.periods['yesterday'];
+    if(yp.rooms && yp.rooms.length){
+      const yt = new Date(); yt.setDate(yt.getDate()-1);
+      const ydk = dayKeyOf(yt);
+      map[ydk] = {
+        scraped_at: yp.scraped_at || (map[ydk] && map[ydk].scraped_at),
+        generated_at: latestData.generated_at,
+        total_revenue: (yp.summary ? yp.summary.total_revenue : 0),
+        rooms: yp.rooms.map(r=>({room_id:r.room_id, nickname:r.nickname, revenue_value:r.revenue_value||0})),
+        _day: ydk, _t: yt
+      };
+    }
+  }
   return Object.values(map).sort((a,b)=> a._t - b._t);
 }
 // 取月度累计快照（_mtd），用于自定义区间回退
