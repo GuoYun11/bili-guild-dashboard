@@ -79,6 +79,9 @@
   .del-btn{border:none;background:transparent;cursor:pointer;font-size:15px;padding:4px 8px;border-radius:6px;line-height:1;}
   .del-btn:hover{background:#fde8e8;}
   .pending-tag{display:inline-block;background:#fff4e0;color:#a85f1c;border-radius:6px;padding:2px 8px;font-size:12px;}
+  #authArea{display:inline-flex;align-items:center;gap:8px;margin-left:8px;}
+  #authUser{font-size:12.5px;color:var(--teal);font-weight:600;}
+  .note-readonly{font-size:12.5px;color:var(--muted);display:inline-block;max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
   /* 设置弹窗 */
   .modal-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.35);z-index:999;align-items:center;justify-content:center;}
   .modal-overlay.show{display:flex;}
@@ -116,6 +119,11 @@
       <span id="freshness"></span>
       <button class="btn" id="refreshBtn">刷新</button>
       <button class="settings-icon" id="settingsBtn" title="同步设置">⚙</button>
+      <span id="authArea">
+        <span id="authUser" style="display:none;"></span>
+        <button class="btn" id="loginBtn">登录</button>
+        <button class="btn" id="logoutBtn" style="display:none;">退出</button>
+      </span>
     </div>
   </header>
 
@@ -210,11 +218,33 @@
   </div>
 </div>
 
+<!-- 登录弹窗 -->
+<div class="modal-overlay" id="loginModal">
+  <div class="modal-box">
+    <h3>登录</h3>
+    <label for="loginUser">账号</label>
+    <input type="text" id="loginUser" placeholder="请输入账号" autocomplete="username">
+    <label for="loginPwd">密码</label>
+    <input type="password" id="loginPwd" placeholder="请输入密码" autocomplete="current-password">
+    <div class="warn-box" id="loginErr" style="display:none;"></div>
+    <div class="btn-row">
+      <button class="btn btn-cancel" id="loginCancel">取消</button>
+      <button class="btn btn-primary" id="loginSubmit">登录</button>
+    </div>
+  </div>
+</div>
+
 <script>
 const fmt = (n) => (n==null||isNaN(n)) ? '--' : '¥' + Number(n).toLocaleString('zh-CN',{maximumFractionDigits:0});
 let state = { data:null, sortKey:'revenue_value', sortDir:-1, keyword:'', activePeriod:'today', allPeriods:{},
   rooms:[], notes:{}, serverMode:false, localRooms:null, localNotes:null,
   _history:null, _dailyLatest:null, _lookup:{}, customRange:null, _profiles:{}, ghToken:'' };
+
+// ---------- 登录 / 权限 ----------
+const ACCOUNTS = { ligen:'lg123654', guoyun:'gy123654' };
+const LS_AUTH = 'bili_auth_user';
+function isAuthed(){ return !!localStorage.getItem(LS_AUTH); }
+function currentUser(){ return localStorage.getItem(LS_AUTH) || ''; }
 let barChart, pieChart, lineChart;
 
 // ========== 安全 DOM 操作：防止 null 导致 textContent 报错 ==========
@@ -755,6 +785,32 @@ function pad0(n){ return String(n).padStart(2,'0'); }
 
 function escapeAttr(s){ return String(s || '').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
+function renderNoteCell(roomId, note){
+  if(isAuthed()){
+    return '<input class="note-input" data-room="'+roomId+'" value="'+escapeAttr(note)+'" placeholder="备注…">';
+  }
+  const txt = note ? escapeAttr(note) : '<i>—</i>';
+  return '<span class="note-readonly" title="'+escapeAttr(note)+'">'+txt+'</span>';
+}
+function renderOpCell(roomId){
+  if(isAuthed()){
+    return '<button class="del-btn" data-room="'+roomId+'" title="删除房间">🗑</button>';
+  }
+  return '';
+}
+function applyAuthUI(){
+  const authed = isAuthed();
+  const sb = $('settingsBtn'); if(sb) sb.style.display = authed ? '' : 'none';
+  const ab = $('addRoomBtn'); if(ab) ab.style.display = authed ? '' : 'none';
+  const oph = document.querySelector('#dataTable th[data-key="op"]');
+  if(oph) oph.style.display = authed ? '' : 'none';
+  const au = $('authUser');
+  if(au){ au.style.display = authed ? 'inline' : 'none'; if(authed) au.textContent = '👤 ' + currentUser(); }
+  const lb = $('loginBtn'); if(lb) lb.style.display = authed ? 'none' : '';
+  const lgb = $('logoutBtn'); if(lgb) lgb.style.display = authed ? '' : 'none';
+  renderTable();
+}
+
 function renderTable(){
   const d = getActiveData();
   const periodRooms = (d && d.rooms) || [];
@@ -786,8 +842,8 @@ function renderTable(){
       return `<tr data-room="${r.room_id}">
         <td>${r.room_id}</td>
         <td colspan="4" style="color:var(--muted);"><span class="pending-tag">待抓取</span> 已加入监控，下次抓取后显示数据</td>
-        <td class="note-cell"><input class="note-input" data-room="${r.room_id}" value="${escapeAttr(note)}" placeholder="备注…"></td>
-        <td><button class="del-btn" data-room="${r.room_id}" title="删除房间">🗑</button></td>
+        <td class="note-cell">${renderNoteCell(r.room_id, note)}</td>
+        <td>${renderOpCell(r.room_id)}</td>
       </tr>`;
     }
     const p = (state._profiles || {})[String(r.room_id)] || {};
@@ -799,8 +855,8 @@ function renderTable(){
       <td>${uid}</td>
       <td><span class="tag">${operator}</span></td>
       <td class="rev">${fmt(r.revenue_value)}</td>
-      <td class="note-cell"><input class="note-input" data-room="${r.room_id}" value="${escapeAttr(note)}" placeholder="备注…"></td>
-      <td><button class="del-btn" data-room="${r.room_id}" title="删除房间">🗑</button></td>
+      <td class="note-cell">${renderNoteCell(r.room_id, note)}</td>
+      <td>${renderOpCell(r.room_id)}</td>
     </tr>`;
   }).join('');
 
@@ -1051,7 +1107,39 @@ document.querySelectorAll('#dataTable th').forEach(th=>{
   });
 });
 
+// ---------- 登录 / 权限控制 ----------
+$('loginBtn').addEventListener('click', ()=>{
+  $('loginErr').style.display='none';
+  $('loginUser').value=''; $('loginPwd').value='';
+  $('loginModal').classList.add('show');
+  setTimeout(()=>{ const u=$('loginUser'); if(u) u.focus(); }, 50);
+});
+$('loginCancel').addEventListener('click', ()=>{ $('loginModal').classList.remove('show'); });
+$('loginModal').addEventListener('click', e=>{ if(e.target===$('loginModal')) $('loginModal').classList.remove('show'); });
+$('loginPwd').addEventListener('keydown', e=>{ if(e.key==='Enter') $('loginSubmit').click(); });
+$('loginUser').addEventListener('keydown', e=>{ if(e.key==='Enter') $('loginPwd').focus(); });
+$('loginSubmit').addEventListener('click', ()=>{
+  const u = $('loginUser').value.trim();
+  const p = $('loginPwd').value.trim();
+  if(ACCOUNTS[u] && ACCOUNTS[u]===p){
+    localStorage.setItem(LS_AUTH, u);
+    $('loginModal').classList.remove('show');
+    toast('登录成功：'+u);
+    applyAuthUI();
+  } else {
+    const e = $('loginErr');
+    e.textContent='账号或密码错误';
+    e.style.display='block';
+  }
+});
+$('logoutBtn').addEventListener('click', ()=>{
+  localStorage.removeItem(LS_AUTH);
+  toast('已退出登录');
+  applyAuthUI();
+});
+
 loadAll();
+applyAuthUI(); // 根据登录态控制顶栏按钮与操作列显隐
 // 数据每小时自动刷新（与抓取节奏一致）；相对"X分钟前"每 30 秒刷新一次
 setInterval(loadAll, 60 * 60 * 1000);
 setInterval(tickFreshness, 30 * 1000);
