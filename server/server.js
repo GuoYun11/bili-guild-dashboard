@@ -281,6 +281,7 @@ function serveApiData(res, name) {
 function readBody(req) {
   return new Promise((resolve, reject) => {
     let data = '';
+    req.setEncoding('utf8');
     req.on('data', c => { data += c; if (data.length > 1e6) req.destroy(); });
     req.on('end', () => { try { resolve(data ? JSON.parse(data) : {}); } catch (e) { reject(e); } });
     req.on('error', reject);
