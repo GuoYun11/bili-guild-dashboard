@@ -98,6 +98,11 @@ function writeDataFile(name, content) {
 }
 
 function getOrigin(req) {
+  // 优先使用环境变量指定的对外可访问基址（部署到公网/局域网时务必设置）
+  if (process.env.PUBLIC_BASE_URL) {
+    const b = process.env.PUBLIC_BASE_URL.replace(/\/+$/, '');
+    return b;
+  }
   const proto = (req.headers['x-forwarded-proto'] || 'http').split(',')[0].trim();
   const host = req.headers['x-forwarded-host'] || req.headers['host'] || ('localhost:' + PORT);
   return proto + '://' + host;
