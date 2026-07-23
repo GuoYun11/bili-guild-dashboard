@@ -384,7 +384,7 @@ function parseTime(s){
   return isNaN(d.getTime()) ? null : d;
 }
 const pad2 = (n) => String(n).padStart(2,'0');
-function dayKeyOf(d){ return d.getFullYear()+'-'+pad2(d.getMonth()+1)+'-'+pad2(d.getDate()); }
+function dayKeyOf(d){ return d.getFullYear()+'/'+(d.getMonth()+1)+'/'+d.getDate(); }
 
 // 由 history + 当前 latest 构建"每日最新快照"列表（同一天只取最后一次抓取，避免重复累加）
 // 注意: _mtd 月度累计快照不进入逐日列表（否则会与真实日快照重复累加），仅用于自定义区间回退
@@ -538,19 +538,20 @@ function getActiveData(){
   return state.data;
 }
 
-// 将原始快照按小时(0-23)分桶，生成完整的 24 小时时间轴
+// 将原始快照按整时分桶，生成 01:00~24:00 完整时间轴
 function binSnapsByHour(rawSnaps, dayDate){
   const buckets = Array.from({length:24}, (_,h)=>({
-    _hour: h,
-    scraped_at: (dayDate.getMonth()+1)+'/'+dayDate.getDate()+' '+pad0(h)+':00',
+    _hour: h,  // 内部0-23，显示时+1变为1-24
+    label: pad0(h+1)+':00',  // 01:00 ~ 24:00
     total_revenue: 0,
     rooms: [],
     _t: new Date(dayDate.getFullYear(), dayDate.getMonth(), dayDate.getDate(), h, 0, 0)
   }));
+  // 将每个原始快照归入对应小时的桶（取该小时内最新的一条）
   rawSnaps.forEach(s => {
     const t = s._t || parseTime(s.scraped_at) || new Date();
     const h = t.getHours();
-    if(h >= 0 && h <= 23){
+    if(h >= 0 && h < 24){
       const existing = buckets[h];
       if(!existing._rawT || t > existing._rawT){
         existing.total_revenue = s.total_revenue;
@@ -563,13 +564,13 @@ function binSnapsByHour(rawSnaps, dayDate){
 }
 
 // 取原始快照（非daily聚合），用于单日小时级趋势
+// 取原始快照（非daily聚合），用于单日小时级趋势
 function getRawSnapsForDay(dayKey){
   const snaps = (state._history && state._history.snapshots) || [];
-  const target = dayKey ? dayKey.replace(/\//g,'/') : '';
   return snaps.filter(s=>{
     if(s._mtd) return false;
     const sa = s.scraped_at || '';
-    return sa.startsWith(target) || sa.startsWith(target.replace(/\//g,'/'));
+    return sa.startsWith(dayKey);
   }).map(s=>({
     scraped_at: s.scraped_at,
     generated_at: s.generated_at,
@@ -580,13 +581,32 @@ function getRawSnapsForDay(dayKey){
 }
 
 function getActiveTrendSnaps(){
-  // 单日周期（今日/昨日）→ 返回按小时分桶的数据，X轴为 00:00~23:00
+  // 单日周期（今日/昨日）→ 返回按小时分桶的数据，X轴为 01:00~24:00
   if(!state.customRange && (state.activePeriod==='today' || state.activePeriod==='yesterday')){
     const now = new Date();
     const dayDate = state.activePeriod==='today' ? now : new Date(now.getTime()-86400000);
     const dk = dayKeyOf(dayDate);
     const raw = getRawSnapsForDay(dk);
-    if(raw.length) return binSnapsByHour(raw, dayDate);  // 按小时分桶
+    if(raw.length){
+      const buckets = binSnapsByHour(raw, dayDate);
+      // 对已完成的日期（非今天），用 latest.json 的权威数据覆盖最后一个有数据的桶
+      // 确保趋势图终值与汇总表一致
+      if(state.activePeriod !== 'today' && state.data && state.data.periods && state.data.periods[state.activePeriod]){
+        const periodData = state.data.periods[state.activePeriod];
+        if(!periodData.error && periodData.rooms){
+          // 找到最后一个有快照数据的桶（从后往前）
+          for(let i = 23; i >= 0; i--){
+            if(buckets[i]._rawT){
+              buckets[i].total_revenue = periodData.summary ? periodData.summary.total_revenue : 0;
+              buckets[i].rooms = periodData.rooms.map(r=>({room_id:r.room_id, nickname:r.nickname, revenue_value:r.revenue_value||0}));
+              break;
+            }
+          }
+        }
+      }
+      return buckets;
+    }
+    // fallback 到 daily 聚合
   }
   // 自定义区间：如果跨度 ≤1天，也按小时分桶
   if(state.customRange){
@@ -673,7 +693,7 @@ function renderLine(trendSnaps, rooms){
   // 格式化X轴标签
   let x;
   if(isHourly){
-    x = snaps.map(s => pad0(s._hour)+':00');
+    x = snaps.map(s => s.label || pad0(s._hour+1)+':00');  // 01:00 ~ 24:00
   } else {
     x = snaps.map(s => {
       const t = s._t || parseTime(s.scraped_at) || new Date();
@@ -693,7 +713,8 @@ function renderLine(trendSnaps, rooms){
     let html = '<div style="font-weight:bold;margin-bottom:4px">';
     if(isHourly){
       const s = snaps[params[0].dataIndex];
-      html += (s._t.getMonth()+1)+'/'+s._t.getDate()+' '+pad0(s._hour)+':00';
+      const hourLabel = s.label || pad0(s._hour+1)+':00';
+      html += (s._t.getMonth()+1)+'/'+s._t.getDate()+' '+hourLabel;
     } else {
       html += params[0].axisValue;
     }
