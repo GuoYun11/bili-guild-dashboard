@@ -96,25 +96,6 @@
   .settings-icon{cursor:pointer;font-size:18px;opacity:0.5;transition:opacity .15s;border:none;background:none;padding:2px 4px;vertical-align:middle;}
   .settings-icon:hover{opacity:1;}
   .settings-icon.has-token{opacity:1;color:var(--teal);}
-  /* 只读分享徽章 */
-  .readonly-badge{display:inline-block;font-size:12px;line-height:1;padding:4px 8px;border-radius:999px;background:rgba(255,153,85,.15);color:#ff9b54;border:1px solid rgba(255,153,85,.4);vertical-align:middle;margin-left:6px;}
-  body.readonly-mode .settings-icon,
-  body.readonly-mode .add-btn,
-  body.readonly-mode .del-btn{display:none !important;}
-  body.readonly-mode .note-input{background:transparent;border-color:transparent;color:var(--text);opacity:.85;cursor:default;}
-  /* 分享失效/错误提示条 */
-  .share-warn{display:none;background:rgba(255,77,79,.12);border:1px solid rgba(255,77,79,.4);color:#ff7875;padding:8px 12px;border-radius:8px;margin:0 0 12px;font-size:13px;}
-  /* 分享管理弹窗 */
-  .share-link-box{display:flex;gap:8px;margin:10px 0;}
-  .share-link-box input{flex:1;border:1px solid var(--line);border-radius:6px;padding:6px 8px;font-size:12.5px;background:var(--bg2);color:var(--text);}
-  .share-list{max-height:220px;overflow:auto;margin-top:10px;border-top:1px solid var(--line);padding-top:8px;}
-  .share-item{display:flex;align-items:center;gap:8px;padding:6px 4px;border-bottom:1px solid var(--line);font-size:12.5px;}
-  .share-item .lbl{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-  .share-item .meta{color:var(--muted);font-size:11px;}
-  .share-item .st{font-size:11px;padding:1px 6px;border-radius:6px;}
-  .share-item .st.ok{background:rgba(82,196,26,.15);color:#73d13d;}
-  .share-item .st.bad{background:rgba(255,77,79,.15);color:#ff7875;}
-  .share-item button{font-size:11px;padding:3px 8px;}
 
   .toast{position:fixed;left:50%;bottom:32px;transform:translateX(-50%);background:#1f2d3d;color:#fff;padding:10px 18px;border-radius:10px;font-size:13px;opacity:0;pointer-events:none;transition:opacity .25s;z-index:99;}
   .toast.show{opacity:1;}
@@ -135,13 +116,10 @@
       <span id="freshness"></span>
       <button class="btn" id="refreshBtn">刷新</button>
       <button class="settings-icon" id="settingsBtn" title="同步设置">⚙</button>
-      <button class="settings-icon" id="shareBtn" title="分享管理">🔗</button>
-      <span class="readonly-badge" id="readonlyBadge" style="display:none;">只读分享</span>
     </div>
   </header>
 
   <div id="qualityWarn" class="warn-box" style="display:none;"></div>
-  <div id="shareWarn" class="share-warn"></div>
 
   <!-- 时间周期选择器 -->
   <div class="period-bar" id="periodBar">
@@ -232,43 +210,11 @@
   </div>
 </div>
 
-<!-- 分享管理弹窗 -->
-<div class="modal-overlay" id="shareModal">
-  <div class="modal-box" style="max-width:520px;">
-    <h3>分享管理 <span class="hint">生成只读查看链接</span></h3>
-
-    <label for="adminSecretInput">管理员密钥 (Admin Secret)</label>
-    <input type="password" id="adminSecretInput" placeholder="服务端生成的 admin secret">
-    <div class="hint">首次启动后端时会在终端打印，或读取 <code>server/admin.secret</code>。仅管理员需要填写，用于创建/撤销分享与执行写操作。</div>
-
-    <div style="margin-top:12px;">
-      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
-        <input id="shareLabel" placeholder="备注名（可选）" style="flex:1;min-width:120px;border:1px solid var(--line);border-radius:6px;padding:6px 8px;background:var(--bg2);color:var(--text);">
-        <label style="font-size:12px;color:var(--muted);">有效期(小时)</label>
-        <input id="shareExpire" type="number" min="0" value="0" style="width:72px;border:1px solid var(--line);border-radius:6px;padding:6px 8px;background:var(--bg2);color:var(--text);">
-        <button class="btn btn-primary" id="shareCreateBtn">创建分享链接</button>
-      </div>
-      <div class="hint" style="margin-top:4px;">有效期填 0 表示永不过期。</div>
-    </div>
-
-    <div class="share-link-box" id="shareLinkBox" style="display:none;">
-      <input id="shareLinkInput" readonly>
-      <button class="btn" id="shareCopyBtn">复制</button>
-    </div>
-
-    <div class="share-list" id="shareList"></div>
-
-    <div class="btn-row" style="margin-top:14px;">
-      <button class="btn btn-cancel" id="shareCloseBtn">关闭</button>
-    </div>
-  </div>
-</div>
-
 <script>
 const fmt = (n) => (n==null||isNaN(n)) ? '--' : '¥' + Number(n).toLocaleString('zh-CN',{maximumFractionDigits:0});
 let state = { data:null, sortKey:'revenue_value', sortDir:-1, keyword:'', activePeriod:'today', allPeriods:{},
   rooms:[], notes:{}, serverMode:false, localRooms:null, localNotes:null,
-  _history:null, _dailyLatest:null, _lookup:{}, customRange:null, _profiles:{}, ghToken:'', adminSecret:'', readonly:false, shareToken:null };
+  _history:null, _dailyLatest:null, _lookup:{}, customRange:null, _profiles:{}, ghToken:'' };
 let barChart, pieChart, lineChart;
 
 // ========== 安全 DOM 操作：防止 null 导致 textContent 报错 ==========
@@ -288,14 +234,10 @@ async function apiGetJSON(apiUrl, staticUrl, fallback){
   return { data: fallback, fromApi: false };
 }
 async function apiPostJSON(url, payload){
-  const headers = {'Content-Type':'application/json'};
-  if(state.adminSecret) headers['Authorization'] = 'Bearer ' + state.adminSecret;
   try {
-    const r = await fetch(url, { method:'POST', headers, body:JSON.stringify(payload) });
-    if(!r.ok) return false;
+    const r = await fetch(url, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) });
     const t = await r.text();
-    try { JSON.parse(t); } catch(e){}
-    return true;
+    JSON.parse(t); return true;
   } catch(e){ return false; }
 }
 function toast(msg){
@@ -383,7 +325,6 @@ function showRoomExportTip(rooms){
   if(nb) nb.addEventListener('click', ()=> exportJSON('notes.json', mergedNotes()));
 }
 function exportJSON(filename, data){
-  if(state.readonly){ toast('只读分享视图，无法导出'); return; }
   const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
@@ -392,7 +333,6 @@ function exportJSON(filename, data){
   toast(filename + ' 已下载，请放到本地 data/ 目录替换原文件');
 }
 async function persistNote(roomId, note){
-  if(state.readonly){ toast('只读分享视图，无法修改数据'); return; }
   const key = String(roomId);
   if (state.serverMode){
     const ok = await apiPostJSON('/api/notes', { room_id: roomId, note });
@@ -417,7 +357,6 @@ async function persistNote(roomId, note){
 }
 
 function addRoom(){
-  if(state.readonly){ toast('只读分享视图，无法修改数据'); return; }
   const input = prompt('请输入要新增的房间号（直播间 ID）：');
   if (input == null) return;
   const id = Number(String(input).trim());
@@ -428,7 +367,6 @@ function addRoom(){
   setTimeout(()=>{ if (state.data) renderActivePeriod(state._history || {}); }, 100);
 }
 async function removeRoom(roomId){
-  if(state.readonly){ toast('只读分享视图，无法修改数据'); return; }
   if (!confirm('确认删除房间 ' + roomId + ' ？\n（删除后将不再抓取，备注也会丢失）')) return;
   const cur = effectiveRooms().filter(x => x !== roomId);
   await persistRooms(cur);
@@ -459,13 +397,13 @@ function buildDailyLatest(history, latestData){
     if(!t) return;
     const dk = dayKeyOf(t);
     const cur = map[dk];
-    if(!cur || t > parseTime(cur.generated_at || cur.scraped_at)) map[dk] = { scraped_at:s.scraped_at, generated_at:s.generated_at, total_revenue:Math.round(s.total_revenue||0), rooms:(s.rooms||[]).map(r=>({room_id:r.room_id, nickname:r.nickname, revenue_value:Math.round(r.revenue_value||0)})), _day:dk, _t:t };
+    if(!cur || t > parseTime(cur.generated_at || cur.scraped_at)) map[dk] = { scraped_at:s.scraped_at, generated_at:s.generated_at, total_revenue:s.total_revenue||0, rooms:(s.rooms||[]).map(r=>({room_id:r.room_id, nickname:r.nickname, revenue_value:r.revenue_value||0})), _day:dk, _t:t };
   });
   // 今日以 latest.json（实时抓取）为准
   if(latestData && latestData.rooms && latestData.rooms.length){
     const t = parseTime(latestData.generated_at || latestData.scraped_at) || new Date();
     const dk = dayKeyOf(t);
-    map[dk] = { scraped_at:latestData.scraped_at, generated_at:latestData.generated_at, total_revenue:Math.round(latestData.summary?latestData.summary.total_revenue:0), rooms:latestData.rooms.map(r=>({room_id:r.room_id, nickname:r.nickname, revenue_value:Math.round(r.revenue_value||0)})), _day:dk, _t:t };
+    map[dk] = { scraped_at:latestData.scraped_at, generated_at:latestData.generated_at, total_revenue:(latestData.summary?latestData.summary.total_revenue:0), rooms:latestData.rooms.map(r=>({room_id:r.room_id, nickname:r.nickname, revenue_value:r.revenue_value||0})), _day:dk, _t:t };
   }
   // 昨日以 latest.json 的 periods['yesterday']（API 终值）为准，避免历史快照为点采样导致误差
   if(latestData && latestData.periods && latestData.periods['yesterday'] && !latestData.periods['yesterday'].error){
@@ -477,7 +415,7 @@ function buildDailyLatest(history, latestData){
         scraped_at: yp.scraped_at || (map[ydk] && map[ydk].scraped_at),
         generated_at: latestData.generated_at,
         total_revenue: (yp.summary ? yp.summary.total_revenue : 0),
-        rooms: yp.rooms.map(r=>({room_id:r.room_id, nickname:r.nickname, revenue_value:Math.round(r.revenue_value||0)})),
+        rooms: yp.rooms.map(r=>({room_id:r.room_id, nickname:r.nickname, revenue_value:r.revenue_value||0})),
         _day: ydk, _t: yt
       };
     }
@@ -657,51 +595,41 @@ function getRawSnapsForDay(dayKey){
   })).sort((a,b)=> a._t - b._t);
 }
 
-// 用 latest.json 的权威周期数据覆盖整时分桶的最后一个有数据的桶，
-// 确保"已完成日期"的趋势终值 = 汇总表值（消除 history 快照落后 / 旧字段导致的误差）
-function applyAuthOverride(buckets, periodKey){
-  if(periodKey && periodKey !== 'today' && state.data && state.data.periods && state.data.periods[periodKey]){
-    const periodData = state.data.periods[periodKey];
-    if(!periodData.error && periodData.rooms){
-      for(let i = 23; i >= 0; i--){
-        if(buckets[i] && buckets[i]._rawT){
-          buckets[i].total_revenue = Math.round(periodData.summary ? periodData.summary.total_revenue : 0);
-          buckets[i].rooms = periodData.rooms.map(r=>({room_id:r.room_id, nickname:r.nickname, revenue_value:Math.round(r.revenue_value||0)}));
-          break;
-        }
-      }
-    }
-  }
-  return buckets;
-}
-
 function getActiveTrendSnaps(){
-  const now = new Date();
   // 单日周期（今日/昨日）→ 返回按小时分桶的数据，X轴为 01:00~24:00
   if(!state.customRange && (state.activePeriod==='today' || state.activePeriod==='yesterday')){
+    const now = new Date();
     const dayDate = state.activePeriod==='today' ? now : new Date(now.getTime()-86400000);
     const dk = dayKeyOf(dayDate);
     const raw = getRawSnapsForDay(dk);
     if(raw.length){
       const buckets = binSnapsByHour(raw, dayDate);
-      return applyAuthOverride(buckets, state.activePeriod);
+      // 对已完成的日期（非今天），用 latest.json 的权威数据覆盖最后一个有数据的桶
+      // 确保趋势图终值与汇总表一致
+      if(state.activePeriod !== 'today' && state.data && state.data.periods && state.data.periods[state.activePeriod]){
+        const periodData = state.data.periods[state.activePeriod];
+        if(!periodData.error && periodData.rooms){
+          // 找到最后一个有快照数据的桶（从后往前）
+          for(let i = 23; i >= 0; i--){
+            if(buckets[i]._rawT){
+              buckets[i].total_revenue = periodData.summary ? periodData.summary.total_revenue : 0;
+              buckets[i].rooms = periodData.rooms.map(r=>({room_id:r.room_id, nickname:r.nickname, revenue_value:r.revenue_value||0}));
+              break;
+            }
+          }
+        }
+      }
+      return buckets;
     }
     // fallback 到 daily 聚合
   }
-  // 自定义区间：如果跨度 ≤1天，也按小时分桶，并同样覆盖已完成日期的终值
+  // 自定义区间：如果跨度 ≤1天，也按小时分桶
   if(state.customRange){
     const s = new Date(state.customRange.start+'T00:00:00');
     const e = new Date(state.customRange.end+'T23:59:59');
     if(e.getTime() - s.getTime() <= 86400000){
       const raw = getRawSnapsForDay(dayKeyOf(s));
-      if(raw.length){
-        const buckets = binSnapsByHour(raw, s);
-        // 自定义单日若恰好是今日/昨日，用对应权威周期覆盖终值
-        let pk = null;
-        if(dayKeyOf(s) === dayKeyOf(now)) pk = 'today';
-        else { const y = new Date(now); y.setDate(now.getDate()-1); if(dayKeyOf(s) === dayKeyOf(y)) pk = 'yesterday'; }
-        return applyAuthOverride(buckets, pk);
-      }
+      if(raw.length) return binSnapsByHour(raw, s);
     }
   }
   const daily = getDailyLatest();
@@ -854,16 +782,12 @@ function renderTable(){
   if (!tbody) return;
   tbody.innerHTML = list.map(r => {
     const note = notes[String(r.room_id)] || '';
-    const noteCell = state.readonly
-      ? `<td class="note-cell">${note ? escapeAttr(note) : '<span style="color:var(--muted)">—</span>'}</td>`
-      : `<td class="note-cell"><input class="note-input" data-room="${r.room_id}" value="${escapeAttr(note)}" placeholder="备注…"></td>`;
-    const opCell = state.readonly ? `<td></td>` : `<td><button class="del-btn" data-room="${r.room_id}" title="删除房间">🗑</button></td>`;
     if (r.pending){
       return `<tr data-room="${r.room_id}">
         <td>${r.room_id}</td>
         <td colspan="4" style="color:var(--muted);"><span class="pending-tag">待抓取</span> 已加入监控，下次抓取后显示数据</td>
-        ${noteCell}
-        ${opCell}
+        <td class="note-cell"><input class="note-input" data-room="${r.room_id}" value="${escapeAttr(note)}" placeholder="备注…"></td>
+        <td><button class="del-btn" data-room="${r.room_id}" title="删除房间">🗑</button></td>
       </tr>`;
     }
     const p = (state._profiles || {})[String(r.room_id)] || {};
@@ -875,8 +799,8 @@ function renderTable(){
       <td>${uid}</td>
       <td><span class="tag">${operator}</span></td>
       <td class="rev">${fmt(r.revenue_value)}</td>
-      ${noteCell}
-      ${opCell}
+      <td class="note-cell"><input class="note-input" data-room="${r.room_id}" value="${escapeAttr(note)}" placeholder="备注…"></td>
+      <td><button class="del-btn" data-room="${r.room_id}" title="删除房间">🗑</button></td>
     </tr>`;
   }).join('');
 
@@ -1078,7 +1002,6 @@ $('settingsBtn').addEventListener('click', ()=>{
 $('settingsCancel').addEventListener('click', ()=>{ $('settingsModal').classList.remove('show'); });
 $('settingsModal').addEventListener('click', e=>{ if(e.target === $('settingsModal')) $('settingsModal').classList.remove('show'); });
 $('settingsSave').addEventListener('click', ()=>{
-  if(state.readonly) return;
   const token = $('ghTokenInput').value.trim();
   state.ghToken = token;
   if(token){ localStorage.setItem(LS_GH_TOKEN, token); }
@@ -1128,158 +1051,7 @@ document.querySelectorAll('#dataTable th').forEach(th=>{
   });
 });
 
-// ========== 只读分享模式 & 实时同步 ==========
-const LS_ADMIN_SECRET = 'bili_admin_secret';
-let wsConn = null;
-
-function getShareTokenFromURL(){
-  const u = new URL(location.href);
-  return u.searchParams.get('share') || (u.hash.match(/share=([^&]+)/) || [])[1] || null;
-}
-function showShareWarn(msg){ const el = $('shareWarn'); if(el){ el.textContent = msg; el.style.display = ''; } }
-function hideShareWarn(){ const el = $('shareWarn'); if(el) el.style.display = 'none'; }
-
-function applyReadonlyUI(){
-  document.body.classList.add('readonly-mode');
-  const badge = $('readonlyBadge'); if(badge) badge.style.display = '';
-  const sb = $('settingsBtn'); if(sb) sb.style.display = 'none';
-  const ab = $('addRoomBtn'); if(ab) ab.style.display = 'none';
-  const shb = $('shareBtn'); if(shb) shb.style.display = 'none';
-  const vl = $('viewLabel'); if(vl) vl.textContent = '· 只读分享视图';
-  const tip = $('roomExportTip'); if(tip) tip.style.display = 'none';
-}
-
-async function initShareMode(){
-  const tok = getShareTokenFromURL();
-  if(!tok){
-    // 普通管理员模式：恢复已存的管理员密钥
-    state.adminSecret = localStorage.getItem(LS_ADMIN_SECRET) || '';
-    return;
-  }
-  state.shareToken = tok;
-  try {
-    const r = await fetch('/api/share/' + encodeURIComponent(tok), { cache:'no-store' });
-    if(r.ok){
-      const d = await r.json();
-      if(d.valid){ state.readonly = true; applyReadonlyUI(); return; }
-    }
-    state.readonly = true; applyReadonlyUI();
-    showShareWarn('该分享链接无效、已撤销或已过期。当前以只读方式打开。');
-  } catch(e){
-    state.readonly = true; applyReadonlyUI();
-    showShareWarn('无法连接分享服务（请确认后端 server.js 已启动）。已按只读模式打开。');
-  }
-}
-
-function connectRealtime(){
-  if(typeof WebSocket === 'undefined') return;
-  try {
-    const proto = location.protocol === 'https:' ? 'wss' : 'ws';
-    wsConn = new WebSocket(proto + '://' + location.host + '/ws');
-    wsConn.onmessage = () => { state._dailyLatest = null; loadAll(); };
-    wsConn.onclose = () => { setTimeout(connectRealtime, 5000); };
-    wsConn.onerror = () => { try { wsConn.close(); } catch(e){} };
-  } catch(e){}
-}
-
-// ---- 分享管理弹窗 ----
-function openShareModal(){
-  if(state.readonly){ toast('只读分享视图，无权限管理分享'); return; }
-  state.adminSecret = localStorage.getItem(LS_ADMIN_SECRET) || '';
-  $('adminSecretInput').value = state.adminSecret;
-  $('shareLinkBox').style.display = 'none';
-  loadShares();
-  $('shareModal').classList.add('show');
-}
-async function loadShares(){
-  if(!state.adminSecret){ $('shareList').innerHTML = '<div class="hint">请先填写管理员密钥。</div>'; return; }
-  try {
-    const r = await fetch('/api/admin/shares', { headers:{ Authorization:'Bearer '+state.adminSecret }, cache:'no-store' });
-    if(r.status === 401){ $('shareList').innerHTML = '<div class="hint" style="color:#ff7875;">管理员密钥无效。</div>'; return; }
-    const d = await r.json();
-    const list = (d.shares || []).sort((a,b)=> b.createdAt - a.createdAt);
-    if(!list.length){ $('shareList').innerHTML = '<div class="hint">还没有分享链接。</div>'; return; }
-    $('shareList').innerHTML = list.map(s => {
-      const bad = s.revoked || s.expired;
-      const exp = s.expiresAt ? new Date(s.expiresAt).toLocaleString('zh-CN') : '永久';
-      return `<div class="share-item" data-token="${s.token}">
-        <span class="lbl">${escapeAttr(s.label || '(未命名)')}</span>
-        <span class="meta">${exp}${s.revoked ? ' · 已撤销' : ''}${s.expired ? ' · 已过期' : ''}</span>
-        <span class="st ${bad ? 'bad' : 'ok'}">${bad ? '失效' : '有效'}</span>
-        <button class="btn" data-act="copy">复制</button>
-        ${bad ? '' : '<button class="btn btn-cancel" data-act="revoke">撤销</button>'}
-      </div>`;
-    }).join('');
-    $('shareList').querySelectorAll('.share-item').forEach(it => {
-      const tk = it.dataset.token;
-      const copy = it.querySelector('[data-act="copy"]');
-      if(copy) copy.addEventListener('click', () => copyText(location.origin + '/?share=' + tk));
-      const rev = it.querySelector('[data-act="revoke"]');
-      if(rev) rev.addEventListener('click', () => revokeShare(tk));
-    });
-  } catch(e){
-    let msg = '加载失败：';
-    if(e && e.name === 'TypeError') msg += '无法连接后端。分享管理功能需要在运行 <code>node server/server.js</code> 后访问 <code>http://localhost:8787</code>。静态部署站点仅支持只读查看，无法创建分享。';
-    else msg += '请检查网络或后端是否运行。';
-    $('shareList').innerHTML = '<div class="hint" style="color:#ff7875;">' + msg + '</div>';
-  }
-}
-async function createShare(){
-  state.adminSecret = $('adminSecretInput').value.trim();
-  if(!state.adminSecret){ toast('请先填写管理员密钥'); return; }
-  localStorage.setItem(LS_ADMIN_SECRET, state.adminSecret);
-  const label = $('shareLabel').value.trim();
-  const hrs = Math.max(0, Number($('shareExpire').value) || 0);
-  try {
-    const r = await fetch('/api/admin/share', {
-      method:'POST',
-      headers:{ 'Content-Type':'application/json', Authorization:'Bearer '+state.adminSecret },
-      body: JSON.stringify({ label, expiresInHours: hrs })
-    });
-    if(r.status === 401){ toast('管理员密钥无效'); return; }
-    const d = await r.json();
-    if(!d.url){ toast('创建失败'); return; }
-    $('shareLinkInput').value = d.url;
-    $('shareLinkBox').style.display = '';
-    toast('分享链接已创建' + (d.expiresAt ? '（' + new Date(d.expiresAt).toLocaleString('zh-CN') + ' 过期）' : '（永久）'));
-    loadShares();
-  } catch(e){
-    if(e && e.name === 'TypeError') toast('创建失败：后端未运行。请使用 http://localhost:8787');
-    else toast('创建失败：' + (e && e.message ? e.message : '请检查后端与管理密钥'));
-  }
-}
-async function revokeShare(token){
-  if(!confirm('确认撤销该分享链接？撤销后对方将无法再查看。')) return;
-  try {
-    const r = await fetch('/api/admin/share/' + encodeURIComponent(token), { method:'DELETE', headers:{ Authorization:'Bearer '+state.adminSecret } });
-    if(r.ok){ toast('已撤销'); loadShares(); } else { toast('撤销失败'); }
-  } catch(e){ toast('撤销失败'); }
-}
-function copyText(txt){
-  if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(()=>toast('已复制')).catch(()=>fallbackCopy(txt)); }
-  else fallbackCopy(txt);
-}
-function fallbackCopy(txt){
-  const ta = document.createElement('textarea'); ta.value = txt; document.body.appendChild(ta); ta.select();
-  try { document.execCommand('copy'); toast('已复制'); } catch(e){ toast('复制失败，请手动复制'); }
-  document.body.removeChild(ta);
-}
-
-$('shareBtn').addEventListener('click', openShareModal);
-$('shareCloseBtn').addEventListener('click', () => $('shareModal').classList.remove('show'));
-$('shareModal').addEventListener('click', e => { if(e.target === $('shareModal')) $('shareModal').classList.remove('show'); });
-$('shareCreateBtn').addEventListener('click', createShare);
-$('shareCopyBtn').addEventListener('click', () => copyText($('shareLinkInput').value));
-
-(async () => {
-  await initShareMode();
-  loadAll();
-  connectRealtime();
-  // 实时兜底：WebSocket 未连接时每 30s 拉取一次，确保只读方与管理员侧一致
-  setInterval(() => {
-    if(!wsConn || wsConn.readyState !== 1){ state._dailyLatest = null; loadAll(); }
-  }, 30000);
-})();
+loadAll();
 // 数据每小时自动刷新（与抓取节奏一致）；相对"X分钟前"每 30 秒刷新一次
 setInterval(loadAll, 60 * 60 * 1000);
 setInterval(tickFreshness, 30 * 1000);
