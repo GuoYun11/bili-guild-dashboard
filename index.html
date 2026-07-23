@@ -531,7 +531,32 @@ function getActiveData(){
   return state.data;
 }
 
+// 取原始快照（非daily聚合），用于单日小时级趋势
+function getRawSnapsForDay(dayKey){
+  const snaps = (state._history && state._history.snapshots) || [];
+  const target = dayKey ? dayKey.replace(/\//g,'/') : '';
+  return snaps.filter(s=>{
+    if(s._mtd) return false;
+    const sa = s.scraped_at || '';
+    return sa.startsWith(target) || sa.startsWith(target.replace(/\//g,'/'));
+  }).map(s=>({
+    scraped_at: s.scraped_at,
+    generated_at: s.generated_at,
+    total_revenue: s.total_revenue||0,
+    rooms: (s.rooms||[]).map(r=>({room_id:r.room_id, nickname:r.nickname, revenue_value:r.revenue_value||0})),
+    _t: parseTime(s.generated_at || s.scraped_at) || new Date()
+  })).sort((a,b)=> a._t - b._t);
+}
+
 function getActiveTrendSnaps(){
+  // 单日周期（今日/昨日）→ 返回原始快照，支持小时级展示
+  if(!state.customRange && (state.activePeriod==='today' || state.activePeriod==='yesterday')){
+    const now = new Date();
+    const dk = state.activePeriod==='today' ? dayKeyOf(now) : dayKeyOf(new Date(now.getTime()-86400000));
+    const raw = getRawSnapsForDay(dk);
+    if(raw.length) return raw;  // 有原始快照优先用
+    // fallback 到 daily 聚合
+  }
   const daily = getDailyLatest();
   if(!daily.length) return [];
   if(state.customRange){
@@ -601,22 +626,61 @@ function renderLine(trendSnaps, rooms){
   if (!snaps.length){ lineChart.setOption({title:{text:'暂无趋势数据',left:'center',top:'center',textStyle:{color:'#7a8aa0',fontSize:13}}}); return; }
   const top5 = [...rooms].sort((a,b)=>(b.revenue_value||0)-(a.revenue_value||0)).slice(0,5).map(r=>r.room_id);
   const nickMap = {}; rooms.forEach(r=>nickMap[r.room_id]=r.nickname||('房间'+r.room_id));
-  const x = snaps.map(s=>s.scraped_at || s._day || '');
+
+  // 根据时间跨度自动选择横轴粒度
+  const firstT = snaps[0]._t || parseTime(snaps[0].scraped_at) || new Date();
+  const lastT = snaps[snaps.length-1]._t || parseTime(snaps[snaps.length-1].scraped_at) || new Date();
+  const spanMs = lastT.getTime() - firstT.getTime();
+  const isHourly = spanMs <= 86400000;  // ≤1天 → 按小时
+
+  // 格式化X轴标签
+  const x = snaps.map(s => {
+    const t = s._t || parseTime(s.scraped_at) || new Date();
+    if(isHourly){
+      // 小时级：显示 HH:mm
+      return pad0(t.getHours())+':'+pad0(t.getMinutes());
+    } else {
+      // 天级：显示 MM/DD
+      return pad0(t.getMonth()+1)+'/'+pad0(t.getDate());
+    }
+  });
+
   const totalSeries = {name:'合计',type:'line',smooth:true,data:snaps.map(s=>s.total_revenue),lineStyle:{width:3,color:'#0d9488'},itemStyle:{color:'#0d9488'},z:5};
   const palette = ['#ef6c4b','#5b8def','#9b59b6','#f1c40f','#16a085'];
   const roomSeries = top5.map((rid,i)=>{
     const data = snaps.map(s=>{ const f=(s.rooms||[]).find(r=>r.room_id===rid); return f?f.revenue_value:null; });
     return {name:nickMap[rid]||('房间'+rid),type:'line',smooth:true,data,itemStyle:{color:palette[i%palette.length]},lineStyle:{width:1.5,color:palette[i%palette.length]}};
   });
+
+  // tooltip 时间格式也跟随粒度
+  const tooltipFormatter = function(params){
+    let html = '<div style="font-weight:bold;margin-bottom:4px">';
+    if(isHourly){
+      const t = snaps[params[0].dataIndex];
+      const tt = t._t || parseTime(t.scraped_at) || new Date();
+      html += (tt.getMonth()+1)+'/'+tt.getDate()+' '+pad0(tt.getHours())+':'+pad0(tt.getMinutes());
+    } else {
+      html += params[0].axisValue;
+    }
+    html += '</div>';
+    params.forEach(p=>{
+      if(p.value==null) return;
+      html += '<div>'+p.marker+' '+p.seriesName+'：'+fmt(p.value)+'</div>';
+    });
+    return html;
+  };
+
   lineChart.setOption({
-    tooltip:{trigger:'axis',valueFormatter:v=>v==null?'-':fmt(v)},
+    tooltip:{trigger:'axis',formatter:tooltipFormatter,confine:true},
     legend:{type:'scroll',top:0,textStyle:{fontSize:11}},
     grid:{left:8,right:16,top:38,bottom:8,containLabel:true},
-    xAxis:{type:'category',data:x,axisLabel:{fontSize:10,hideOverlap:true}},
+    xAxis:{type:'category',data:x,axisLabel:{fontSize:10,hideOverlap:true,rotate:isHourly?30:0}},
     yAxis:{type:'value',axisLabel:{formatter:v=>v>=10000?(v/10000)+'万':v}},
     series:[totalSeries,...roomSeries]
   });
 }
+
+function pad0(n){ return String(n).padStart(2,'0'); }
 
 function escapeAttr(s){ return String(s || '').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
