@@ -468,8 +468,15 @@ function windowDaily(key){
   const now = new Date();
   if(key==='today'){ const tk=dayKeyOf(now); return daily.filter(x=>x._day===tk); }
   if(key==='yesterday'){ const y=new Date(now); y.setDate(now.getDate()-1); return daily.filter(x=>x._day===dayKeyOf(y)); }
-  if(key==='week'){ const c=new Date(now); c.setDate(now.getDate()-6); return daily.filter(x=>x._t>=c); }
-  if(key==='month'){ const c=new Date(now); c.setDate(now.getDate()-29); return daily.filter(x=>x._t>=c); }
+  if(key==='week'){
+    // 自然周：本周一 ~ 本周日
+    const dow = now.getDay();  // 0=日 1=一 ... 6=六
+    const mondayOffset = dow === 0 ? -6 : 1 - dow;  // 周日→回退6天到周一，其他→dow-1天
+    const mon = new Date(now); mon.setDate(now.getDate() + mondayOffset); mon.setHours(0,0,0,0);
+    const sun = new Date(mon); sun.setDate(mon.getDate() + 6); sun.setHours(23,59,59,999);
+    return daily.filter(x => x._t >= mon && x._t <= sun);
+  }
+  if(key==='month'){ const c=new Date(now); c.setDate(1); c.setHours(0,0,0,0); return daily.filter(x=>x._t>=c); }
   return daily;
 }
 function derivePeriod(key){
@@ -531,6 +538,30 @@ function getActiveData(){
   return state.data;
 }
 
+// 将原始快照按小时(0-23)分桶，生成完整的 24 小时时间轴
+function binSnapsByHour(rawSnaps, dayDate){
+  const buckets = Array.from({length:24}, (_,h)=>({
+    _hour: h,
+    scraped_at: (dayDate.getMonth()+1)+'/'+dayDate.getDate()+' '+pad0(h)+':00',
+    total_revenue: 0,
+    rooms: [],
+    _t: new Date(dayDate.getFullYear(), dayDate.getMonth(), dayDate.getDate(), h, 0, 0)
+  }));
+  rawSnaps.forEach(s => {
+    const t = s._t || parseTime(s.scraped_at) || new Date();
+    const h = t.getHours();
+    if(h >= 0 && h <= 23){
+      const existing = buckets[h];
+      if(!existing._rawT || t > existing._rawT){
+        existing.total_revenue = s.total_revenue;
+        existing.rooms = s.rooms || [];
+        existing._rawT = t;
+      }
+    }
+  });
+  return buckets;
+}
+
 // 取原始快照（非daily聚合），用于单日小时级趋势
 function getRawSnapsForDay(dayKey){
   const snaps = (state._history && state._history.snapshots) || [];
@@ -549,13 +580,22 @@ function getRawSnapsForDay(dayKey){
 }
 
 function getActiveTrendSnaps(){
-  // 单日周期（今日/昨日）→ 返回原始快照，支持小时级展示
+  // 单日周期（今日/昨日）→ 返回按小时分桶的数据，X轴为 00:00~23:00
   if(!state.customRange && (state.activePeriod==='today' || state.activePeriod==='yesterday')){
     const now = new Date();
-    const dk = state.activePeriod==='today' ? dayKeyOf(now) : dayKeyOf(new Date(now.getTime()-86400000));
+    const dayDate = state.activePeriod==='today' ? now : new Date(now.getTime()-86400000);
+    const dk = dayKeyOf(dayDate);
     const raw = getRawSnapsForDay(dk);
-    if(raw.length) return raw;  // 有原始快照优先用
-    // fallback 到 daily 聚合
+    if(raw.length) return binSnapsByHour(raw, dayDate);  // 按小时分桶
+  }
+  // 自定义区间：如果跨度 ≤1天，也按小时分桶
+  if(state.customRange){
+    const s = new Date(state.customRange.start+'T00:00:00');
+    const e = new Date(state.customRange.end+'T23:59:59');
+    if(e.getTime() - s.getTime() <= 86400000){
+      const raw = getRawSnapsForDay(dayKeyOf(s));
+      if(raw.length) return binSnapsByHour(raw, s);
+    }
   }
   const daily = getDailyLatest();
   if(!daily.length) return [];
@@ -627,23 +667,19 @@ function renderLine(trendSnaps, rooms){
   const top5 = [...rooms].sort((a,b)=>(b.revenue_value||0)-(a.revenue_value||0)).slice(0,5).map(r=>r.room_id);
   const nickMap = {}; rooms.forEach(r=>nickMap[r.room_id]=r.nickname||('房间'+r.room_id));
 
-  // 根据时间跨度自动选择横轴粒度
-  const firstT = snaps[0]._t || parseTime(snaps[0].scraped_at) || new Date();
-  const lastT = snaps[snaps.length-1]._t || parseTime(snaps[snaps.length-1].scraped_at) || new Date();
-  const spanMs = lastT.getTime() - firstT.getTime();
-  const isHourly = spanMs <= 86400000;  // ≤1天 → 按小时
+  // 判断是否为小时分桶数据（有 _hour 字段）
+  const isHourly = snaps.length > 0 && typeof snaps[0]._hour === 'number';
 
   // 格式化X轴标签
-  const x = snaps.map(s => {
-    const t = s._t || parseTime(s.scraped_at) || new Date();
-    if(isHourly){
-      // 小时级：显示 HH:mm
-      return pad0(t.getHours())+':'+pad0(t.getMinutes());
-    } else {
-      // 天级：显示 MM/DD
+  let x;
+  if(isHourly){
+    x = snaps.map(s => pad0(s._hour)+':00');
+  } else {
+    x = snaps.map(s => {
+      const t = s._t || parseTime(s.scraped_at) || new Date();
       return pad0(t.getMonth()+1)+'/'+pad0(t.getDate());
-    }
-  });
+    });
+  }
 
   const totalSeries = {name:'合计',type:'line',smooth:true,data:snaps.map(s=>s.total_revenue),lineStyle:{width:3,color:'#0d9488'},itemStyle:{color:'#0d9488'},z:5};
   const palette = ['#ef6c4b','#5b8def','#9b59b6','#f1c40f','#16a085'];
@@ -652,13 +688,12 @@ function renderLine(trendSnaps, rooms){
     return {name:nickMap[rid]||('房间'+rid),type:'line',smooth:true,data,itemStyle:{color:palette[i%palette.length]},lineStyle:{width:1.5,color:palette[i%palette.length]}};
   });
 
-  // tooltip 时间格式也跟随粒度
+  // tooltip 格式跟随粒度
   const tooltipFormatter = function(params){
     let html = '<div style="font-weight:bold;margin-bottom:4px">';
     if(isHourly){
-      const t = snaps[params[0].dataIndex];
-      const tt = t._t || parseTime(t.scraped_at) || new Date();
-      html += (tt.getMonth()+1)+'/'+tt.getDate()+' '+pad0(tt.getHours())+':'+pad0(tt.getMinutes());
+      const s = snaps[params[0].dataIndex];
+      html += (s._t.getMonth()+1)+'/'+s._t.getDate()+' '+pad0(s._hour)+':00';
     } else {
       html += params[0].axisValue;
     }
@@ -674,7 +709,7 @@ function renderLine(trendSnaps, rooms){
     tooltip:{trigger:'axis',formatter:tooltipFormatter,confine:true},
     legend:{type:'scroll',top:0,textStyle:{fontSize:11}},
     grid:{left:8,right:16,top:38,bottom:8,containLabel:true},
-    xAxis:{type:'category',data:x,axisLabel:{fontSize:10,hideOverlap:true,rotate:isHourly?30:0}},
+    xAxis:{type:'category',data:x,axisLabel:{fontSize:10,hideOverlap:true,rotate:isHourly?30:0,interval:isHourly?2:'auto'}},
     yAxis:{type:'value',axisLabel:{formatter:v=>v>=10000?(v/10000)+'万':v}},
     series:[totalSeries,...roomSeries]
   });
