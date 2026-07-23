@@ -557,10 +557,7 @@ function renderKPI(d){
   $text('updated', '最晚更新: ' + latestUpdateTime(d));
   tickFreshness();
   const warnEl = $('qualityWarn');
-  if (warnEl) {
-    if (d.success < d.count){ warnEl.style.display='block'; warnEl.textContent = '⚠️ 本批次 '+ (d.count-d.success) +' 个房间抓取失败（数据缺失），明细表与汇总仅基于成功部分。'; }
-    else warnEl.style.display='none';
-  }
+  if (warnEl) warnEl.style.display='none'; // 0流水房间不在API返回中属正常，不再显示抓取失败警告
 }
 
 function tickFreshness(){
