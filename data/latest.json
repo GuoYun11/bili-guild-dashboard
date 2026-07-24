@@ -1,26 +1,26 @@
 {
-  "scraped_at": "2026/7/25 04:20:39",
-  "generated_at": "2026-07-24T20:20:39.777Z",
+  "scraped_at": "2026/7/25 05:14:43",
+  "generated_at": "2026-07-24T21:14:43.302Z",
   "active_period": "today",
   "periods": {
     "today": {
       "label": "今日",
-      "scraped_at": "2026/7/25 04:20:39",
-      "generated_at": "2026-07-24T20:20:39.775Z",
+      "scraped_at": "2026/7/25 05:14:43",
+      "generated_at": "2026-07-24T21:14:43.300Z",
       "count": 23,
       "success": 23,
       "summary": {
-        "total_revenue": 2590,
-        "avg_revenue": 113,
+        "total_revenue": 3764,
+        "avg_revenue": 164,
         "max_revenue": {
-          "room_id": 1934300727,
-          "nickname": "雪奈Aria",
-          "uid": 3546645495023998,
-          "operator": "林夕|运营组|虚拟线下部",
-          "operator_top": "林夕",
-          "revenue": "605元",
-          "revenue_value": 605,
-          "scraped_at": "2026/7/25 04:20:39",
+          "room_id": 1931024436,
+          "nickname": "夏屿之帝国崛起OUO",
+          "uid": 3546879574936340,
+          "operator": "梧桐|运营组|虚拟线下部",
+          "operator_top": "梧桐",
+          "revenue": "991元",
+          "revenue_value": 991,
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         "min_revenue": {
@@ -31,7 +31,7 @@
           "operator_top": "梧桐",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         }
       },
@@ -44,7 +44,7 @@
           "operator_top": "予我",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -55,7 +55,7 @@
           "operator_top": "林夕",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -66,7 +66,7 @@
           "operator_top": "小辫子",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -77,7 +77,7 @@
           "operator_top": "小辫子",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -86,9 +86,9 @@
           "uid": 3546956834015338,
           "operator": "小辫子|运营组|虚拟线下部",
           "operator_top": "小辫子",
-          "revenue": "308元",
-          "revenue_value": 308,
-          "scraped_at": "2026/7/25 04:20:39",
+          "revenue": "309元",
+          "revenue_value": 309,
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -99,7 +99,7 @@
           "operator_top": "小辫子",
           "revenue": "131元",
           "revenue_value": 131,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -110,7 +110,7 @@
           "operator_top": "予我",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -119,20 +119,20 @@
           "uid": 2124934224,
           "operator": "林夕|运营组|虚拟线下部",
           "operator_top": "林夕",
-          "revenue": "163元",
-          "revenue_value": 163,
-          "scraped_at": "2026/7/25 04:20:39",
+          "revenue": "182元",
+          "revenue_value": 182,
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
           "room_id": 1931024436,
-          "nickname": "夏屿之帝国崛起O_o",
+          "nickname": "夏屿之帝国崛起OUO",
           "uid": 3546879574936340,
           "operator": "梧桐|运营组|虚拟线下部",
           "operator_top": "梧桐",
-          "revenue": "471元",
-          "revenue_value": 471,
-          "scraped_at": "2026/7/25 04:20:39",
+          "revenue": "991元",
+          "revenue_value": 991,
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -143,7 +143,7 @@
           "operator_top": "林夕",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -154,7 +154,7 @@
           "operator_top": "梧桐",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -165,7 +165,7 @@
           "operator_top": "林夕",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -176,7 +176,7 @@
           "operator_top": "林夕",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -187,7 +187,7 @@
           "operator_top": "小辫子",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -196,9 +196,9 @@
           "uid": 667459068,
           "operator": "梧桐|运营组|虚拟线下部",
           "operator_top": "梧桐",
-          "revenue": "285元",
-          "revenue_value": 285,
-          "scraped_at": "2026/7/25 04:20:39",
+          "revenue": "292元",
+          "revenue_value": 292,
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -207,9 +207,9 @@
           "uid": 442666261,
           "operator": "梧桐|运营组|虚拟线下部",
           "operator_top": "梧桐",
-          "revenue": "66元",
-          "revenue_value": 66,
-          "scraped_at": "2026/7/25 04:20:39",
+          "revenue": "676元",
+          "revenue_value": 676,
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -218,9 +218,9 @@
           "uid": 1479653447,
           "operator": "予我|运营组|虚拟线下部",
           "operator_top": "予我",
-          "revenue": "561元",
-          "revenue_value": 561,
-          "scraped_at": "2026/7/25 04:20:39",
+          "revenue": "572元",
+          "revenue_value": 572,
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -229,9 +229,9 @@
           "uid": 3546645495023998,
           "operator": "林夕|运营组|虚拟线下部",
           "operator_top": "林夕",
-          "revenue": "605元",
-          "revenue_value": 605,
-          "scraped_at": "2026/7/25 04:20:39",
+          "revenue": "611元",
+          "revenue_value": 611,
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -242,7 +242,7 @@
           "operator_top": "梧桐",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -253,7 +253,7 @@
           "operator_top": "小辫子",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -264,7 +264,7 @@
           "operator_top": "梧桐",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -275,7 +275,7 @@
           "operator_top": "予我",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -286,15 +286,15 @@
           "operator_top": "梧桐",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         }
       ]
     },
     "yesterday": {
       "label": "昨日",
-      "scraped_at": "2026/7/25 04:20:39",
-      "generated_at": "2026-07-24T20:20:39.775Z",
+      "scraped_at": "2026/7/25 05:14:43",
+      "generated_at": "2026-07-24T21:14:43.301Z",
       "count": 23,
       "success": 23,
       "summary": {
@@ -308,7 +308,7 @@
           "operator_top": "予我",
           "revenue": "2530元",
           "revenue_value": 2530,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         "min_revenue": {
@@ -319,7 +319,7 @@
           "operator_top": "林夕",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         }
       },
@@ -332,7 +332,7 @@
           "operator_top": "予我",
           "revenue": "68元",
           "revenue_value": 68,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -343,7 +343,7 @@
           "operator_top": "林夕",
           "revenue": "1522元",
           "revenue_value": 1522,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -354,7 +354,7 @@
           "operator_top": "小辫子",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -365,7 +365,7 @@
           "operator_top": "小辫子",
           "revenue": "329元",
           "revenue_value": 329,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -376,7 +376,7 @@
           "operator_top": "小辫子",
           "revenue": "18元",
           "revenue_value": 18,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -387,7 +387,7 @@
           "operator_top": "小辫子",
           "revenue": "405元",
           "revenue_value": 405,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -398,7 +398,7 @@
           "operator_top": "予我",
           "revenue": "2530元",
           "revenue_value": 2530,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -409,18 +409,18 @@
           "operator_top": "林夕",
           "revenue": "1119元",
           "revenue_value": 1119,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
           "room_id": 1931024436,
-          "nickname": "夏屿之帝国崛起O_o",
+          "nickname": "夏屿之帝国崛起OUO",
           "uid": 3546879574936340,
           "operator": "梧桐|运营组|虚拟线下部",
           "operator_top": "梧桐",
           "revenue": "2473元",
           "revenue_value": 2473,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -431,7 +431,7 @@
           "operator_top": "林夕",
           "revenue": "396元",
           "revenue_value": 396,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -442,7 +442,7 @@
           "operator_top": "梧桐",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -453,7 +453,7 @@
           "operator_top": "林夕",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -464,7 +464,7 @@
           "operator_top": "林夕",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -475,7 +475,7 @@
           "operator_top": "小辫子",
           "revenue": "69元",
           "revenue_value": 69,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -486,7 +486,7 @@
           "operator_top": "梧桐",
           "revenue": "136元",
           "revenue_value": 136,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -497,7 +497,7 @@
           "operator_top": "梧桐",
           "revenue": "240元",
           "revenue_value": 240,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -508,7 +508,7 @@
           "operator_top": "予我",
           "revenue": "339元",
           "revenue_value": 339,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -519,7 +519,7 @@
           "operator_top": "林夕",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -530,7 +530,7 @@
           "operator_top": "梧桐",
           "revenue": "32元",
           "revenue_value": 32,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -541,7 +541,7 @@
           "operator_top": "小辫子",
           "revenue": "786元",
           "revenue_value": 786,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -552,7 +552,7 @@
           "operator_top": "梧桐",
           "revenue": "443元",
           "revenue_value": 443,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -563,7 +563,7 @@
           "operator_top": "予我",
           "revenue": "1157元",
           "revenue_value": 1157,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -574,20 +574,20 @@
           "operator_top": "梧桐",
           "revenue": "3元",
           "revenue_value": 3,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         }
       ]
     },
     "week": {
       "label": "本周",
-      "scraped_at": "2026/7/25 04:20:39",
-      "generated_at": "2026-07-24T20:20:39.776Z",
+      "scraped_at": "2026/7/25 05:14:43",
+      "generated_at": "2026-07-24T21:14:43.301Z",
       "count": 23,
       "success": 23,
       "summary": {
-        "total_revenue": 33421,
-        "avg_revenue": 1453,
+        "total_revenue": 34596,
+        "avg_revenue": 1504,
         "max_revenue": {
           "room_id": 14185201,
           "nickname": "梦野铃",
@@ -596,7 +596,7 @@
           "operator_top": "予我",
           "revenue": "5531元",
           "revenue_value": 5531,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         "min_revenue": {
@@ -607,7 +607,7 @@
           "operator_top": "梧桐",
           "revenue": "63元",
           "revenue_value": 63,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         }
       },
@@ -620,7 +620,7 @@
           "operator_top": "予我",
           "revenue": "1045元",
           "revenue_value": 1045,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -631,7 +631,7 @@
           "operator_top": "林夕",
           "revenue": "2222元",
           "revenue_value": 2222,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -642,7 +642,7 @@
           "operator_top": "小辫子",
           "revenue": "2939元",
           "revenue_value": 2939,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -653,7 +653,7 @@
           "operator_top": "小辫子",
           "revenue": "980元",
           "revenue_value": 980,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -662,9 +662,9 @@
           "uid": 3546956834015338,
           "operator": "小辫子|运营组|虚拟线下部",
           "operator_top": "小辫子",
-          "revenue": "696元",
-          "revenue_value": 696,
-          "scraped_at": "2026/7/25 04:20:39",
+          "revenue": "698元",
+          "revenue_value": 698,
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -675,7 +675,7 @@
           "operator_top": "小辫子",
           "revenue": "1113元",
           "revenue_value": 1113,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -686,7 +686,7 @@
           "operator_top": "予我",
           "revenue": "5531元",
           "revenue_value": 5531,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -695,20 +695,20 @@
           "uid": 2124934224,
           "operator": "林夕|运营组|虚拟线下部",
           "operator_top": "林夕",
-          "revenue": "3702元",
-          "revenue_value": 3702,
-          "scraped_at": "2026/7/25 04:20:39",
+          "revenue": "3721元",
+          "revenue_value": 3721,
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
           "room_id": 1931024436,
-          "nickname": "夏屿之帝国崛起O_o",
+          "nickname": "夏屿之帝国崛起OUO",
           "uid": 3546879574936340,
           "operator": "梧桐|运营组|虚拟线下部",
           "operator_top": "梧桐",
-          "revenue": "3636元",
-          "revenue_value": 3636,
-          "scraped_at": "2026/7/25 04:20:39",
+          "revenue": "4155元",
+          "revenue_value": 4155,
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -719,7 +719,7 @@
           "operator_top": "林夕",
           "revenue": "1476元",
           "revenue_value": 1476,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -730,7 +730,7 @@
           "operator_top": "梧桐",
           "revenue": "327元",
           "revenue_value": 327,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -741,7 +741,7 @@
           "operator_top": "林夕",
           "revenue": "151元",
           "revenue_value": 151,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -752,7 +752,7 @@
           "operator_top": "林夕",
           "revenue": "119元",
           "revenue_value": 119,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -763,7 +763,7 @@
           "operator_top": "小辫子",
           "revenue": "256元",
           "revenue_value": 256,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -772,9 +772,9 @@
           "uid": 667459068,
           "operator": "梧桐|运营组|虚拟线下部",
           "operator_top": "梧桐",
-          "revenue": "1031元",
-          "revenue_value": 1031,
-          "scraped_at": "2026/7/25 04:20:39",
+          "revenue": "1038元",
+          "revenue_value": 1038,
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -783,9 +783,9 @@
           "uid": 442666261,
           "operator": "梧桐|运营组|虚拟线下部",
           "operator_top": "梧桐",
-          "revenue": "885元",
-          "revenue_value": 885,
-          "scraped_at": "2026/7/25 04:20:39",
+          "revenue": "1495元",
+          "revenue_value": 1495,
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -794,9 +794,9 @@
           "uid": 1479653447,
           "operator": "予我|运营组|虚拟线下部",
           "operator_top": "予我",
-          "revenue": "1775元",
-          "revenue_value": 1775,
-          "scraped_at": "2026/7/25 04:20:39",
+          "revenue": "1787元",
+          "revenue_value": 1787,
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -805,9 +805,9 @@
           "uid": 3546645495023998,
           "operator": "林夕|运营组|虚拟线下部",
           "operator_top": "林夕",
-          "revenue": "1498元",
-          "revenue_value": 1498,
-          "scraped_at": "2026/7/25 04:20:39",
+          "revenue": "1504元",
+          "revenue_value": 1504,
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -818,7 +818,7 @@
           "operator_top": "梧桐",
           "revenue": "256元",
           "revenue_value": 256,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -829,7 +829,7 @@
           "operator_top": "小辫子",
           "revenue": "1320元",
           "revenue_value": 1320,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -840,7 +840,7 @@
           "operator_top": "梧桐",
           "revenue": "1063元",
           "revenue_value": 1063,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -851,7 +851,7 @@
           "operator_top": "予我",
           "revenue": "1337元",
           "revenue_value": 1337,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -862,20 +862,20 @@
           "operator_top": "梧桐",
           "revenue": "63元",
           "revenue_value": 63,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         }
       ]
     },
     "month": {
       "label": "本月",
-      "scraped_at": "2026/7/25 04:20:39",
-      "generated_at": "2026-07-24T20:20:39.776Z",
+      "scraped_at": "2026/7/25 05:14:43",
+      "generated_at": "2026-07-24T21:14:43.301Z",
       "count": 23,
       "success": 23,
       "summary": {
-        "total_revenue": 90094,
-        "avg_revenue": 3917,
+        "total_revenue": 91254,
+        "avg_revenue": 3968,
         "max_revenue": {
           "room_id": 3490234,
           "nickname": "橘-砂糖",
@@ -884,7 +884,7 @@
           "operator_top": "小辫子",
           "revenue": "12928元",
           "revenue_value": 12928,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         "min_revenue": {
@@ -895,7 +895,7 @@
           "operator_top": "梧桐",
           "revenue": "63元",
           "revenue_value": 63,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         }
       },
@@ -908,7 +908,7 @@
           "operator_top": "予我",
           "revenue": "5390元",
           "revenue_value": 5390,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -919,7 +919,7 @@
           "operator_top": "林夕",
           "revenue": "9986元",
           "revenue_value": 9986,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -930,7 +930,7 @@
           "operator_top": "小辫子",
           "revenue": "12928元",
           "revenue_value": 12928,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -941,7 +941,7 @@
           "operator_top": "小辫子",
           "revenue": "5686元",
           "revenue_value": 5686,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -950,9 +950,9 @@
           "uid": 3546956834015338,
           "operator": "小辫子|运营组|虚拟线下部",
           "operator_top": "小辫子",
-          "revenue": "2334元",
-          "revenue_value": 2334,
-          "scraped_at": "2026/7/25 04:20:39",
+          "revenue": "2335元",
+          "revenue_value": 2335,
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -963,7 +963,7 @@
           "operator_top": "小辫子",
           "revenue": "1451元",
           "revenue_value": 1451,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -974,7 +974,7 @@
           "operator_top": "予我",
           "revenue": "10900元",
           "revenue_value": 10900,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -983,20 +983,20 @@
           "uid": 2124934224,
           "operator": "林夕|运营组|虚拟线下部",
           "operator_top": "林夕",
-          "revenue": "7766元",
-          "revenue_value": 7766,
-          "scraped_at": "2026/7/25 04:20:39",
+          "revenue": "7772元",
+          "revenue_value": 7772,
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
           "room_id": 1931024436,
-          "nickname": "夏屿之帝国崛起O_o",
+          "nickname": "夏屿之帝国崛起OUO",
           "uid": 3546879574936340,
           "operator": "梧桐|运营组|虚拟线下部",
           "operator_top": "梧桐",
-          "revenue": "10507元",
-          "revenue_value": 10507,
-          "scraped_at": "2026/7/25 04:20:39",
+          "revenue": "11026元",
+          "revenue_value": 11026,
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -1007,7 +1007,7 @@
           "operator_top": "林夕",
           "revenue": "5241元",
           "revenue_value": 5241,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -1018,7 +1018,7 @@
           "operator_top": "梧桐",
           "revenue": "1641元",
           "revenue_value": 1641,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -1029,7 +1029,7 @@
           "operator_top": "林夕",
           "revenue": "811元",
           "revenue_value": 811,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -1040,7 +1040,7 @@
           "operator_top": "林夕",
           "revenue": "272元",
           "revenue_value": 272,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -1051,7 +1051,7 @@
           "operator_top": "小辫子",
           "revenue": "442元",
           "revenue_value": 442,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -1060,9 +1060,9 @@
           "uid": 667459068,
           "operator": "梧桐|运营组|虚拟线下部",
           "operator_top": "梧桐",
-          "revenue": "1601元",
-          "revenue_value": 1601,
-          "scraped_at": "2026/7/25 04:20:39",
+          "revenue": "1608元",
+          "revenue_value": 1608,
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -1071,9 +1071,9 @@
           "uid": 442666261,
           "operator": "梧桐|运营组|虚拟线下部",
           "operator_top": "梧桐",
-          "revenue": "977元",
-          "revenue_value": 977,
-          "scraped_at": "2026/7/25 04:20:39",
+          "revenue": "1588元",
+          "revenue_value": 1588,
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -1082,9 +1082,9 @@
           "uid": 1479653447,
           "operator": "予我|运营组|虚拟线下部",
           "operator_top": "予我",
-          "revenue": "1860元",
-          "revenue_value": 1860,
-          "scraped_at": "2026/7/25 04:20:39",
+          "revenue": "1870元",
+          "revenue_value": 1870,
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -1093,9 +1093,9 @@
           "uid": 3546645495023998,
           "operator": "林夕|运营组|虚拟线下部",
           "operator_top": "林夕",
-          "revenue": "1785元",
-          "revenue_value": 1785,
-          "scraped_at": "2026/7/25 04:20:39",
+          "revenue": "1791元",
+          "revenue_value": 1791,
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -1106,7 +1106,7 @@
           "operator_top": "梧桐",
           "revenue": "256元",
           "revenue_value": 256,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -1117,7 +1117,7 @@
           "operator_top": "小辫子",
           "revenue": "1320元",
           "revenue_value": 1320,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -1128,7 +1128,7 @@
           "operator_top": "梧桐",
           "revenue": "2012元",
           "revenue_value": 2012,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -1139,7 +1139,7 @@
           "operator_top": "予我",
           "revenue": "4865元",
           "revenue_value": 4865,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         },
         {
@@ -1150,7 +1150,7 @@
           "operator_top": "梧桐",
           "revenue": "63元",
           "revenue_value": 63,
-          "scraped_at": "2026/7/25 04:20:39",
+          "scraped_at": "2026/7/25 05:14:43",
           "missing": false
         }
       ]
@@ -1159,17 +1159,17 @@
   "count": 23,
   "success": 23,
   "summary": {
-    "total_revenue": 2590,
-    "avg_revenue": 113,
+    "total_revenue": 3764,
+    "avg_revenue": 164,
     "max_revenue": {
-      "room_id": 1934300727,
-      "nickname": "雪奈Aria",
-      "uid": 3546645495023998,
-      "operator": "林夕|运营组|虚拟线下部",
-      "operator_top": "林夕",
-      "revenue": "605元",
-      "revenue_value": 605,
-      "scraped_at": "2026/7/25 04:20:39",
+      "room_id": 1931024436,
+      "nickname": "夏屿之帝国崛起OUO",
+      "uid": 3546879574936340,
+      "operator": "梧桐|运营组|虚拟线下部",
+      "operator_top": "梧桐",
+      "revenue": "991元",
+      "revenue_value": 991,
+      "scraped_at": "2026/7/25 05:14:43",
       "missing": false
     },
     "min_revenue": {
@@ -1180,7 +1180,7 @@
       "operator_top": "梧桐",
       "revenue": "0元",
       "revenue_value": 0,
-      "scraped_at": "2026/7/25 04:20:39",
+      "scraped_at": "2026/7/25 05:14:43",
       "missing": false
     }
   },
@@ -1193,7 +1193,7 @@
       "operator_top": "予我",
       "revenue": "0元",
       "revenue_value": 0,
-      "scraped_at": "2026/7/25 04:20:39",
+      "scraped_at": "2026/7/25 05:14:43",
       "missing": false
     },
     {
@@ -1204,7 +1204,7 @@
       "operator_top": "林夕",
       "revenue": "0元",
       "revenue_value": 0,
-      "scraped_at": "2026/7/25 04:20:39",
+      "scraped_at": "2026/7/25 05:14:43",
       "missing": false
     },
     {
@@ -1215,7 +1215,7 @@
       "operator_top": "小辫子",
       "revenue": "0元",
       "revenue_value": 0,
-      "scraped_at": "2026/7/25 04:20:39",
+      "scraped_at": "2026/7/25 05:14:43",
       "missing": false
     },
     {
@@ -1226,7 +1226,7 @@
       "operator_top": "小辫子",
       "revenue": "0元",
       "revenue_value": 0,
-      "scraped_at": "2026/7/25 04:20:39",
+      "scraped_at": "2026/7/25 05:14:43",
       "missing": false
     },
     {
@@ -1235,9 +1235,9 @@
       "uid": 3546956834015338,
       "operator": "小辫子|运营组|虚拟线下部",
       "operator_top": "小辫子",
-      "revenue": "308元",
-      "revenue_value": 308,
-      "scraped_at": "2026/7/25 04:20:39",
+      "revenue": "309元",
+      "revenue_value": 309,
+      "scraped_at": "2026/7/25 05:14:43",
       "missing": false
     },
     {
@@ -1248,7 +1248,7 @@
       "operator_top": "小辫子",
       "revenue": "131元",
       "revenue_value": 131,
-      "scraped_at": "2026/7/25 04:20:39",
+      "scraped_at": "2026/7/25 05:14:43",
       "missing": false
     },
     {
@@ -1259,7 +1259,7 @@
       "operator_top": "予我",
       "revenue": "0元",
       "revenue_value": 0,
-      "scraped_at": "2026/7/25 04:20:39",
+      "scraped_at": "2026/7/25 05:14:43",
       "missing": false
     },
     {
@@ -1268,20 +1268,20 @@
       "uid": 2124934224,
       "operator": "林夕|运营组|虚拟线下部",
       "operator_top": "林夕",
-      "revenue": "163元",
-      "revenue_value": 163,
-      "scraped_at": "2026/7/25 04:20:39",
+      "revenue": "182元",
+      "revenue_value": 182,
+      "scraped_at": "2026/7/25 05:14:43",
       "missing": false
     },
     {
       "room_id": 1931024436,
-      "nickname": "夏屿之帝国崛起O_o",
+      "nickname": "夏屿之帝国崛起OUO",
       "uid": 3546879574936340,
       "operator": "梧桐|运营组|虚拟线下部",
       "operator_top": "梧桐",
-      "revenue": "471元",
-      "revenue_value": 471,
-      "scraped_at": "2026/7/25 04:20:39",
+      "revenue": "991元",
+      "revenue_value": 991,
+      "scraped_at": "2026/7/25 05:14:43",
       "missing": false
     },
     {
@@ -1292,7 +1292,7 @@
       "operator_top": "林夕",
       "revenue": "0元",
       "revenue_value": 0,
-      "scraped_at": "2026/7/25 04:20:39",
+      "scraped_at": "2026/7/25 05:14:43",
       "missing": false
     },
     {
@@ -1303,7 +1303,7 @@
       "operator_top": "梧桐",
       "revenue": "0元",
       "revenue_value": 0,
-      "scraped_at": "2026/7/25 04:20:39",
+      "scraped_at": "2026/7/25 05:14:43",
       "missing": false
     },
     {
@@ -1314,7 +1314,7 @@
       "operator_top": "林夕",
       "revenue": "0元",
       "revenue_value": 0,
-      "scraped_at": "2026/7/25 04:20:39",
+      "scraped_at": "2026/7/25 05:14:43",
       "missing": false
     },
     {
@@ -1325,7 +1325,7 @@
       "operator_top": "林夕",
       "revenue": "0元",
       "revenue_value": 0,
-      "scraped_at": "2026/7/25 04:20:39",
+      "scraped_at": "2026/7/25 05:14:43",
       "missing": false
     },
     {
@@ -1336,7 +1336,7 @@
       "operator_top": "小辫子",
       "revenue": "0元",
       "revenue_value": 0,
-      "scraped_at": "2026/7/25 04:20:39",
+      "scraped_at": "2026/7/25 05:14:43",
       "missing": false
     },
     {
@@ -1345,9 +1345,9 @@
       "uid": 667459068,
       "operator": "梧桐|运营组|虚拟线下部",
       "operator_top": "梧桐",
-      "revenue": "285元",
-      "revenue_value": 285,
-      "scraped_at": "2026/7/25 04:20:39",
+      "revenue": "292元",
+      "revenue_value": 292,
+      "scraped_at": "2026/7/25 05:14:43",
       "missing": false
     },
     {
@@ -1356,9 +1356,9 @@
       "uid": 442666261,
       "operator": "梧桐|运营组|虚拟线下部",
       "operator_top": "梧桐",
-      "revenue": "66元",
-      "revenue_value": 66,
-      "scraped_at": "2026/7/25 04:20:39",
+      "revenue": "676元",
+      "revenue_value": 676,
+      "scraped_at": "2026/7/25 05:14:43",
       "missing": false
     },
     {
@@ -1367,9 +1367,9 @@
       "uid": 1479653447,
       "operator": "予我|运营组|虚拟线下部",
       "operator_top": "予我",
-      "revenue": "561元",
-      "revenue_value": 561,
-      "scraped_at": "2026/7/25 04:20:39",
+      "revenue": "572元",
+      "revenue_value": 572,
+      "scraped_at": "2026/7/25 05:14:43",
       "missing": false
     },
     {
@@ -1378,9 +1378,9 @@
       "uid": 3546645495023998,
       "operator": "林夕|运营组|虚拟线下部",
       "operator_top": "林夕",
-      "revenue": "605元",
-      "revenue_value": 605,
-      "scraped_at": "2026/7/25 04:20:39",
+      "revenue": "611元",
+      "revenue_value": 611,
+      "scraped_at": "2026/7/25 05:14:43",
       "missing": false
     },
     {
@@ -1391,7 +1391,7 @@
       "operator_top": "梧桐",
       "revenue": "0元",
       "revenue_value": 0,
-      "scraped_at": "2026/7/25 04:20:39",
+      "scraped_at": "2026/7/25 05:14:43",
       "missing": false
     },
     {
@@ -1402,7 +1402,7 @@
       "operator_top": "小辫子",
       "revenue": "0元",
       "revenue_value": 0,
-      "scraped_at": "2026/7/25 04:20:39",
+      "scraped_at": "2026/7/25 05:14:43",
       "missing": false
     },
     {
@@ -1413,7 +1413,7 @@
       "operator_top": "梧桐",
       "revenue": "0元",
       "revenue_value": 0,
-      "scraped_at": "2026/7/25 04:20:39",
+      "scraped_at": "2026/7/25 05:14:43",
       "missing": false
     },
     {
@@ -1424,7 +1424,7 @@
       "operator_top": "予我",
       "revenue": "0元",
       "revenue_value": 0,
-      "scraped_at": "2026/7/25 04:20:39",
+      "scraped_at": "2026/7/25 05:14:43",
       "missing": false
     },
     {
@@ -1435,7 +1435,7 @@
       "operator_top": "梧桐",
       "revenue": "0元",
       "revenue_value": 0,
-      "scraped_at": "2026/7/25 04:20:39",
+      "scraped_at": "2026/7/25 05:14:43",
       "missing": false
     }
   ]
