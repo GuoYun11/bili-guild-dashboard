@@ -91,6 +91,9 @@
   .modal-box input[type=text],.modal-box input[type=password]{width:100%;border:1px solid var(--line);border-radius:8px;padding:9px 12px;font-size:13px;outline:none;margin-bottom:14px;}
   .modal-box input:focus{border-color:var(--teal);}
   .modal-box .hint{font-size:12px;color:var(--muted);margin-bottom:16px;line-height:1.6;}
+  .modal-box textarea{width:100%;border:1px solid var(--line);border-radius:8px;padding:9px 12px;font-size:13px;outline:none;margin-bottom:4px;resize:vertical;font-family:inherit;line-height:1.6;}
+  .modal-box textarea:focus{border-color:var(--teal);}
+  .modal-box .preview{font-size:12.5px;color:var(--teal-d);margin-bottom:12px;min-height:18px;line-height:1.6;}
   .modal-box .btn-row{display:flex;gap:10px;margin-top:6px;}
   .modal-box .btn-row .btn{flex:1;padding:9px 0;border-radius:8px;font-size:13px;cursor:pointer;border:none;font-weight:600;}
   .modal-box .btn-primary{background:var(--teal);color:#fff;}
@@ -230,6 +233,21 @@
     <div class="btn-row">
       <button class="btn btn-cancel" id="loginCancel">取消</button>
       <button class="btn btn-primary" id="loginSubmit">登录</button>
+    </div>
+  </div>
+</div>
+
+<!-- 批量新增房间弹窗 -->
+<div class="modal-overlay" id="addRoomModal">
+  <div class="modal-box">
+    <h3>新增房间（支持批量）</h3>
+    <label for="roomInput">粘贴房间号 / 直播间 ID</label>
+    <textarea id="roomInput" rows="6" placeholder="每行一个房间号，或用逗号 / 空格 / 换行分隔&#10;例如：&#10;1939973024&#10;1774689389&#10;1805922103"></textarea>
+    <div class="preview" id="roomPreview">每行一个房间号，或用逗号 / 空格分隔（Ctrl / ⌘ + Enter 提交）</div>
+    <div class="warn-box" id="roomErr" style="display:none;"></div>
+    <div class="btn-row">
+      <button class="btn btn-cancel" id="addRoomCancel">取消</button>
+      <button class="btn btn-primary" id="addRoomSubmit">添加</button>
     </div>
   </div>
 </div>
@@ -386,14 +404,63 @@ async function persistNote(roomId, note){
   }
 }
 
-function addRoom(){
-  const input = prompt('请输入要新增的房间号（直播间 ID）：');
-  if (input == null) return;
-  const id = Number(String(input).trim());
-  if (!id || id <= 0){ alert('房间号无效，请输入数字 ID'); return; }
+function addRoom(){ // 打开批量新增弹窗
+  $('roomInput').value = '';
+  $('roomErr').style.display = 'none';
+  $html('roomPreview', '每行一个房间号，或用逗号 / 空格分隔（Ctrl / ⌘ + Enter 提交）');
+  $('addRoomModal').classList.add('show');
+  setTimeout(()=>{ const t = $('roomInput'); if (t) t.focus(); }, 50);
+}
+
+// 从任意文本中解析出房间号：支持换行 / 逗号 / 空格 / 中文标点分隔，自动去重
+function parseRoomList(text){
+  if (!text) return { ids: [], invalid: [] };
+  const parts = String(text).split(/[\s,，;；、\n\r\t]+/).filter(Boolean);
+  const ids = [], invalid = [], seen = new Set();
+  parts.forEach(p=>{
+    const m = String(p).match(/\d{4,}/); // 至少 4 位数字视为房间号片段
+    if (!m){ invalid.push(p); return; }
+    const num = Number(m[0]);
+    if (!num || num <= 0){ invalid.push(p); return; }
+    if (seen.has(num)) return; // 输入中重复则自动去重
+    seen.add(num); ids.push(num);
+  });
+  return { ids, invalid };
+}
+
+function refreshAddRoomPreview(){
+  const el = $('roomInput'); if (!el) return;
+  const { ids, invalid } = parseRoomList(el.value);
   const cur = effectiveRooms();
-  if (cur.includes(id)){ alert('该房间已在列表中'); return; }
-  persistRooms([...cur, id]);
+  const curSet = new Set(cur);
+  const news = ids.filter(x => !curSet.has(x));
+  const dups = ids.length - news.length;
+  if (ids.length || invalid.length){
+    let msg = '解析到 ' + ids.length + ' 个房间号';
+    if (news.length) msg += '，将新增 <b>' + news.length + '</b> 个';
+    if (dups) msg += '，跳过 ' + dups + ' 个已存在';
+    if (invalid.length) msg += '；<span style="color:#c0392b">' + invalid.length + ' 个格式无效</span>';
+    $html('roomPreview', msg);
+  } else {
+    $html('roomPreview', '每行一个房间号，或用逗号 / 空格分隔（Ctrl / ⌘ + Enter 提交）');
+  }
+}
+
+async function submitAddRooms(){
+  const { ids, invalid } = parseRoomList($('roomInput').value);
+  const cur = effectiveRooms();
+  const curSet = new Set(cur);
+  const news = ids.filter(x => !curSet.has(x));
+  if (!news.length){
+    $html('roomErr', invalid.length ? '没有可新增的房间（' + invalid.length + ' 个格式无效，请检查输入）' : '没有可新增的房间（可能都已存在，或输入为空）');
+    $('roomErr').style.display = 'block';
+    return;
+  }
+  const merged = [...cur, ...news].sort((a, b) => a - b);
+  await persistRooms(merged);
+  $('addRoomModal').classList.remove('show');
+  $('roomInput').value = ''; $('roomErr').style.display = 'none';
+  toast('已新增 ' + news.length + ' 个房间（当前共 ' + merged.length + ' 个）');
   setTimeout(()=>{ if (state.data) renderActivePeriod(state._history || {}); }, 100);
 }
 async function removeRoom(roomId){
@@ -1043,6 +1110,11 @@ $('searchInput').addEventListener('input', doSearch);
 $('searchInput').addEventListener('keydown', e=>{ if(e.key==='Enter') doSearch(); });
 $('searchBtn').addEventListener('click', doSearch);
 $('addRoomBtn').addEventListener('click', addRoom);
+$('addRoomCancel').addEventListener('click', ()=> $('addRoomModal').classList.remove('show'));
+$('addRoomModal').addEventListener('click', e=>{ if (e.target === $('addRoomModal')) $('addRoomModal').classList.remove('show'); });
+$('roomInput').addEventListener('input', refreshAddRoomPreview);
+$('roomInput').addEventListener('keydown', e=>{ if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) $('addRoomSubmit').click(); });
+$('addRoomSubmit').addEventListener('click', submitAddRooms);
 
 // ---------- 设置弹窗 (GitHub Token) ----------
 const LS_GH_TOKEN = 'bili_gh_token';
