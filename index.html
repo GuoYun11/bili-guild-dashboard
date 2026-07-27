@@ -82,6 +82,7 @@
   #authArea{display:inline-flex;align-items:center;gap:8px;margin-left:8px;}
   #authUser{font-size:12.5px;color:var(--teal);font-weight:600;}
   .note-readonly{font-size:12.5px;color:var(--muted);display:inline-block;max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .cancelled-tag{display:inline-block;background:#fde8e8;color:#c0392b;border-radius:6px;padding:2px 8px;font-size:12px;font-weight:500;}
   /* 设置弹窗 */
   .modal-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.35);z-index:999;align-items:center;justify-content:center;}
   .modal-overlay.show{display:flex;}
@@ -552,6 +553,17 @@ function aggregateRooms(dailySnaps){
   });
   return Object.values(rooms);
 }
+// 判断房间是否为已注销账号：昵称 fallback 为"房间{ID}" 且无 UID 且无运营经纪人
+function isCancelled(r){
+  const nick = String(r.nickname || '').trim();
+  return /^房间\d+$/.test(nick) && !(r.uid) && !(r.operator);
+}
+// 获取展示用昵称（已注销 → "账号已注销"，否则正常昵称或 "房间{ID}"）
+function displayNick(r){
+  if (isCancelled(r)) return '账号已注销';
+  return r.nickname || ('房间' + r.room_id);
+}
+
 function decorate(r, scrapedAt){
   return Object.assign({}, r, { revenue:(r.revenue_value||0)+'元', scraped_at: scrapedAt||'' });
 }
@@ -749,7 +761,7 @@ function renderKPI(d){
   $text('kpiCountSub', '成功抓取 / 监控总数');
   $text('kpiTotal', fmt(s.total_revenue));
   $text('kpiAvg', fmt(s.avg_revenue));
-  if (s.max_revenue){ $text('kpiTop', s.max_revenue.nickname || ('房间'+s.max_revenue.room_id)); $text('kpiTopSub', fmt(s.max_revenue.revenue_value) + ' · 房间'+s.max_revenue.room_id); }
+  if (s.max_revenue){ $text('kpiTop', displayNick(s.max_revenue)); $text('kpiTopSub', fmt(s.max_revenue.revenue_value) + ' · 房间'+s.max_revenue.room_id); }
   else { $text('kpiTop', '--'); $text('kpiTopSub', ''); }
   $text('updated', '最晚更新: ' + latestUpdateTime(d));
   tickFreshness();
@@ -773,7 +785,7 @@ function renderBar(rooms){
     grid:{left:8,right:24,top:16,bottom:8,containLabel:true},
     tooltip:{trigger:'axis',axisPointer:{type:'shadow'},valueFormatter:v=>fmt(v)},
     xAxis:{type:'value',axisLabel:{formatter:v=>v>=10000?(v/10000)+'万':v}},
-    yAxis:{type:'category',data:sorted.map(r=>r.nickname||('房间'+r.room_id)),axisLabel:{width:90,overflow:'truncate'}},
+    yAxis:{type:'category',data:sorted.map(r=>displayNick(r)),axisLabel:{width:90,overflow:'truncate'}},
     series:[{type:'bar',data:sorted.map(r=>r.revenue_value||0),itemStyle:{color:'#14b8a6',borderRadius:[0,4,4,0]},
       label:{show:true,position:'right',formatter:p=>fmt(p.value),color:'#1f2d3d',fontSize:11}}]
   });
@@ -797,7 +809,7 @@ function renderLine(trendSnaps, rooms){
   const snaps = trendSnaps || [];
   if (!snaps.length){ lineChart.setOption({title:{text:'暂无趋势数据',left:'center',top:'center',textStyle:{color:'#7a8aa0',fontSize:13}}}); return; }
   const top5 = [...rooms].sort((a,b)=>(b.revenue_value||0)-(a.revenue_value||0)).slice(0,5).map(r=>r.room_id);
-  const nickMap = {}; rooms.forEach(r=>nickMap[r.room_id]=r.nickname||('房间'+r.room_id));
+  const nickMap = {}; rooms.forEach(r=>nickMap[r.room_id]=displayNick(r));
 
   // 判断是否为小时分桶数据（有 _hour 字段）
   const isHourly = snaps.length > 0 && typeof snaps[0]._hour === 'number';
@@ -888,7 +900,7 @@ function renderTable(){
 
   if (state.keyword){
     const kw = state.keyword.toLowerCase();
-    list = list.filter(r => [r.nickname, r.uid, r.room_id, r.operator].some(v => String(v || '').toLowerCase().includes(kw)));
+    list = list.filter(r => [r.nickname, displayNick(r), r.uid, r.room_id, r.operator].some(v => String(v || '').toLowerCase().includes(kw)));
   }
   list.sort((a, b) => {
     if (state.sortKey === 'revenue_value') {
@@ -916,9 +928,13 @@ function renderTable(){
     const p = (state._profiles || {})[String(r.room_id)] || {};
     const uid = r.uid || p.uid || '--';
     const operator = r.operator || p.operator || '--';
+    const cancelled = isCancelled(r);
+    const nickHtml = cancelled
+      ? '<span class="cancelled-tag">账号已注销</span>'
+      : (r.nickname || p.nickname || '--');
     return `<tr data-room="${r.room_id}">
       <td>${r.room_id}</td>
-      <td>${r.nickname || p.nickname || '--'}</td>
+      <td>${nickHtml}</td>
       <td>${uid}</td>
       <td><span class="tag">${operator}</span></td>
       <td class="rev">${fmt(r.revenue_value)}</td>
