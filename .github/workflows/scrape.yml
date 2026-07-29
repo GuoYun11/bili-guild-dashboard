@@ -1,0 +1,57 @@
+name: B站工会数据每小时抓取
+
+on:
+  schedule:
+    - cron: '0 * * * *'          # 每小时整点（UTC）
+  workflow_dispatch: {}          # 支持手动触发（Actions 页面 -> Run workflow）
+
+permissions:
+  contents: write                # 允许把抓取结果 commit 回 main（Pages 自动更新）
+
+concurrency:
+  group: bili-scrape
+  cancel-in-progress: false      # 不互相打断，避免覆盖进行中的抓取
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Playwright + Chromium
+        run: |
+          npm --prefix scraper install
+          npx --prefix scraper playwright install --with-deps chromium
+
+      - name: 写入 Cookie（来自仓库密钥）
+        run: echo "$BILI_COOKIES" > scraper/cookies.json
+        env:
+          BILI_COOKIES: ${{ secrets.BILI_COOKIES }}
+
+      - name: 运行抓取脚本
+        env:
+          OUTDIR: ${{ github.workspace }}            # 数据写到仓库根 data/
+          CHROME_PROFILE: ${{ runner.temp }}/bili-profile
+          COOKIES_FILE: ${{ github.workspace }}/scraper/cookies.json
+          CONFIG_BRANCH: main
+        run: node scraper/run_all.js
+
+      - name: 提交数据到 main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/
+          if git diff --cached --quiet; then
+            echo "no data changes"
+          else
+            git commit -m "chore: hourly scrape $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            git push
+            echo "pushed"
+          fi
