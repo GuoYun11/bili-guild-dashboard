@@ -2,7 +2,7 @@ name: B站工会数据每小时抓取
 
 on:
   schedule:
-    - cron: '0 * * * *'          # 每小时整点（UTC）
+    - cron: '*/30 * * * *'        # 每30分钟（UTC）；GitHub免费调度会漏触发，提高频率以压缩空档
   workflow_dispatch: {}          # 支持手动触发（Actions 页面 -> Run workflow）
 
 permissions:
