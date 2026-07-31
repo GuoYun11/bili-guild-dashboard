@@ -121,7 +121,7 @@ async function fetchPeriodAnchors(page, timeRange) {
   return map;
 }
 
-const stamp = () => new Date().toLocaleString('zh-CN', { hour12: false });
+const stamp = () => new Date().toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai', hour12: false });
 const log = (...a) => console.log(stamp(), ...a);
 const sleep = (ms) => new Promise(r => setTimeout(r, ms));
 
