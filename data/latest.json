@@ -1,17 +1,525 @@
 {
-  "scraped_at": "2026/7/31 23:32:08",
-  "generated_at": "2026-07-31T15:32:08.399Z",
+  "scraped_at": "2026/8/1 00:01:41",
+  "generated_at": "2026-07-31T16:01:41.109Z",
   "active_period": "today",
   "periods": {
     "today": {
       "label": "今日",
-      "scraped_at": "2026/7/31 23:32:08",
-      "generated_at": "2026-07-31T15:32:08.396Z",
+      "scraped_at": "2026/8/1 00:01:41",
+      "generated_at": "2026-07-31T16:01:41.106Z",
       "count": 43,
       "success": 43,
       "summary": {
-        "total_revenue": 10611,
-        "avg_revenue": 247,
+        "total_revenue": 0,
+        "avg_revenue": 0,
+        "max_revenue": {
+          "room_id": 2479015,
+          "nickname": "小茜不落泪",
+          "uid": 16547898,
+          "operator": "林夕|运营组|虚拟线下部",
+          "operator_top": "林夕",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
+          "missing": false
+        },
+        "min_revenue": {
+          "room_id": 1994826644,
+          "nickname": "柚柠_小厨娘",
+          "uid": 3546825942370615,
+          "operator": "小辫子|运营组|虚拟线下部",
+          "operator_top": "小辫子",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
+          "missing": false
+        }
+      },
+      "rooms": [
+        {
+          "room_id": 2479015,
+          "nickname": "小茜不落泪",
+          "uid": 16547898,
+          "operator": "林夕|运营组|虚拟线下部",
+          "operator_top": "林夕",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
+          "missing": false
+        },
+        {
+          "room_id": 3490234,
+          "nickname": "橘-砂糖",
+          "uid": 11478892,
+          "operator": "小辫子|运营组|虚拟线下部",
+          "operator_top": "小辫子",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
+          "missing": false
+        },
+        {
+          "room_id": 14185201,
+          "nickname": "梦野铃",
+          "uid": 326451127,
+          "operator": "予我|运营组|虚拟线下部",
+          "operator_top": "予我",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
+          "missing": false
+        },
+        {
+          "room_id": 23925471,
+          "nickname": "房间23925471",
+          "uid": "",
+          "operator": "",
+          "operator_top": "未分组",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
+          "missing": false
+        },
+        {
+          "room_id": 30806908,
+          "nickname": "房间30806908",
+          "uid": "",
+          "operator": "",
+          "operator_top": "未分组",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
+          "missing": false
+        },
+        {
+          "room_id": 1722696335,
+          "nickname": "汪啾_NIKI",
+          "uid": 3546915991980070,
+          "operator": "予我|运营组|虚拟线下部",
+          "operator_top": "予我",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
+          "missing": false
+        },
+        {
+          "room_id": 1724154087,
+          "nickname": "房间1724154087",
+          "uid": "",
+          "operator": "",
+          "operator_top": "未分组",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
+          "missing": false
+        },
+        {
+          "room_id": 1727073471,
+          "nickname": "房间1727073471",
+          "uid": "",
+          "operator": "",
+          "operator_top": "未分组",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
+          "missing": false
+        },
+        {
+          "room_id": 1743789663,
+          "nickname": "房间1743789663",
+          "uid": "",
+          "operator": "",
+          "operator_top": "未分组",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
+          "missing": false
+        },
+        {
+          "room_id": 1769172109,
+          "nickname": "房间1769172109",
+          "uid": "",
+          "operator": "",
+          "operator_top": "未分组",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
+          "missing": false
+        },
+        {
+          "room_id": 1774689389,
+          "nickname": "房间1774689389",
+          "uid": "",
+          "operator": "",
+          "operator_top": "未分组",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
+          "missing": false
+        },
+        {
+          "room_id": 1805922103,
+          "nickname": "房间1805922103",
+          "uid": "",
+          "operator": "",
+          "operator_top": "未分组",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
+          "missing": false
+        },
+        {
+          "room_id": 1806917815,
+          "nickname": "房间1806917815",
+          "uid": "",
+          "operator": "",
+          "operator_top": "未分组",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
+          "missing": false
+        },
+        {
+          "room_id": 1811337807,
+          "nickname": "房间1811337807",
+          "uid": "",
+          "operator": "",
+          "operator_top": "未分组",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
+          "missing": false
+        },
+        {
+          "room_id": 1811338562,
+          "nickname": "房间1811338562",
+          "uid": "",
+          "operator": "",
+          "operator_top": "未分组",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
+          "missing": false
+        },
+        {
+          "room_id": 1832046306,
+          "nickname": "白栖Ciel",
+          "uid": 3546716758346481,
+          "operator": "林夕|运营组|虚拟线下部",
+          "operator_top": "林夕",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
+          "missing": false
+        },
+        {
+          "room_id": 1832046768,
+          "nickname": "房间1832046768",
+          "uid": "",
+          "operator": "",
+          "operator_top": "未分组",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
+          "missing": false
+        },
+        {
+          "room_id": 1842984494,
+          "nickname": "一只吵吵",
+          "uid": 1610611848,
+          "operator": "小辫子|运营组|虚拟线下部",
+          "operator_top": "小辫子",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
+          "missing": false
+        },
+        {
+          "room_id": 1842985015,
+          "nickname": "祈沐Angela",
+          "uid": 3706948182607969,
+          "operator": "梧桐|运营组|虚拟线下部",
+          "operator_top": "梧桐",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
+          "missing": false
+        },
+        {
+          "room_id": 1843686607,
+          "nickname": "房间1843686607",
+          "uid": "",
+          "operator": "",
+          "operator_top": "未分组",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
+          "missing": false
+        },
+        {
+          "room_id": 1876312516,
+          "nickname": "澜喵ovo",
+          "uid": 475306354,
+          "operator": "小辫子|运营组|虚拟线下部",
+          "operator_top": "小辫子",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
+          "missing": false
+        },
+        {
+          "room_id": 1876315197,
+          "nickname": "房间1876315197",
+          "uid": "",
+          "operator": "",
+          "operator_top": "未分组",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
+          "missing": false
+        },
+        {
+          "room_id": 1876319219,
+          "nickname": "伍十一_Fifty-one",
+          "uid": 1479653447,
+          "operator": "小辫子|运营组|虚拟线下部",
+          "operator_top": "小辫子",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
+          "missing": false
+        },
+        {
+          "room_id": 1879000891,
+          "nickname": "诺米不是糯米团",
+          "uid": 1944277161,
+          "operator": "小辫子|运营组|虚拟线下部",
+          "operator_top": "小辫子",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
+          "missing": false
+        },
+        {
+          "room_id": 1879005689,
+          "nickname": "房间1879005689",
+          "uid": "",
+          "operator": "",
+          "operator_top": "未分组",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
+          "missing": false
+        },
+        {
+          "room_id": 1898939548,
+          "nickname": "房间1898939548",
+          "uid": "",
+          "operator": "",
+          "operator_top": "未分组",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
+          "missing": false
+        },
+        {
+          "room_id": 1901587743,
+          "nickname": "房间1901587743",
+          "uid": "",
+          "operator": "",
+          "operator_top": "未分组",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
+          "missing": false
+        },
+        {
+          "room_id": 1917441993,
+          "nickname": "房间1917441993",
+          "uid": "",
+          "operator": "",
+          "operator_top": "未分组",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
+          "missing": false
+        },
+        {
+          "room_id": 1931024436,
+          "nickname": "夏屿之帝国崛起",
+          "uid": 3546879574936340,
+          "operator": "梧桐|运营组|虚拟线下部",
+          "operator_top": "梧桐",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
+          "missing": false
+        },
+        {
+          "room_id": 1933934429,
+          "nickname": "九诺_Sure",
+          "uid": 3707021392087419,
+          "operator": "梧桐|运营组|虚拟线下部",
+          "operator_top": "梧桐",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
+          "missing": false
+        },
+        {
+          "room_id": 1934300727,
+          "nickname": "雪奈Aria",
+          "uid": 3546645495023998,
+          "operator": "林夕|运营组|虚拟线下部",
+          "operator_top": "林夕",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
+          "missing": false
+        },
+        {
+          "room_id": 1934308252,
+          "nickname": "房间1934308252",
+          "uid": "",
+          "operator": "",
+          "operator_top": "未分组",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
+          "missing": false
+        },
+        {
+          "room_id": 1939973024,
+          "nickname": "房间1939973024",
+          "uid": "",
+          "operator": "",
+          "operator_top": "未分组",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
+          "missing": false
+        },
+        {
+          "room_id": 1939978998,
+          "nickname": "小烦koogi",
+          "uid": 3706967365257692,
+          "operator": "予我|运营组|虚拟线下部",
+          "operator_top": "予我",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
+          "missing": false
+        },
+        {
+          "room_id": 1940894082,
+          "nickname": "房间1940894082",
+          "uid": "",
+          "operator": "",
+          "operator_top": "未分组",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
+          "missing": false
+        },
+        {
+          "room_id": 1941163245,
+          "nickname": "砚星stay",
+          "uid": 667459068,
+          "operator": "梧桐|运营组|虚拟线下部",
+          "operator_top": "梧桐",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
+          "missing": false
+        },
+        {
+          "room_id": 1941166836,
+          "nickname": "砚墨Niom",
+          "uid": 442666261,
+          "operator": "梧桐|运营组|虚拟线下部",
+          "operator_top": "梧桐",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
+          "missing": false
+        },
+        {
+          "room_id": 1941168728,
+          "nickname": "君君君堇",
+          "uid": 431936163,
+          "operator": "予我|运营组|虚拟线下部",
+          "operator_top": "予我",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
+          "missing": false
+        },
+        {
+          "room_id": 1984342129,
+          "nickname": "房间1984342129",
+          "uid": "",
+          "operator": "",
+          "operator_top": "未分组",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
+          "missing": false
+        },
+        {
+          "room_id": 1984345335,
+          "nickname": "发发zt",
+          "uid": 2124934224,
+          "operator": "林夕|运营组|虚拟线下部",
+          "operator_top": "林夕",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
+          "missing": false
+        },
+        {
+          "room_id": 1993290719,
+          "nickname": "房间1993290719",
+          "uid": "",
+          "operator": "",
+          "operator_top": "未分组",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
+          "missing": false
+        },
+        {
+          "room_id": 1994820614,
+          "nickname": "菲灵_Feiling",
+          "uid": 3546956834015338,
+          "operator": "小辫子|运营组|虚拟线下部",
+          "operator_top": "小辫子",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
+          "missing": false
+        },
+        {
+          "room_id": 1994826644,
+          "nickname": "柚柠_小厨娘",
+          "uid": 3546825942370615,
+          "operator": "小辫子|运营组|虚拟线下部",
+          "operator_top": "小辫子",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
+          "missing": false
+        }
+      ]
+    },
+    "yesterday": {
+      "label": "昨日",
+      "scraped_at": "2026/8/1 00:01:41",
+      "generated_at": "2026-07-31T16:01:41.106Z",
+      "count": 43,
+      "success": 43,
+      "summary": {
+        "total_revenue": 10772,
+        "avg_revenue": 251,
         "max_revenue": {
           "room_id": 1832046306,
           "nickname": "白栖Ciel",
@@ -20,7 +528,7 @@
           "operator_top": "林夕",
           "revenue": "3485元",
           "revenue_value": 3485,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         "min_revenue": {
@@ -31,7 +539,7 @@
           "operator_top": "未分组",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         }
       },
@@ -44,7 +552,7 @@
           "operator_top": "林夕",
           "revenue": "106元",
           "revenue_value": 106,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -55,7 +563,7 @@
           "operator_top": "小辫子",
           "revenue": "315元",
           "revenue_value": 315,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -66,29 +574,29 @@
           "operator_top": "予我",
           "revenue": "1088元",
           "revenue_value": 1088,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
           "room_id": 23925471,
-          "nickname": "木莓ナナ",
-          "uid": 457074615,
-          "operator": "小辫子|运营组|虚拟线下部",
-          "operator_top": "小辫子",
+          "nickname": "房间23925471",
+          "uid": "",
+          "operator": "",
+          "operator_top": "未分组",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
           "room_id": 30806908,
-          "nickname": "休一Hugh",
-          "uid": 444397920,
-          "operator": "梧桐|运营组|虚拟线下部",
-          "operator_top": "梧桐",
+          "nickname": "房间30806908",
+          "uid": "",
+          "operator": "",
+          "operator_top": "未分组",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -99,7 +607,7 @@
           "operator_top": "予我",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -110,18 +618,18 @@
           "operator_top": "未分组",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
           "room_id": 1727073471,
-          "nickname": "小布偶宅天份",
-          "uid": 2137470351,
-          "operator": "梧桐|运营组|虚拟线下部",
-          "operator_top": "梧桐",
+          "nickname": "房间1727073471",
+          "uid": "",
+          "operator": "",
+          "operator_top": "未分组",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -132,18 +640,18 @@
           "operator_top": "未分组",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
           "room_id": 1769172109,
-          "nickname": "零绫乙",
-          "uid": 408180290,
-          "operator": "梧桐|运营组|虚拟线下部",
-          "operator_top": "梧桐",
+          "nickname": "房间1769172109",
+          "uid": "",
+          "operator": "",
+          "operator_top": "未分组",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -154,7 +662,7 @@
           "operator_top": "未分组",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -165,7 +673,7 @@
           "operator_top": "未分组",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -176,29 +684,29 @@
           "operator_top": "未分组",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
           "room_id": 1811337807,
-          "nickname": "麦悠悠Mochi",
-          "uid": 3707023633942788,
-          "operator": "梧桐|运营组|虚拟线下部",
-          "operator_top": "梧桐",
+          "nickname": "房间1811337807",
+          "uid": "",
+          "operator": "",
+          "operator_top": "未分组",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
           "room_id": 1811338562,
-          "nickname": "若汐姐姐-",
-          "uid": 3493296217263073,
-          "operator": "梧桐|运营组|虚拟线下部",
-          "operator_top": "梧桐",
+          "nickname": "房间1811338562",
+          "uid": "",
+          "operator": "",
+          "operator_top": "未分组",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -209,7 +717,7 @@
           "operator_top": "林夕",
           "revenue": "3485元",
           "revenue_value": 3485,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -220,7 +728,7 @@
           "operator_top": "未分组",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -231,7 +739,7 @@
           "operator_top": "小辫子",
           "revenue": "1080元",
           "revenue_value": 1080,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -242,18 +750,18 @@
           "operator_top": "梧桐",
           "revenue": "114元",
           "revenue_value": 114,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
           "room_id": 1843686607,
-          "nickname": "谓禾",
-          "uid": 3493140673596136,
-          "operator": "林夕|运营组|虚拟线下部",
-          "operator_top": "林夕",
+          "nickname": "房间1843686607",
+          "uid": "",
+          "operator": "",
+          "operator_top": "未分组",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -264,18 +772,18 @@
           "operator_top": "小辫子",
           "revenue": "464元",
           "revenue_value": 464,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
           "room_id": 1876315197,
-          "nickname": "布丁puddingovo",
-          "uid": 327037818,
-          "operator": "林夕|运营组|虚拟线下部",
-          "operator_top": "林夕",
+          "nickname": "房间1876315197",
+          "uid": "",
+          "operator": "",
+          "operator_top": "未分组",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -286,7 +794,7 @@
           "operator_top": "小辫子",
           "revenue": "1548元",
           "revenue_value": 1548,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -297,18 +805,18 @@
           "operator_top": "小辫子",
           "revenue": "291元",
           "revenue_value": 291,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
           "room_id": 1879005689,
-          "nickname": "咪咪喵喵猫其林",
-          "uid": 3690978135247287,
-          "operator": "小辫子|运营组|虚拟线下部",
-          "operator_top": "小辫子",
+          "nickname": "房间1879005689",
+          "uid": "",
+          "operator": "",
+          "operator_top": "未分组",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -319,18 +827,18 @@
           "operator_top": "未分组",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
           "room_id": 1901587743,
-          "nickname": "蔚蓝色雏菊",
-          "uid": 695191594,
-          "operator": "予我|运营组|虚拟线下部",
-          "operator_top": "予我",
+          "nickname": "房间1901587743",
+          "uid": "",
+          "operator": "",
+          "operator_top": "未分组",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -341,7 +849,7 @@
           "operator_top": "未分组",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -350,9 +858,9 @@
           "uid": 3546879574936340,
           "operator": "梧桐|运营组|虚拟线下部",
           "operator_top": "梧桐",
-          "revenue": "44元",
-          "revenue_value": 44,
-          "scraped_at": "2026/7/31 23:32:08",
+          "revenue": "45元",
+          "revenue_value": 45,
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -363,7 +871,7 @@
           "operator_top": "梧桐",
           "revenue": "240元",
           "revenue_value": 240,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -374,18 +882,18 @@
           "operator_top": "林夕",
           "revenue": "165元",
           "revenue_value": 165,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
           "room_id": 1934308252,
-          "nickname": "柳柳liiiu",
-          "uid": 3493134637992371,
-          "operator": "林夕|运营组|虚拟线下部",
-          "operator_top": "林夕",
+          "nickname": "房间1934308252",
+          "uid": "",
+          "operator": "",
+          "operator_top": "未分组",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -396,7 +904,7 @@
           "operator_top": "未分组",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -405,9 +913,9 @@
           "uid": 3706967365257692,
           "operator": "予我|运营组|虚拟线下部",
           "operator_top": "予我",
-          "revenue": "204元",
-          "revenue_value": 204,
-          "scraped_at": "2026/7/31 23:32:08",
+          "revenue": "221元",
+          "revenue_value": 221,
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -418,7 +926,7 @@
           "operator_top": "未分组",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -429,7 +937,7 @@
           "operator_top": "梧桐",
           "revenue": "136元",
           "revenue_value": 136,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -440,7 +948,7 @@
           "operator_top": "梧桐",
           "revenue": "194元",
           "revenue_value": 194,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -451,18 +959,18 @@
           "operator_top": "予我",
           "revenue": "16元",
           "revenue_value": 16,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
           "room_id": 1984342129,
-          "nickname": "雾桃_吖",
-          "uid": 3546753798244538,
-          "operator": "予我|运营组|虚拟线下部",
-          "operator_top": "予我",
+          "nickname": "房间1984342129",
+          "uid": "",
+          "operator": "",
+          "operator_top": "未分组",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -473,7 +981,7 @@
           "operator_top": "林夕",
           "revenue": "645元",
           "revenue_value": 645,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -484,7 +992,7 @@
           "operator_top": "未分组",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -493,9 +1001,9 @@
           "uid": 3546956834015338,
           "operator": "小辫子|运营组|虚拟线下部",
           "operator_top": "小辫子",
-          "revenue": "128元",
-          "revenue_value": 128,
-          "scraped_at": "2026/7/31 23:32:08",
+          "revenue": "144元",
+          "revenue_value": 144,
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -504,530 +1012,22 @@
           "uid": 3546825942370615,
           "operator": "小辫子|运营组|虚拟线下部",
           "operator_top": "小辫子",
-          "revenue": "348元",
-          "revenue_value": 348,
-          "scraped_at": "2026/7/31 23:32:08",
-          "missing": false
-        }
-      ]
-    },
-    "yesterday": {
-      "label": "昨日",
-      "scraped_at": "2026/7/31 23:32:08",
-      "generated_at": "2026-07-31T15:32:08.397Z",
-      "count": 43,
-      "success": 43,
-      "summary": {
-        "total_revenue": 3791,
-        "avg_revenue": 88,
-        "max_revenue": {
-          "room_id": 1722696335,
-          "nickname": "汪啾_NIKI",
-          "uid": 3546915991980070,
-          "operator": "予我|运营组|虚拟线下部",
-          "operator_top": "予我",
-          "revenue": "1334元",
-          "revenue_value": 1334,
-          "scraped_at": "2026/7/31 23:32:08",
-          "missing": false
-        },
-        "min_revenue": {
-          "room_id": 1993290719,
-          "nickname": "房间1993290719",
-          "uid": "",
-          "operator": "",
-          "operator_top": "未分组",
-          "revenue": "0元",
-          "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
-          "missing": false
-        }
-      },
-      "rooms": [
-        {
-          "room_id": 2479015,
-          "nickname": "小茜不落泪",
-          "uid": 16547898,
-          "operator": "林夕|运营组|虚拟线下部",
-          "operator_top": "林夕",
-          "revenue": "64元",
-          "revenue_value": 64,
-          "scraped_at": "2026/7/31 23:32:08",
-          "missing": false
-        },
-        {
-          "room_id": 3490234,
-          "nickname": "橘-砂糖",
-          "uid": 11478892,
-          "operator": "小辫子|运营组|虚拟线下部",
-          "operator_top": "小辫子",
-          "revenue": "0元",
-          "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
-          "missing": false
-        },
-        {
-          "room_id": 14185201,
-          "nickname": "梦野铃",
-          "uid": 326451127,
-          "operator": "予我|运营组|虚拟线下部",
-          "operator_top": "予我",
-          "revenue": "410元",
-          "revenue_value": 410,
-          "scraped_at": "2026/7/31 23:32:08",
-          "missing": false
-        },
-        {
-          "room_id": 23925471,
-          "nickname": "木莓ナナ",
-          "uid": 457074615,
-          "operator": "小辫子|运营组|虚拟线下部",
-          "operator_top": "小辫子",
-          "revenue": "0元",
-          "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
-          "missing": false
-        },
-        {
-          "room_id": 30806908,
-          "nickname": "休一Hugh",
-          "uid": 444397920,
-          "operator": "梧桐|运营组|虚拟线下部",
-          "operator_top": "梧桐",
-          "revenue": "0元",
-          "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
-          "missing": false
-        },
-        {
-          "room_id": 1722696335,
-          "nickname": "汪啾_NIKI",
-          "uid": 3546915991980070,
-          "operator": "予我|运营组|虚拟线下部",
-          "operator_top": "予我",
-          "revenue": "1334元",
-          "revenue_value": 1334,
-          "scraped_at": "2026/7/31 23:32:08",
-          "missing": false
-        },
-        {
-          "room_id": 1724154087,
-          "nickname": "房间1724154087",
-          "uid": "",
-          "operator": "",
-          "operator_top": "未分组",
-          "revenue": "0元",
-          "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
-          "missing": false
-        },
-        {
-          "room_id": 1727073471,
-          "nickname": "小布偶宅天份",
-          "uid": 2137470351,
-          "operator": "梧桐|运营组|虚拟线下部",
-          "operator_top": "梧桐",
-          "revenue": "0元",
-          "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
-          "missing": false
-        },
-        {
-          "room_id": 1743789663,
-          "nickname": "房间1743789663",
-          "uid": "",
-          "operator": "",
-          "operator_top": "未分组",
-          "revenue": "0元",
-          "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
-          "missing": false
-        },
-        {
-          "room_id": 1769172109,
-          "nickname": "零绫乙",
-          "uid": 408180290,
-          "operator": "梧桐|运营组|虚拟线下部",
-          "operator_top": "梧桐",
-          "revenue": "0元",
-          "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
-          "missing": false
-        },
-        {
-          "room_id": 1774689389,
-          "nickname": "房间1774689389",
-          "uid": "",
-          "operator": "",
-          "operator_top": "未分组",
-          "revenue": "0元",
-          "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
-          "missing": false
-        },
-        {
-          "room_id": 1805922103,
-          "nickname": "房间1805922103",
-          "uid": "",
-          "operator": "",
-          "operator_top": "未分组",
-          "revenue": "0元",
-          "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
-          "missing": false
-        },
-        {
-          "room_id": 1806917815,
-          "nickname": "房间1806917815",
-          "uid": "",
-          "operator": "",
-          "operator_top": "未分组",
-          "revenue": "0元",
-          "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
-          "missing": false
-        },
-        {
-          "room_id": 1811337807,
-          "nickname": "麦悠悠Mochi",
-          "uid": 3707023633942788,
-          "operator": "梧桐|运营组|虚拟线下部",
-          "operator_top": "梧桐",
-          "revenue": "0元",
-          "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
-          "missing": false
-        },
-        {
-          "room_id": 1811338562,
-          "nickname": "若汐姐姐-",
-          "uid": 3493296217263073,
-          "operator": "梧桐|运营组|虚拟线下部",
-          "operator_top": "梧桐",
-          "revenue": "0元",
-          "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
-          "missing": false
-        },
-        {
-          "room_id": 1832046306,
-          "nickname": "白栖Ciel",
-          "uid": 3546716758346481,
-          "operator": "林夕|运营组|虚拟线下部",
-          "operator_top": "林夕",
-          "revenue": "154元",
-          "revenue_value": 154,
-          "scraped_at": "2026/7/31 23:32:08",
-          "missing": false
-        },
-        {
-          "room_id": 1832046768,
-          "nickname": "房间1832046768",
-          "uid": "",
-          "operator": "",
-          "operator_top": "未分组",
-          "revenue": "0元",
-          "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
-          "missing": false
-        },
-        {
-          "room_id": 1842984494,
-          "nickname": "一只吵吵",
-          "uid": 1610611848,
-          "operator": "小辫子|运营组|虚拟线下部",
-          "operator_top": "小辫子",
-          "revenue": "0元",
-          "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
-          "missing": false
-        },
-        {
-          "room_id": 1842985015,
-          "nickname": "祈沐Angela",
-          "uid": 3706948182607969,
-          "operator": "梧桐|运营组|虚拟线下部",
-          "operator_top": "梧桐",
-          "revenue": "52元",
-          "revenue_value": 52,
-          "scraped_at": "2026/7/31 23:32:08",
-          "missing": false
-        },
-        {
-          "room_id": 1843686607,
-          "nickname": "谓禾",
-          "uid": 3493140673596136,
-          "operator": "林夕|运营组|虚拟线下部",
-          "operator_top": "林夕",
-          "revenue": "0元",
-          "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
-          "missing": false
-        },
-        {
-          "room_id": 1876312516,
-          "nickname": "澜喵ovo",
-          "uid": 475306354,
-          "operator": "小辫子|运营组|虚拟线下部",
-          "operator_top": "小辫子",
-          "revenue": "11元",
-          "revenue_value": 11,
-          "scraped_at": "2026/7/31 23:32:08",
-          "missing": false
-        },
-        {
-          "room_id": 1876315197,
-          "nickname": "布丁puddingovo",
-          "uid": 327037818,
-          "operator": "林夕|运营组|虚拟线下部",
-          "operator_top": "林夕",
-          "revenue": "0元",
-          "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
-          "missing": false
-        },
-        {
-          "room_id": 1876319219,
-          "nickname": "伍十一_Fifty-one",
-          "uid": 1479653447,
-          "operator": "小辫子|运营组|虚拟线下部",
-          "operator_top": "小辫子",
-          "revenue": "73元",
-          "revenue_value": 73,
-          "scraped_at": "2026/7/31 23:32:08",
-          "missing": false
-        },
-        {
-          "room_id": 1879000891,
-          "nickname": "诺米不是糯米团",
-          "uid": 1944277161,
-          "operator": "小辫子|运营组|虚拟线下部",
-          "operator_top": "小辫子",
-          "revenue": "530元",
-          "revenue_value": 530,
-          "scraped_at": "2026/7/31 23:32:08",
-          "missing": false
-        },
-        {
-          "room_id": 1879005689,
-          "nickname": "咪咪喵喵猫其林",
-          "uid": 3690978135247287,
-          "operator": "小辫子|运营组|虚拟线下部",
-          "operator_top": "小辫子",
-          "revenue": "0元",
-          "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
-          "missing": false
-        },
-        {
-          "room_id": 1898939548,
-          "nickname": "房间1898939548",
-          "uid": "",
-          "operator": "",
-          "operator_top": "未分组",
-          "revenue": "0元",
-          "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
-          "missing": false
-        },
-        {
-          "room_id": 1901587743,
-          "nickname": "蔚蓝色雏菊",
-          "uid": 695191594,
-          "operator": "予我|运营组|虚拟线下部",
-          "operator_top": "予我",
-          "revenue": "0元",
-          "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
-          "missing": false
-        },
-        {
-          "room_id": 1917441993,
-          "nickname": "房间1917441993",
-          "uid": "",
-          "operator": "",
-          "operator_top": "未分组",
-          "revenue": "0元",
-          "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
-          "missing": false
-        },
-        {
-          "room_id": 1931024436,
-          "nickname": "夏屿之帝国崛起",
-          "uid": 3546879574936340,
-          "operator": "梧桐|运营组|虚拟线下部",
-          "operator_top": "梧桐",
-          "revenue": "0元",
-          "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
-          "missing": false
-        },
-        {
-          "room_id": 1933934429,
-          "nickname": "九诺_Sure",
-          "uid": 3707021392087419,
-          "operator": "梧桐|运营组|虚拟线下部",
-          "operator_top": "梧桐",
-          "revenue": "0元",
-          "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
-          "missing": false
-        },
-        {
-          "room_id": 1934300727,
-          "nickname": "雪奈Aria",
-          "uid": 3546645495023998,
-          "operator": "林夕|运营组|虚拟线下部",
-          "operator_top": "林夕",
-          "revenue": "140元",
-          "revenue_value": 140,
-          "scraped_at": "2026/7/31 23:32:08",
-          "missing": false
-        },
-        {
-          "room_id": 1934308252,
-          "nickname": "柳柳liiiu",
-          "uid": 3493134637992371,
-          "operator": "林夕|运营组|虚拟线下部",
-          "operator_top": "林夕",
-          "revenue": "0元",
-          "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
-          "missing": false
-        },
-        {
-          "room_id": 1939973024,
-          "nickname": "房间1939973024",
-          "uid": "",
-          "operator": "",
-          "operator_top": "未分组",
-          "revenue": "0元",
-          "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
-          "missing": false
-        },
-        {
-          "room_id": 1939978998,
-          "nickname": "小烦koogi",
-          "uid": 3706967365257692,
-          "operator": "予我|运营组|虚拟线下部",
-          "operator_top": "予我",
-          "revenue": "0元",
-          "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
-          "missing": false
-        },
-        {
-          "room_id": 1940894082,
-          "nickname": "房间1940894082",
-          "uid": "",
-          "operator": "",
-          "operator_top": "未分组",
-          "revenue": "0元",
-          "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
-          "missing": false
-        },
-        {
-          "room_id": 1941163245,
-          "nickname": "砚星stay",
-          "uid": 667459068,
-          "operator": "梧桐|运营组|虚拟线下部",
-          "operator_top": "梧桐",
-          "revenue": "107元",
-          "revenue_value": 107,
-          "scraped_at": "2026/7/31 23:32:08",
-          "missing": false
-        },
-        {
-          "room_id": 1941166836,
-          "nickname": "砚墨Niom",
-          "uid": 442666261,
-          "operator": "梧桐|运营组|虚拟线下部",
-          "operator_top": "梧桐",
-          "revenue": "299元",
-          "revenue_value": 299,
-          "scraped_at": "2026/7/31 23:32:08",
-          "missing": false
-        },
-        {
-          "room_id": 1941168728,
-          "nickname": "君君君堇",
-          "uid": 431936163,
-          "operator": "予我|运营组|虚拟线下部",
-          "operator_top": "予我",
-          "revenue": "51元",
-          "revenue_value": 51,
-          "scraped_at": "2026/7/31 23:32:08",
-          "missing": false
-        },
-        {
-          "room_id": 1984342129,
-          "nickname": "雾桃_吖",
-          "uid": 3546753798244538,
-          "operator": "予我|运营组|虚拟线下部",
-          "operator_top": "予我",
-          "revenue": "0元",
-          "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
-          "missing": false
-        },
-        {
-          "room_id": 1984345335,
-          "nickname": "发发zt",
-          "uid": 2124934224,
-          "operator": "林夕|运营组|虚拟线下部",
-          "operator_top": "林夕",
-          "revenue": "174元",
-          "revenue_value": 174,
-          "scraped_at": "2026/7/31 23:32:08",
-          "missing": false
-        },
-        {
-          "room_id": 1993290719,
-          "nickname": "房间1993290719",
-          "uid": "",
-          "operator": "",
-          "operator_top": "未分组",
-          "revenue": "0元",
-          "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
-          "missing": false
-        },
-        {
-          "room_id": 1994820614,
-          "nickname": "菲灵_Feiling",
-          "uid": 3546956834015338,
-          "operator": "小辫子|运营组|虚拟线下部",
-          "operator_top": "小辫子",
-          "revenue": "252元",
-          "revenue_value": 252,
-          "scraped_at": "2026/7/31 23:32:08",
-          "missing": false
-        },
-        {
-          "room_id": 1994826644,
-          "nickname": "柚柠_小厨娘",
-          "uid": 3546825942370615,
-          "operator": "小辫子|运营组|虚拟线下部",
-          "operator_top": "小辫子",
-          "revenue": "140元",
-          "revenue_value": 140,
-          "scraped_at": "2026/7/31 23:32:08",
+          "revenue": "475元",
+          "revenue_value": 475,
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         }
       ]
     },
     "week": {
       "label": "本周",
-      "scraped_at": "2026/7/31 23:32:08",
-      "generated_at": "2026-07-31T15:32:08.398Z",
+      "scraped_at": "2026/8/1 00:01:41",
+      "generated_at": "2026-07-31T16:01:41.108Z",
       "count": 43,
       "success": 43,
       "summary": {
-        "total_revenue": 28997,
-        "avg_revenue": 674,
+        "total_revenue": 29147,
+        "avg_revenue": 678,
         "max_revenue": {
           "room_id": 1832046306,
           "nickname": "白栖Ciel",
@@ -1036,7 +1036,7 @@
           "operator_top": "林夕",
           "revenue": "3999元",
           "revenue_value": 3999,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         "min_revenue": {
@@ -1047,7 +1047,7 @@
           "operator_top": "未分组",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         }
       },
@@ -1060,7 +1060,7 @@
           "operator_top": "林夕",
           "revenue": "3435元",
           "revenue_value": 3435,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -1071,7 +1071,7 @@
           "operator_top": "小辫子",
           "revenue": "1360元",
           "revenue_value": 1360,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -1082,29 +1082,29 @@
           "operator_top": "予我",
           "revenue": "2325元",
           "revenue_value": 2325,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
           "room_id": 23925471,
-          "nickname": "木莓ナナ",
-          "uid": 457074615,
-          "operator": "小辫子|运营组|虚拟线下部",
-          "operator_top": "小辫子",
+          "nickname": "房间23925471",
+          "uid": "",
+          "operator": "",
+          "operator_top": "未分组",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
           "room_id": 30806908,
-          "nickname": "休一Hugh",
-          "uid": 444397920,
-          "operator": "梧桐|运营组|虚拟线下部",
-          "operator_top": "梧桐",
+          "nickname": "房间30806908",
+          "uid": "",
+          "operator": "",
+          "operator_top": "未分组",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -1115,7 +1115,7 @@
           "operator_top": "予我",
           "revenue": "1790元",
           "revenue_value": 1790,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -1126,18 +1126,18 @@
           "operator_top": "未分组",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
           "room_id": 1727073471,
-          "nickname": "小布偶宅天份",
-          "uid": 2137470351,
-          "operator": "梧桐|运营组|虚拟线下部",
-          "operator_top": "梧桐",
+          "nickname": "房间1727073471",
+          "uid": "",
+          "operator": "",
+          "operator_top": "未分组",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -1148,18 +1148,18 @@
           "operator_top": "未分组",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
           "room_id": 1769172109,
-          "nickname": "零绫乙",
-          "uid": 408180290,
-          "operator": "梧桐|运营组|虚拟线下部",
-          "operator_top": "梧桐",
+          "nickname": "房间1769172109",
+          "uid": "",
+          "operator": "",
+          "operator_top": "未分组",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -1170,7 +1170,7 @@
           "operator_top": "未分组",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -1181,7 +1181,7 @@
           "operator_top": "未分组",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -1192,29 +1192,29 @@
           "operator_top": "未分组",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
           "room_id": 1811337807,
-          "nickname": "麦悠悠Mochi",
-          "uid": 3707023633942788,
-          "operator": "梧桐|运营组|虚拟线下部",
-          "operator_top": "梧桐",
+          "nickname": "房间1811337807",
+          "uid": "",
+          "operator": "",
+          "operator_top": "未分组",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
           "room_id": 1811338562,
-          "nickname": "若汐姐姐-",
-          "uid": 3493296217263073,
-          "operator": "梧桐|运营组|虚拟线下部",
-          "operator_top": "梧桐",
+          "nickname": "房间1811338562",
+          "uid": "",
+          "operator": "",
+          "operator_top": "未分组",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -1225,7 +1225,7 @@
           "operator_top": "林夕",
           "revenue": "3999元",
           "revenue_value": 3999,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -1236,7 +1236,7 @@
           "operator_top": "未分组",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -1247,7 +1247,7 @@
           "operator_top": "小辫子",
           "revenue": "2824元",
           "revenue_value": 2824,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -1258,18 +1258,18 @@
           "operator_top": "梧桐",
           "revenue": "610元",
           "revenue_value": 610,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
           "room_id": 1843686607,
-          "nickname": "谓禾",
-          "uid": 3493140673596136,
-          "operator": "林夕|运营组|虚拟线下部",
-          "operator_top": "林夕",
+          "nickname": "房间1843686607",
+          "uid": "",
+          "operator": "",
+          "operator_top": "未分组",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -1280,18 +1280,18 @@
           "operator_top": "小辫子",
           "revenue": "678元",
           "revenue_value": 678,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
           "room_id": 1876315197,
-          "nickname": "布丁puddingovo",
-          "uid": 327037818,
-          "operator": "林夕|运营组|虚拟线下部",
-          "operator_top": "林夕",
+          "nickname": "房间1876315197",
+          "uid": "",
+          "operator": "",
+          "operator_top": "未分组",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -1302,7 +1302,7 @@
           "operator_top": "小辫子",
           "revenue": "1905元",
           "revenue_value": 1905,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -1313,18 +1313,18 @@
           "operator_top": "小辫子",
           "revenue": "1952元",
           "revenue_value": 1952,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
           "room_id": 1879005689,
-          "nickname": "咪咪喵喵猫其林",
-          "uid": 3690978135247287,
-          "operator": "小辫子|运营组|虚拟线下部",
-          "operator_top": "小辫子",
+          "nickname": "房间1879005689",
+          "uid": "",
+          "operator": "",
+          "operator_top": "未分组",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -1335,18 +1335,18 @@
           "operator_top": "未分组",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
           "room_id": 1901587743,
-          "nickname": "蔚蓝色雏菊",
-          "uid": 695191594,
-          "operator": "予我|运营组|虚拟线下部",
-          "operator_top": "予我",
+          "nickname": "房间1901587743",
+          "uid": "",
+          "operator": "",
+          "operator_top": "未分组",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -1357,7 +1357,7 @@
           "operator_top": "未分组",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -1368,7 +1368,7 @@
           "operator_top": "梧桐",
           "revenue": "915元",
           "revenue_value": 915,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -1379,7 +1379,7 @@
           "operator_top": "梧桐",
           "revenue": "779元",
           "revenue_value": 779,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -1390,18 +1390,18 @@
           "operator_top": "林夕",
           "revenue": "794元",
           "revenue_value": 794,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
           "room_id": 1934308252,
-          "nickname": "柳柳liiiu",
-          "uid": 3493134637992371,
-          "operator": "林夕|运营组|虚拟线下部",
-          "operator_top": "林夕",
+          "nickname": "房间1934308252",
+          "uid": "",
+          "operator": "",
+          "operator_top": "未分组",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -1412,7 +1412,7 @@
           "operator_top": "未分组",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -1421,9 +1421,9 @@
           "uid": 3706967365257692,
           "operator": "予我|运营组|虚拟线下部",
           "operator_top": "予我",
-          "revenue": "206元",
-          "revenue_value": 206,
-          "scraped_at": "2026/7/31 23:32:08",
+          "revenue": "223元",
+          "revenue_value": 223,
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -1434,7 +1434,7 @@
           "operator_top": "未分组",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -1445,7 +1445,7 @@
           "operator_top": "梧桐",
           "revenue": "444元",
           "revenue_value": 444,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -1456,7 +1456,7 @@
           "operator_top": "梧桐",
           "revenue": "766元",
           "revenue_value": 766,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -1467,18 +1467,18 @@
           "operator_top": "予我",
           "revenue": "299元",
           "revenue_value": 299,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
           "room_id": 1984342129,
-          "nickname": "雾桃_吖",
-          "uid": 3546753798244538,
-          "operator": "予我|运营组|虚拟线下部",
-          "operator_top": "予我",
+          "nickname": "房间1984342129",
+          "uid": "",
+          "operator": "",
+          "operator_top": "未分组",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -1489,7 +1489,7 @@
           "operator_top": "林夕",
           "revenue": "2683元",
           "revenue_value": 2683,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -1500,7 +1500,7 @@
           "operator_top": "未分组",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -1509,9 +1509,9 @@
           "uid": 3546956834015338,
           "operator": "小辫子|运营组|虚拟线下部",
           "operator_top": "小辫子",
-          "revenue": "451元",
-          "revenue_value": 451,
-          "scraped_at": "2026/7/31 23:32:08",
+          "revenue": "457元",
+          "revenue_value": 457,
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -1520,42 +1520,42 @@
           "uid": 3546825942370615,
           "operator": "小辫子|运营组|虚拟线下部",
           "operator_top": "小辫子",
-          "revenue": "782元",
-          "revenue_value": 782,
-          "scraped_at": "2026/7/31 23:32:08",
+          "revenue": "909元",
+          "revenue_value": 909,
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         }
       ]
     },
     "month": {
       "label": "本月",
-      "scraped_at": "2026/7/31 23:32:08",
-      "generated_at": "2026-07-31T15:32:08.398Z",
+      "scraped_at": "2026/8/1 00:01:41",
+      "generated_at": "2026-07-31T16:01:41.108Z",
       "count": 43,
       "success": 43,
       "summary": {
-        "total_revenue": 137134,
-        "avg_revenue": 3189,
+        "total_revenue": 0,
+        "avg_revenue": 0,
         "max_revenue": {
-          "room_id": 14185201,
-          "nickname": "梦野铃",
-          "uid": 326451127,
-          "operator": "予我|运营组|虚拟线下部",
-          "operator_top": "予我",
-          "revenue": "15355元",
-          "revenue_value": 15355,
-          "scraped_at": "2026/7/31 23:32:08",
+          "room_id": 2479015,
+          "nickname": "小茜不落泪",
+          "uid": 16547898,
+          "operator": "林夕|运营组|虚拟线下部",
+          "operator_top": "林夕",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         "min_revenue": {
-          "room_id": 1993290719,
-          "nickname": "房间1993290719",
-          "uid": "",
-          "operator": "",
-          "operator_top": "未分组",
+          "room_id": 1994826644,
+          "nickname": "柚柠_小厨娘",
+          "uid": 3546825942370615,
+          "operator": "小辫子|运营组|虚拟线下部",
+          "operator_top": "小辫子",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         }
       },
@@ -1566,9 +1566,9 @@
           "uid": 16547898,
           "operator": "林夕|运营组|虚拟线下部",
           "operator_top": "林夕",
-          "revenue": "9236元",
-          "revenue_value": 9236,
-          "scraped_at": "2026/7/31 23:32:08",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -1577,9 +1577,9 @@
           "uid": 11478892,
           "operator": "小辫子|运营组|虚拟线下部",
           "operator_top": "小辫子",
-          "revenue": "14405元",
-          "revenue_value": 14405,
-          "scraped_at": "2026/7/31 23:32:08",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -1588,31 +1588,31 @@
           "uid": 326451127,
           "operator": "予我|运营组|虚拟线下部",
           "operator_top": "予我",
-          "revenue": "15355元",
-          "revenue_value": 15355,
-          "scraped_at": "2026/7/31 23:32:08",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
           "room_id": 23925471,
-          "nickname": "木莓ナナ",
-          "uid": 457074615,
-          "operator": "小辫子|运营组|虚拟线下部",
-          "operator_top": "小辫子",
-          "revenue": "405元",
-          "revenue_value": 405,
-          "scraped_at": "2026/7/31 23:32:08",
+          "nickname": "房间23925471",
+          "uid": "",
+          "operator": "",
+          "operator_top": "未分组",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
           "room_id": 30806908,
-          "nickname": "休一Hugh",
-          "uid": 444397920,
-          "operator": "梧桐|运营组|虚拟线下部",
-          "operator_top": "梧桐",
-          "revenue": "138元",
-          "revenue_value": 138,
-          "scraped_at": "2026/7/31 23:32:08",
+          "nickname": "房间30806908",
+          "uid": "",
+          "operator": "",
+          "operator_top": "未分组",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -1621,9 +1621,9 @@
           "uid": 3546915991980070,
           "operator": "予我|运营组|虚拟线下部",
           "operator_top": "予我",
-          "revenue": "8228元",
-          "revenue_value": 8228,
-          "scraped_at": "2026/7/31 23:32:08",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -1634,18 +1634,18 @@
           "operator_top": "未分组",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
           "room_id": 1727073471,
-          "nickname": "小布偶宅天份",
-          "uid": 2137470351,
-          "operator": "梧桐|运营组|虚拟线下部",
-          "operator_top": "梧桐",
-          "revenue": "89元",
-          "revenue_value": 89,
-          "scraped_at": "2026/7/31 23:32:08",
+          "nickname": "房间1727073471",
+          "uid": "",
+          "operator": "",
+          "operator_top": "未分组",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -1656,18 +1656,18 @@
           "operator_top": "未分组",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
           "room_id": 1769172109,
-          "nickname": "零绫乙",
-          "uid": 408180290,
-          "operator": "梧桐|运营组|虚拟线下部",
-          "operator_top": "梧桐",
-          "revenue": "67元",
-          "revenue_value": 67,
-          "scraped_at": "2026/7/31 23:32:08",
+          "nickname": "房间1769172109",
+          "uid": "",
+          "operator": "",
+          "operator_top": "未分组",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -1678,7 +1678,7 @@
           "operator_top": "未分组",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -1689,7 +1689,7 @@
           "operator_top": "未分组",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -1700,29 +1700,29 @@
           "operator_top": "未分组",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
           "room_id": 1811337807,
-          "nickname": "麦悠悠Mochi",
-          "uid": 3707023633942788,
-          "operator": "梧桐|运营组|虚拟线下部",
-          "operator_top": "梧桐",
-          "revenue": "234元",
-          "revenue_value": 234,
-          "scraped_at": "2026/7/31 23:32:08",
+          "nickname": "房间1811337807",
+          "uid": "",
+          "operator": "",
+          "operator_top": "未分组",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
           "room_id": 1811338562,
-          "nickname": "若汐姐姐-",
-          "uid": 3493296217263073,
-          "operator": "梧桐|运营组|虚拟线下部",
-          "operator_top": "梧桐",
-          "revenue": "1641元",
-          "revenue_value": 1641,
-          "scraped_at": "2026/7/31 23:32:08",
+          "nickname": "房间1811338562",
+          "uid": "",
+          "operator": "",
+          "operator_top": "未分组",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -1731,9 +1731,9 @@
           "uid": 3546716758346481,
           "operator": "林夕|运营组|虚拟线下部",
           "operator_top": "林夕",
-          "revenue": "14283元",
-          "revenue_value": 14283,
-          "scraped_at": "2026/7/31 23:32:08",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -1744,7 +1744,7 @@
           "operator_top": "未分组",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -1753,9 +1753,9 @@
           "uid": 1610611848,
           "operator": "小辫子|运营组|虚拟线下部",
           "operator_top": "小辫子",
-          "revenue": "5461元",
-          "revenue_value": 5461,
-          "scraped_at": "2026/7/31 23:32:08",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -1764,20 +1764,20 @@
           "uid": 3706948182607969,
           "operator": "梧桐|运营组|虚拟线下部",
           "operator_top": "梧桐",
-          "revenue": "994元",
-          "revenue_value": 994,
-          "scraped_at": "2026/7/31 23:32:08",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
           "room_id": 1843686607,
-          "nickname": "谓禾",
-          "uid": 3493140673596136,
-          "operator": "林夕|运营组|虚拟线下部",
-          "operator_top": "林夕",
-          "revenue": "201元",
-          "revenue_value": 201,
-          "scraped_at": "2026/7/31 23:32:08",
+          "nickname": "房间1843686607",
+          "uid": "",
+          "operator": "",
+          "operator_top": "未分组",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -1786,20 +1786,20 @@
           "uid": 475306354,
           "operator": "小辫子|运营组|虚拟线下部",
           "operator_top": "小辫子",
-          "revenue": "1252元",
-          "revenue_value": 1252,
-          "scraped_at": "2026/7/31 23:32:08",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
           "room_id": 1876315197,
-          "nickname": "布丁puddingovo",
-          "uid": 327037818,
-          "operator": "林夕|运营组|虚拟线下部",
-          "operator_top": "林夕",
-          "revenue": "272元",
-          "revenue_value": 272,
-          "scraped_at": "2026/7/31 23:32:08",
+          "nickname": "房间1876315197",
+          "uid": "",
+          "operator": "",
+          "operator_top": "未分组",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -1808,9 +1808,9 @@
           "uid": 1479653447,
           "operator": "小辫子|运营组|虚拟线下部",
           "operator_top": "小辫子",
-          "revenue": "3799元",
-          "revenue_value": 3799,
-          "scraped_at": "2026/7/31 23:32:08",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -1819,20 +1819,20 @@
           "uid": 1944277161,
           "operator": "小辫子|运营组|虚拟线下部",
           "operator_top": "小辫子",
-          "revenue": "8296元",
-          "revenue_value": 8296,
-          "scraped_at": "2026/7/31 23:32:08",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
           "room_id": 1879005689,
-          "nickname": "咪咪喵喵猫其林",
-          "uid": 3690978135247287,
-          "operator": "小辫子|运营组|虚拟线下部",
-          "operator_top": "小辫子",
-          "revenue": "45元",
-          "revenue_value": 45,
-          "scraped_at": "2026/7/31 23:32:08",
+          "nickname": "房间1879005689",
+          "uid": "",
+          "operator": "",
+          "operator_top": "未分组",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -1843,18 +1843,18 @@
           "operator_top": "未分组",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
           "room_id": 1901587743,
-          "nickname": "蔚蓝色雏菊",
-          "uid": 695191594,
-          "operator": "予我|运营组|虚拟线下部",
-          "operator_top": "予我",
-          "revenue": "4095元",
-          "revenue_value": 4095,
-          "scraped_at": "2026/7/31 23:32:08",
+          "nickname": "房间1901587743",
+          "uid": "",
+          "operator": "",
+          "operator_top": "未分组",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -1865,7 +1865,7 @@
           "operator_top": "未分组",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -1874,9 +1874,9 @@
           "uid": 3546879574936340,
           "operator": "梧桐|运营组|虚拟线下部",
           "operator_top": "梧桐",
-          "revenue": "12181元",
-          "revenue_value": 12181,
-          "scraped_at": "2026/7/31 23:32:08",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -1885,9 +1885,9 @@
           "uid": 3707021392087419,
           "operator": "梧桐|运营组|虚拟线下部",
           "operator_top": "梧桐",
-          "revenue": "2954元",
-          "revenue_value": 2954,
-          "scraped_at": "2026/7/31 23:32:08",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -1896,20 +1896,20 @@
           "uid": 3546645495023998,
           "operator": "林夕|运营组|虚拟线下部",
           "operator_top": "林夕",
-          "revenue": "2783元",
-          "revenue_value": 2783,
-          "scraped_at": "2026/7/31 23:32:08",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
           "room_id": 1934308252,
-          "nickname": "柳柳liiiu",
-          "uid": 3493134637992371,
-          "operator": "林夕|运营组|虚拟线下部",
-          "operator_top": "林夕",
-          "revenue": "811元",
-          "revenue_value": 811,
-          "scraped_at": "2026/7/31 23:32:08",
+          "nickname": "房间1934308252",
+          "uid": "",
+          "operator": "",
+          "operator_top": "未分组",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -1920,7 +1920,7 @@
           "operator_top": "未分组",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -1929,9 +1929,9 @@
           "uid": 3706967365257692,
           "operator": "予我|运营组|虚拟线下部",
           "operator_top": "予我",
-          "revenue": "889元",
-          "revenue_value": 889,
-          "scraped_at": "2026/7/31 23:32:08",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -1942,7 +1942,7 @@
           "operator_top": "未分组",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -1951,9 +1951,9 @@
           "uid": 667459068,
           "operator": "梧桐|运营组|虚拟线下部",
           "operator_top": "梧桐",
-          "revenue": "2218元",
-          "revenue_value": 2218,
-          "scraped_at": "2026/7/31 23:32:08",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -1962,9 +1962,9 @@
           "uid": 442666261,
           "operator": "梧桐|运营组|虚拟线下部",
           "operator_top": "梧桐",
-          "revenue": "2651元",
-          "revenue_value": 2651,
-          "scraped_at": "2026/7/31 23:32:08",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -1973,20 +1973,20 @@
           "uid": 431936163,
           "operator": "予我|运营组|虚拟线下部",
           "operator_top": "予我",
-          "revenue": "5504元",
-          "revenue_value": 5504,
-          "scraped_at": "2026/7/31 23:32:08",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
           "room_id": 1984342129,
-          "nickname": "雾桃_吖",
-          "uid": 3546753798244538,
-          "operator": "予我|运营组|虚拟线下部",
-          "operator_top": "予我",
-          "revenue": "1915元",
-          "revenue_value": 1915,
-          "scraped_at": "2026/7/31 23:32:08",
+          "nickname": "房间1984342129",
+          "uid": "",
+          "operator": "",
+          "operator_top": "未分组",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -1995,9 +1995,9 @@
           "uid": 2124934224,
           "operator": "林夕|运营组|虚拟线下部",
           "operator_top": "林夕",
-          "revenue": "11048元",
-          "revenue_value": 11048,
-          "scraped_at": "2026/7/31 23:32:08",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -2008,7 +2008,7 @@
           "operator_top": "未分组",
           "revenue": "0元",
           "revenue_value": 0,
-          "scraped_at": "2026/7/31 23:32:08",
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -2017,9 +2017,9 @@
           "uid": 3546956834015338,
           "operator": "小辫子|运营组|虚拟线下部",
           "operator_top": "小辫子",
-          "revenue": "3227元",
-          "revenue_value": 3227,
-          "scraped_at": "2026/7/31 23:32:08",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         },
         {
@@ -2028,9 +2028,9 @@
           "uid": 3546825942370615,
           "operator": "小辫子|运营组|虚拟线下部",
           "operator_top": "小辫子",
-          "revenue": "2457元",
-          "revenue_value": 2457,
-          "scraped_at": "2026/7/31 23:32:08",
+          "revenue": "0元",
+          "revenue_value": 0,
+          "scraped_at": "2026/8/1 00:01:41",
           "missing": false
         }
       ]
@@ -2039,28 +2039,28 @@
   "count": 43,
   "success": 43,
   "summary": {
-    "total_revenue": 10611,
-    "avg_revenue": 247,
+    "total_revenue": 0,
+    "avg_revenue": 0,
     "max_revenue": {
-      "room_id": 1832046306,
-      "nickname": "白栖Ciel",
-      "uid": 3546716758346481,
+      "room_id": 2479015,
+      "nickname": "小茜不落泪",
+      "uid": 16547898,
       "operator": "林夕|运营组|虚拟线下部",
       "operator_top": "林夕",
-      "revenue": "3485元",
-      "revenue_value": 3485,
-      "scraped_at": "2026/7/31 23:32:08",
+      "revenue": "0元",
+      "revenue_value": 0,
+      "scraped_at": "2026/8/1 00:01:41",
       "missing": false
     },
     "min_revenue": {
-      "room_id": 1993290719,
-      "nickname": "房间1993290719",
-      "uid": "",
-      "operator": "",
-      "operator_top": "未分组",
+      "room_id": 1994826644,
+      "nickname": "柚柠_小厨娘",
+      "uid": 3546825942370615,
+      "operator": "小辫子|运营组|虚拟线下部",
+      "operator_top": "小辫子",
       "revenue": "0元",
       "revenue_value": 0,
-      "scraped_at": "2026/7/31 23:32:08",
+      "scraped_at": "2026/8/1 00:01:41",
       "missing": false
     }
   },
@@ -2071,9 +2071,9 @@
       "uid": 16547898,
       "operator": "林夕|运营组|虚拟线下部",
       "operator_top": "林夕",
-      "revenue": "106元",
-      "revenue_value": 106,
-      "scraped_at": "2026/7/31 23:32:08",
+      "revenue": "0元",
+      "revenue_value": 0,
+      "scraped_at": "2026/8/1 00:01:41",
       "missing": false
     },
     {
@@ -2082,9 +2082,9 @@
       "uid": 11478892,
       "operator": "小辫子|运营组|虚拟线下部",
       "operator_top": "小辫子",
-      "revenue": "315元",
-      "revenue_value": 315,
-      "scraped_at": "2026/7/31 23:32:08",
+      "revenue": "0元",
+      "revenue_value": 0,
+      "scraped_at": "2026/8/1 00:01:41",
       "missing": false
     },
     {
@@ -2093,31 +2093,31 @@
       "uid": 326451127,
       "operator": "予我|运营组|虚拟线下部",
       "operator_top": "予我",
-      "revenue": "1088元",
-      "revenue_value": 1088,
-      "scraped_at": "2026/7/31 23:32:08",
+      "revenue": "0元",
+      "revenue_value": 0,
+      "scraped_at": "2026/8/1 00:01:41",
       "missing": false
     },
     {
       "room_id": 23925471,
-      "nickname": "木莓ナナ",
-      "uid": 457074615,
-      "operator": "小辫子|运营组|虚拟线下部",
-      "operator_top": "小辫子",
+      "nickname": "房间23925471",
+      "uid": "",
+      "operator": "",
+      "operator_top": "未分组",
       "revenue": "0元",
       "revenue_value": 0,
-      "scraped_at": "2026/7/31 23:32:08",
+      "scraped_at": "2026/8/1 00:01:41",
       "missing": false
     },
     {
       "room_id": 30806908,
-      "nickname": "休一Hugh",
-      "uid": 444397920,
-      "operator": "梧桐|运营组|虚拟线下部",
-      "operator_top": "梧桐",
+      "nickname": "房间30806908",
+      "uid": "",
+      "operator": "",
+      "operator_top": "未分组",
       "revenue": "0元",
       "revenue_value": 0,
-      "scraped_at": "2026/7/31 23:32:08",
+      "scraped_at": "2026/8/1 00:01:41",
       "missing": false
     },
     {
@@ -2128,7 +2128,7 @@
       "operator_top": "予我",
       "revenue": "0元",
       "revenue_value": 0,
-      "scraped_at": "2026/7/31 23:32:08",
+      "scraped_at": "2026/8/1 00:01:41",
       "missing": false
     },
     {
@@ -2139,18 +2139,18 @@
       "operator_top": "未分组",
       "revenue": "0元",
       "revenue_value": 0,
-      "scraped_at": "2026/7/31 23:32:08",
+      "scraped_at": "2026/8/1 00:01:41",
       "missing": false
     },
     {
       "room_id": 1727073471,
-      "nickname": "小布偶宅天份",
-      "uid": 2137470351,
-      "operator": "梧桐|运营组|虚拟线下部",
-      "operator_top": "梧桐",
+      "nickname": "房间1727073471",
+      "uid": "",
+      "operator": "",
+      "operator_top": "未分组",
       "revenue": "0元",
       "revenue_value": 0,
-      "scraped_at": "2026/7/31 23:32:08",
+      "scraped_at": "2026/8/1 00:01:41",
       "missing": false
     },
     {
@@ -2161,18 +2161,18 @@
       "operator_top": "未分组",
       "revenue": "0元",
       "revenue_value": 0,
-      "scraped_at": "2026/7/31 23:32:08",
+      "scraped_at": "2026/8/1 00:01:41",
       "missing": false
     },
     {
       "room_id": 1769172109,
-      "nickname": "零绫乙",
-      "uid": 408180290,
-      "operator": "梧桐|运营组|虚拟线下部",
-      "operator_top": "梧桐",
+      "nickname": "房间1769172109",
+      "uid": "",
+      "operator": "",
+      "operator_top": "未分组",
       "revenue": "0元",
       "revenue_value": 0,
-      "scraped_at": "2026/7/31 23:32:08",
+      "scraped_at": "2026/8/1 00:01:41",
       "missing": false
     },
     {
@@ -2183,7 +2183,7 @@
       "operator_top": "未分组",
       "revenue": "0元",
       "revenue_value": 0,
-      "scraped_at": "2026/7/31 23:32:08",
+      "scraped_at": "2026/8/1 00:01:41",
       "missing": false
     },
     {
@@ -2194,7 +2194,7 @@
       "operator_top": "未分组",
       "revenue": "0元",
       "revenue_value": 0,
-      "scraped_at": "2026/7/31 23:32:08",
+      "scraped_at": "2026/8/1 00:01:41",
       "missing": false
     },
     {
@@ -2205,29 +2205,29 @@
       "operator_top": "未分组",
       "revenue": "0元",
       "revenue_value": 0,
-      "scraped_at": "2026/7/31 23:32:08",
+      "scraped_at": "2026/8/1 00:01:41",
       "missing": false
     },
     {
       "room_id": 1811337807,
-      "nickname": "麦悠悠Mochi",
-      "uid": 3707023633942788,
-      "operator": "梧桐|运营组|虚拟线下部",
-      "operator_top": "梧桐",
+      "nickname": "房间1811337807",
+      "uid": "",
+      "operator": "",
+      "operator_top": "未分组",
       "revenue": "0元",
       "revenue_value": 0,
-      "scraped_at": "2026/7/31 23:32:08",
+      "scraped_at": "2026/8/1 00:01:41",
       "missing": false
     },
     {
       "room_id": 1811338562,
-      "nickname": "若汐姐姐-",
-      "uid": 3493296217263073,
-      "operator": "梧桐|运营组|虚拟线下部",
-      "operator_top": "梧桐",
+      "nickname": "房间1811338562",
+      "uid": "",
+      "operator": "",
+      "operator_top": "未分组",
       "revenue": "0元",
       "revenue_value": 0,
-      "scraped_at": "2026/7/31 23:32:08",
+      "scraped_at": "2026/8/1 00:01:41",
       "missing": false
     },
     {
@@ -2236,9 +2236,9 @@
       "uid": 3546716758346481,
       "operator": "林夕|运营组|虚拟线下部",
       "operator_top": "林夕",
-      "revenue": "3485元",
-      "revenue_value": 3485,
-      "scraped_at": "2026/7/31 23:32:08",
+      "revenue": "0元",
+      "revenue_value": 0,
+      "scraped_at": "2026/8/1 00:01:41",
       "missing": false
     },
     {
@@ -2249,7 +2249,7 @@
       "operator_top": "未分组",
       "revenue": "0元",
       "revenue_value": 0,
-      "scraped_at": "2026/7/31 23:32:08",
+      "scraped_at": "2026/8/1 00:01:41",
       "missing": false
     },
     {
@@ -2258,9 +2258,9 @@
       "uid": 1610611848,
       "operator": "小辫子|运营组|虚拟线下部",
       "operator_top": "小辫子",
-      "revenue": "1080元",
-      "revenue_value": 1080,
-      "scraped_at": "2026/7/31 23:32:08",
+      "revenue": "0元",
+      "revenue_value": 0,
+      "scraped_at": "2026/8/1 00:01:41",
       "missing": false
     },
     {
@@ -2269,20 +2269,20 @@
       "uid": 3706948182607969,
       "operator": "梧桐|运营组|虚拟线下部",
       "operator_top": "梧桐",
-      "revenue": "114元",
-      "revenue_value": 114,
-      "scraped_at": "2026/7/31 23:32:08",
+      "revenue": "0元",
+      "revenue_value": 0,
+      "scraped_at": "2026/8/1 00:01:41",
       "missing": false
     },
     {
       "room_id": 1843686607,
-      "nickname": "谓禾",
-      "uid": 3493140673596136,
-      "operator": "林夕|运营组|虚拟线下部",
-      "operator_top": "林夕",
+      "nickname": "房间1843686607",
+      "uid": "",
+      "operator": "",
+      "operator_top": "未分组",
       "revenue": "0元",
       "revenue_value": 0,
-      "scraped_at": "2026/7/31 23:32:08",
+      "scraped_at": "2026/8/1 00:01:41",
       "missing": false
     },
     {
@@ -2291,20 +2291,20 @@
       "uid": 475306354,
       "operator": "小辫子|运营组|虚拟线下部",
       "operator_top": "小辫子",
-      "revenue": "464元",
-      "revenue_value": 464,
-      "scraped_at": "2026/7/31 23:32:08",
+      "revenue": "0元",
+      "revenue_value": 0,
+      "scraped_at": "2026/8/1 00:01:41",
       "missing": false
     },
     {
       "room_id": 1876315197,
-      "nickname": "布丁puddingovo",
-      "uid": 327037818,
-      "operator": "林夕|运营组|虚拟线下部",
-      "operator_top": "林夕",
+      "nickname": "房间1876315197",
+      "uid": "",
+      "operator": "",
+      "operator_top": "未分组",
       "revenue": "0元",
       "revenue_value": 0,
-      "scraped_at": "2026/7/31 23:32:08",
+      "scraped_at": "2026/8/1 00:01:41",
       "missing": false
     },
     {
@@ -2313,9 +2313,9 @@
       "uid": 1479653447,
       "operator": "小辫子|运营组|虚拟线下部",
       "operator_top": "小辫子",
-      "revenue": "1548元",
-      "revenue_value": 1548,
-      "scraped_at": "2026/7/31 23:32:08",
+      "revenue": "0元",
+      "revenue_value": 0,
+      "scraped_at": "2026/8/1 00:01:41",
       "missing": false
     },
     {
@@ -2324,20 +2324,20 @@
       "uid": 1944277161,
       "operator": "小辫子|运营组|虚拟线下部",
       "operator_top": "小辫子",
-      "revenue": "291元",
-      "revenue_value": 291,
-      "scraped_at": "2026/7/31 23:32:08",
+      "revenue": "0元",
+      "revenue_value": 0,
+      "scraped_at": "2026/8/1 00:01:41",
       "missing": false
     },
     {
       "room_id": 1879005689,
-      "nickname": "咪咪喵喵猫其林",
-      "uid": 3690978135247287,
-      "operator": "小辫子|运营组|虚拟线下部",
-      "operator_top": "小辫子",
+      "nickname": "房间1879005689",
+      "uid": "",
+      "operator": "",
+      "operator_top": "未分组",
       "revenue": "0元",
       "revenue_value": 0,
-      "scraped_at": "2026/7/31 23:32:08",
+      "scraped_at": "2026/8/1 00:01:41",
       "missing": false
     },
     {
@@ -2348,18 +2348,18 @@
       "operator_top": "未分组",
       "revenue": "0元",
       "revenue_value": 0,
-      "scraped_at": "2026/7/31 23:32:08",
+      "scraped_at": "2026/8/1 00:01:41",
       "missing": false
     },
     {
       "room_id": 1901587743,
-      "nickname": "蔚蓝色雏菊",
-      "uid": 695191594,
-      "operator": "予我|运营组|虚拟线下部",
-      "operator_top": "予我",
+      "nickname": "房间1901587743",
+      "uid": "",
+      "operator": "",
+      "operator_top": "未分组",
       "revenue": "0元",
       "revenue_value": 0,
-      "scraped_at": "2026/7/31 23:32:08",
+      "scraped_at": "2026/8/1 00:01:41",
       "missing": false
     },
     {
@@ -2370,7 +2370,7 @@
       "operator_top": "未分组",
       "revenue": "0元",
       "revenue_value": 0,
-      "scraped_at": "2026/7/31 23:32:08",
+      "scraped_at": "2026/8/1 00:01:41",
       "missing": false
     },
     {
@@ -2379,9 +2379,9 @@
       "uid": 3546879574936340,
       "operator": "梧桐|运营组|虚拟线下部",
       "operator_top": "梧桐",
-      "revenue": "44元",
-      "revenue_value": 44,
-      "scraped_at": "2026/7/31 23:32:08",
+      "revenue": "0元",
+      "revenue_value": 0,
+      "scraped_at": "2026/8/1 00:01:41",
       "missing": false
     },
     {
@@ -2390,9 +2390,9 @@
       "uid": 3707021392087419,
       "operator": "梧桐|运营组|虚拟线下部",
       "operator_top": "梧桐",
-      "revenue": "240元",
-      "revenue_value": 240,
-      "scraped_at": "2026/7/31 23:32:08",
+      "revenue": "0元",
+      "revenue_value": 0,
+      "scraped_at": "2026/8/1 00:01:41",
       "missing": false
     },
     {
@@ -2401,20 +2401,20 @@
       "uid": 3546645495023998,
       "operator": "林夕|运营组|虚拟线下部",
       "operator_top": "林夕",
-      "revenue": "165元",
-      "revenue_value": 165,
-      "scraped_at": "2026/7/31 23:32:08",
+      "revenue": "0元",
+      "revenue_value": 0,
+      "scraped_at": "2026/8/1 00:01:41",
       "missing": false
     },
     {
       "room_id": 1934308252,
-      "nickname": "柳柳liiiu",
-      "uid": 3493134637992371,
-      "operator": "林夕|运营组|虚拟线下部",
-      "operator_top": "林夕",
+      "nickname": "房间1934308252",
+      "uid": "",
+      "operator": "",
+      "operator_top": "未分组",
       "revenue": "0元",
       "revenue_value": 0,
-      "scraped_at": "2026/7/31 23:32:08",
+      "scraped_at": "2026/8/1 00:01:41",
       "missing": false
     },
     {
@@ -2425,7 +2425,7 @@
       "operator_top": "未分组",
       "revenue": "0元",
       "revenue_value": 0,
-      "scraped_at": "2026/7/31 23:32:08",
+      "scraped_at": "2026/8/1 00:01:41",
       "missing": false
     },
     {
@@ -2434,9 +2434,9 @@
       "uid": 3706967365257692,
       "operator": "予我|运营组|虚拟线下部",
       "operator_top": "予我",
-      "revenue": "204元",
-      "revenue_value": 204,
-      "scraped_at": "2026/7/31 23:32:08",
+      "revenue": "0元",
+      "revenue_value": 0,
+      "scraped_at": "2026/8/1 00:01:41",
       "missing": false
     },
     {
@@ -2447,7 +2447,7 @@
       "operator_top": "未分组",
       "revenue": "0元",
       "revenue_value": 0,
-      "scraped_at": "2026/7/31 23:32:08",
+      "scraped_at": "2026/8/1 00:01:41",
       "missing": false
     },
     {
@@ -2456,9 +2456,9 @@
       "uid": 667459068,
       "operator": "梧桐|运营组|虚拟线下部",
       "operator_top": "梧桐",
-      "revenue": "136元",
-      "revenue_value": 136,
-      "scraped_at": "2026/7/31 23:32:08",
+      "revenue": "0元",
+      "revenue_value": 0,
+      "scraped_at": "2026/8/1 00:01:41",
       "missing": false
     },
     {
@@ -2467,9 +2467,9 @@
       "uid": 442666261,
       "operator": "梧桐|运营组|虚拟线下部",
       "operator_top": "梧桐",
-      "revenue": "194元",
-      "revenue_value": 194,
-      "scraped_at": "2026/7/31 23:32:08",
+      "revenue": "0元",
+      "revenue_value": 0,
+      "scraped_at": "2026/8/1 00:01:41",
       "missing": false
     },
     {
@@ -2478,20 +2478,20 @@
       "uid": 431936163,
       "operator": "予我|运营组|虚拟线下部",
       "operator_top": "予我",
-      "revenue": "16元",
-      "revenue_value": 16,
-      "scraped_at": "2026/7/31 23:32:08",
+      "revenue": "0元",
+      "revenue_value": 0,
+      "scraped_at": "2026/8/1 00:01:41",
       "missing": false
     },
     {
       "room_id": 1984342129,
-      "nickname": "雾桃_吖",
-      "uid": 3546753798244538,
-      "operator": "予我|运营组|虚拟线下部",
-      "operator_top": "予我",
+      "nickname": "房间1984342129",
+      "uid": "",
+      "operator": "",
+      "operator_top": "未分组",
       "revenue": "0元",
       "revenue_value": 0,
-      "scraped_at": "2026/7/31 23:32:08",
+      "scraped_at": "2026/8/1 00:01:41",
       "missing": false
     },
     {
@@ -2500,9 +2500,9 @@
       "uid": 2124934224,
       "operator": "林夕|运营组|虚拟线下部",
       "operator_top": "林夕",
-      "revenue": "645元",
-      "revenue_value": 645,
-      "scraped_at": "2026/7/31 23:32:08",
+      "revenue": "0元",
+      "revenue_value": 0,
+      "scraped_at": "2026/8/1 00:01:41",
       "missing": false
     },
     {
@@ -2513,7 +2513,7 @@
       "operator_top": "未分组",
       "revenue": "0元",
       "revenue_value": 0,
-      "scraped_at": "2026/7/31 23:32:08",
+      "scraped_at": "2026/8/1 00:01:41",
       "missing": false
     },
     {
@@ -2522,9 +2522,9 @@
       "uid": 3546956834015338,
       "operator": "小辫子|运营组|虚拟线下部",
       "operator_top": "小辫子",
-      "revenue": "128元",
-      "revenue_value": 128,
-      "scraped_at": "2026/7/31 23:32:08",
+      "revenue": "0元",
+      "revenue_value": 0,
+      "scraped_at": "2026/8/1 00:01:41",
       "missing": false
     },
     {
@@ -2533,9 +2533,9 @@
       "uid": 3546825942370615,
       "operator": "小辫子|运营组|虚拟线下部",
       "operator_top": "小辫子",
-      "revenue": "348元",
-      "revenue_value": 348,
-      "scraped_at": "2026/7/31 23:32:08",
+      "revenue": "0元",
+      "revenue_value": 0,
+      "scraped_at": "2026/8/1 00:01:41",
       "missing": false
     }
   ]
